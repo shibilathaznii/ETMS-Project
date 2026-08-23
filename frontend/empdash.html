@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Dashboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="empdash.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li class="active">
+            <a href="empdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="emptasks.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span>My Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="completed.html">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Report Workload</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkloadstatus.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Workload Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="applyleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Apply Leave</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="leavestatus.html">
+                <i class="fa-solid fa-clock"></i>
+                <span>Leave Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Employee Dashboard</h1>
+            <p>View your tasks and work progress</p>
+        </div>
+
+        <div class="top-right">
+
+            <div class="notification"
+                 onclick="showNotifications()">
+
+                <i class="fa-regular fa-bell"></i>
+                <span></span>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+                    <strong></strong>
+                    <small>Employee</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="welcome">
+
+        <div>
+
+            <h2>Welcome back, 👋</h2>
+
+            <p>
+                Here is your current task and workload summary.
+            </p>
+
+        </div>
+
+        <div class="date-box">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            <span id="currentDate"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY CARDS ================= -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon blue">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <div>
+                <p>Total Tasks</p>
+                <h2></h2>
+                <small>Assigned tasks</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon orange">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div>
+                <p>Pending Tasks</p>
+                <h2></h2>
+                <small>Tasks remaining</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon purple">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+
+            <div>
+                <p>In Progress</p>
+                <h2></h2>
+                <small>Currently working</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <p>Completed</p>
+                <h2></h2>
+                <small>Completed tasks</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WORKLOAD ================= -->
+
+    <section class="workload-box">
+
+        <div class="workload-left">
+
+            <div class="workload-icon">
+                <i class="fa-solid fa-people-arrows"></i>
+            </div>
+
+            <div>
+
+                <h2>Current Workload</h2>
+
+                <p>
+                    You currently have
+                    <strong> pending tasks</strong>.
+                </p>
+
+                <span class="high-workload">
+                    High Workload
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="workload-actions">
+
+            <a href="empworkload.html"
+               class="support-btn">
+
+                <i class="fa-solid fa-hand-holding-heart"></i>
+
+                Request Support
+
+            </a>
+
+            <a href="empworkloadstatus.html"
+               class="status-btn">
+
+                View Status
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTENT GRID ================= -->
+
+    <section class="content-grid">
+
+
+        <!-- MY TASKS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>My Tasks</h2>
+
+                    <p>Recently assigned tasks</p>
+
+                </div>
+
+                <a href="emptasks.html">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="task-item">
+
+                <div class="task-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+
+                <div class="task-info">
+
+                    <h3></h3>
+
+                    <p>
+                        
+                    </p>
+
+                    <small>
+                        
+                    </small>
+
+                </div>
+
+                <span class="">
+                   
+                </span>
+
+                <span class="">
+                   
+                </span>
+
+            </div>
+
+
+            <div class="task-item">
+
+                <div class="task-icon">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </div>
+
+                <div class="task-info">
+
+                    <h3></h3>
+
+                    <p>
+                        
+                    </p>
+
+                    <small>
+                        
+                    </small>
+
+                </div>
+
+                <span class="">
+                    
+                </span>
+
+                <span class="">
+                    
+                </span>
+
+            </div>
+
+
+            <div class="task-item">
+
+                <div class="task-icon">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+
+                <div class="task-info">
+
+                    <h3></h3>
+
+                    <p>
+                        
+                    </p>
+
+                    <small>
+                       
+                    </small>
+
+                </div>
+
+                <span class="">
+                    
+                </span>
+
+                <span class="">
+                   
+                </span>
+
+            </div>
+
+
+            <div class="task-item">
+
+                <div class="task-icon">
+                    <i class="fa-solid fa-vial"></i>
+                </div>
+
+                <div class="task-info">
+
+                    <h3></h3>
+
+                    <p>
+                       
+                    </p>
+
+                    <small>
+
+                    </small>
+
+                </div>
+
+                <span class="">
+                    
+                </span>
+
+                <span class="">
+                   
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORKLOAD STATUS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>Workload Status</h2>
+
+                    <p>Latest support request</p>
+
+                </div>
+
+                <a href="empworkload.html">
+                    View
+                </a>
+
+            </div>
+
+
+            <div class="request-status">
+
+                <div class="request-icon">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+
+                <div>
+
+                    <h3>Support Request</h3>
+
+                    <p>
+                       
+                    </p>
+
+                </div>
+
+                <span class="status waiting">
+                    
+                </span>
+
+            </div>
+
+
+            <div class="status-details">
+
+                <div>
+                    <span>Workload Level</span>
+                    <strong class="high-text">
+                        
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Pending Tasks</span>
+                    <strong></strong>
+                </div>
+
+                <div>
+                    <span>Manager</span>
+                    <strong>Manager</strong>
+                </div>
+
+            </div>
+
+
+            <div class="message-box">
+
+                <i class="fa-solid fa-message"></i>
+
+                <p>
+                    Your request has been sent to the manager.
+                    Please wait for further action.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEAVE + PROFILE ================= -->
+
+    <section class="content-grid">
+
+
+        <!-- LEAVE SUMMARY -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>Leave Summary</h2>
+
+                    <p>Your current leave information</p>
+
+                </div>
+
+                <a href="leavestatus.html">
+                    View
+                </a>
+
+            </div>
+
+
+            <div class="leave-summary">
+
+                <div class="leave-card">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <span>Total Leave</span>
+
+                    <strong></strong>
+
+                </div>
+
+
+                <div class="leave-card">
+
+                    <i class="fa-solid fa-calendar-minus"></i>
+
+                    <span>Used Leave</span>
+
+                    <strong></strong>
+
+                </div>
+
+
+                <div class="leave-card">
+
+                    <i class="fa-solid fa-calendar-plus"></i>
+
+                    <span>Remaining</span>
+
+                    <strong></strong>
+
+                </div>
+
+            </div>
+
+
+            <a href="applyleave.html"
+               class="apply-leave">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Apply for Leave
+
+            </a>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>My Profile</h2>
+
+                    <p>Employee information</p>
+
+                </div>
+
+                <a href="profile.html">
+                    Edit
+                </a>
+
+            </div>
+
+
+            <div class="profile-details">
+
+                <div class="employee-avatar">
+                    
+                </div>
+
+                <div>
+
+                    <h3></h3>
+
+                    <p></p>
+
+                    <p></p>
+
+                    <p></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+    // =====================================
+// CURRENT DATE
+// =====================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const dateElement =
+        document.getElementById("currentDate");
+
+    if (dateElement) {
+
+        const today = new Date();
+
+        dateElement.textContent =
+            today.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            });
+    }
+
+});
+
+
+// =====================================
+// NOTIFICATIONS
+// =====================================
+
+function showNotifications() {
+
+    alert(
+        "Notifications\n\n" +
+        "• New task assigned: Database Connection\n" +
+        "• Workload request status: Pending"
+    );
+
+}
+
+
+// =====================================
+// LOGOUT
+// =====================================
+
+function logout() {
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if (confirmLogout) {
+
+        window.location.href = "login.html";
+
+    }
+
+}
+</script>
+
+</body>
+</html>

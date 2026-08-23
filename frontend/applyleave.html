@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply Leave - Employee</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="apply.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="empdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="employee.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span>My Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="completed.html">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Report Workload</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkloadstatus.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Workload Status</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="applyleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Apply Leave</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="leavestatus.html">
+                <i class="fa-solid fa-clock"></i>
+                <span>Leave Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Apply Leave</h1>
+            <p>Submit your leave request to your manager</p>
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <strong></strong>
+                <small>Employee</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="leave-layout">
+
+        <!-- LEAVE FORM -->
+
+        <div class="leave-card">
+
+            <div class="card-title">
+
+                <div class="title-icon">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                </div>
+
+                <div>
+                    <h2>Leave Application</h2>
+                    <p>Fill in the details below</p>
+                </div>
+
+            </div>
+
+
+            <form id="leaveForm"
+                  onsubmit="submitLeave(event)">
+
+
+                <!-- EMPLOYEE -->
+
+                <div class="form-group">
+
+                    <label>Employee Name</label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            value=""
+                            id="employeeName"
+                            readonly>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DEPARTMENT -->
+
+                <div class="form-group">
+
+                    <label>Department</label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <input
+                            type="text"
+                            value=""
+                            readonly>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LEAVE TYPE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Leave Type <span>*</span>
+                    </label>
+
+                    <select id="leaveType" required>
+
+                        <option value="">
+                            Select Leave Type
+                        </option>
+
+                        <option value="Medical">
+                            Medical Leave
+                        </option>
+
+                        <option value="General">
+                            General Leave
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DATES -->
+
+                <div class="date-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            From Date <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fromDate"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            To Date <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="toDate"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL DAYS -->
+
+                <div class="days-box">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <div>
+
+                        <span>Total Leave Days</span>
+
+                        <strong id="totalDays">
+                            0 Days
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REASON -->
+
+                <div class="form-group">
+
+                    <label>
+                        Reason <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="reason"
+                        placeholder="Enter the reason for leave..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- SUPPORTING DOCUMENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Supporting Document
+                    </label>
+
+                    <div class="upload-box">
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        <input
+                            type="file"
+                            id="proof"
+                            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
+                        <p>
+                            Upload medical certificate or
+                            other supporting document
+                        </p>
+
+                        <small>
+                            PDF, JPG, PNG, DOC
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Message to Manager
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Optional message to your manager..."></textarea>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="reset"
+                        class="clear-btn"
+                        onclick="resetDays()">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="submit-btn">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Submit Leave Request
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="right-side">
+
+            <!-- LEAVE BALANCE -->
+
+            <div class="balance-card">
+
+                <h3>Leave Balance</h3>
+
+                <div class="balance-item">
+
+                    <div class="balance-icon medical">
+                        <i class="fa-solid fa-notes-medical"></i>
+                    </div>
+
+                    <div>
+                        <span>Medical Leave</span>
+                        <strong> Days</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="balance-item">
+
+                    <div class="balance-icon general">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+
+                    <div>
+                        <span>General Leave</span>
+                        <strong>Days</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROCESS -->
+
+            <div class="info-card">
+
+                <h3>
+                    <i class="fa-solid fa-circle-info"></i>
+                    Leave Approval Process
+                </h3>
+
+                <div class="process">
+
+                    <div class="process-item">
+
+                        <span></span>
+
+                        <div>
+                            <strong>Submit Request</strong>
+                            <p>Employee submits leave.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-item">
+
+                        <span></span>
+
+                        <div>
+                            <strong>Manager Review</strong>
+                            <p>Manager approves or rejects.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-item">
+
+                        <span></span>
+
+                        <div>
+                            <strong>Admin Approval</strong>
+                            <p>Final approval by Admin.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="process-item">
+
+                        <span></span>
+
+                        <div>
+                            <strong>Leave Status</strong>
+                            <p>Employee can track status.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-card">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <div>
+
+                    <h3>Leave Status</h3>
+
+                    <p>
+                        Check your previous requests
+                        from Leave Status.
+                    </p>
+
+                    <a href="leavestatus.html">
+                        View Leave Status
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+    // Calculate total leave days
+
+document.getElementById("fromDate").addEventListener("change", calculateDays);
+document.getElementById("toDate").addEventListener("change", calculateDays);
+
+function calculateDays() {
+
+    const from =
+        document.getElementById("fromDate").value;
+
+    const to =
+        document.getElementById("toDate").value;
+
+    if (!from || !to) {
+        document.getElementById("totalDays").innerText =
+            "0 Days";
+        return;
+    }
+
+    const startDate = new Date(from);
+    const endDate = new Date(to);
+
+    if (endDate < startDate) {
+
+        document.getElementById("totalDays").innerText =
+            "Invalid Date";
+
+        return;
+    }
+
+    const difference =
+        endDate - startDate;
+
+    const days =
+        Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        ) + 1;
+
+    document.getElementById("totalDays").innerText =
+        days + (days === 1 ? " Day" : " Days");
+}
+
+
+// Submit leave
+
+function submitLeave(event) {
+
+    event.preventDefault();
+
+    const employee =
+        document.getElementById("employeeName").value;
+
+    const type =
+        document.getElementById("leaveType").value;
+
+    const from =
+        document.getElementById("fromDate").value;
+
+    const to =
+        document.getElementById("toDate").value;
+
+    const reason =
+        document.getElementById("reason").value;
+
+    if (!type || !from || !to || !reason.trim()) {
+
+        alert("Please fill all required fields.");
+
+        return;
+    }
+
+    const startDate = new Date(from);
+    const endDate = new Date(to);
+
+    if (endDate < startDate) {
+
+        alert("To Date cannot be before From Date.");
+
+        return;
+    }
+
+    alert(
+        "Leave Request Submitted Successfully!\n\n" +
+        "Employee: " + employee + "\n" +
+        "Leave Type: " + type + "\n" +
+        "From: " + from + "\n" +
+        "To: " + to
+    );
+
+    document.getElementById("leaveForm").reset();
+
+    document.getElementById("totalDays").innerText =
+        "0 Days";
+}
+
+
+// Logout
+
+function logout() {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        window.location.href = "login.html";
+
+    }
+}
+
+
+// Reset total days
+
+function resetDays() {
+
+    setTimeout(function() {
+
+        document.getElementById("totalDays").innerText =
+            "0 Days";
+
+    }, 100);
+
+}
+</script>
+
+</body>
+</html>

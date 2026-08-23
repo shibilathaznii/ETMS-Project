@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Profile</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="managerprofile.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="viewtask.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span> View Tasks</span>
+            </a>
+        </li>
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Project Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <div class="profile-card">
+
+        <h1>My Profile</h1>
+
+        <!-- Profile Image -->
+        <div class="profile-image">
+            <img src="profile.jpg" alt="Profile Picture">
+        </div>
+
+        <button class="change-photo"
+                onclick="changePhoto()">
+            Change Photo
+        </button>
+
+        <!-- Profile Form -->
+        <form onsubmit="updateProfile(event)">
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text"
+                           id="name"
+                           value="Abir Singh">
+                </div>
+
+                <div class="form-group">
+                    <label>Employee ID</label>
+                    <input type="text"
+                           value="MGR001"
+                           readonly>
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email"
+                           id="email"
+                           value="abir@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text"
+                           id="phone"
+                           value="9876543210">
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text"
+                           value="Technical"
+                           readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Designation</label>
+                    <input type="text"
+                           value="Manager"
+                           readonly>
+                </div>
+
+            </div>
+
+
+            <div class="form-group full">
+                <label>Address</label>
+                <textarea id="address"
+                          rows="3">Kerala, India</textarea>
+            </div>
+
+
+            <div class="button-area">
+                <button type="submit"
+                        class="update-btn">
+                    Update Profile
+                </button>
+
+                <button type="button"
+                        class="password-btn"
+                        onclick="changePassword()">
+                    Change Password
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="managerprofile.js"></script>
+
+</body>
+</html>

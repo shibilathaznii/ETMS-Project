@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Project Submission</title>
+    <link rel="stylesheet" href="projectsubmission.css">
+</head>
+<body>
+
+<div class="container">
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="viewtask.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span> View Tasks</span>
+            </a>
+        </li>
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Project Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+<h2>Project Submission</h2>
+
+<form>
+
+<label>Project Name</label>
+<select>
+    <option>Employee Task Management System</option>
+    <option>Library Management System</option>
+</select>
+
+<label>Project Title</label>
+<input type="text" placeholder="Enter Project Title">
+
+<label>Submitted By</label>
+<input type="text" placeholder="Manager Name">
+
+<label>Completion Date</label>
+<input type="date">
+
+<label>Project Status</label>
+<select>
+    <option>Completed</option>
+    <option>In Progress</option>
+</select>
+
+<label>Upload Project File</label>
+<input type="file">
+
+<label>Remarks</label>
+<textarea placeholder="Enter remarks"></textarea>
+
+<button type="submit">Submit Project</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

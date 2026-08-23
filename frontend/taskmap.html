@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Mapping</title>
+
+    <link rel="stylesheet" href="taskmap.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <h2>
+        <i class="fa-solid fa-user-tie"></i>
+        Manager
+    </h2>
+
+    <a href="managerdashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="project.html" class="active">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>Projects</span>
+    </a>
+
+    <a href="magerleave.html">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Leave Requests</span>
+    </a>
+
+    <a href="managerreport.html">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Reports</span>
+    </a>
+
+    <a href="managerprofile.html">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+    <a href="login.html">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            <i class="fa-solid fa-diagram-project"></i>
+            Task Mapping
+        </h1>
+
+        <p>
+            Assign tasks to one or more employees
+        </p>
+
+    </div>
+
+
+    <!-- PROJECT -->
+
+    <div class="project-box">
+
+        <label for="project">
+            Project:
+        </label>
+
+        <select id="project">
+
+            <option value="">
+                
+            </option>
+
+            <option value="">
+                
+            </option>
+
+            <option value="">
+                
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- TASK 1 -->
+
+    <div class="task-card">
+
+        <div class="task-title">
+
+            <div>
+                <span class="task-number">01</span>
+
+                <div>
+                    <h2></h2>
+
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+            <span class="">
+                
+            </span>
+
+        </div>
+
+
+        <div class="employees">
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+        </div>
+
+
+        <div class="save-area">
+
+            <button onclick="saveMapping(this, 'Database Connection')">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Mapping
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TASK 2 -->
+
+    <div class="task-card">
+
+        <div class="task-title">
+
+            <div>
+                <span class="task-number">02</span>
+
+                <div>
+                    <h2></h2>
+
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+            <span class="">
+                
+            </span>
+
+        </div>
+
+
+        <div class="employees">
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+        </div>
+
+
+        <div class="save-area">
+
+            <button onclick="saveMapping(this, 'Login Page')">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Mapping
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TASK 3 -->
+
+    <div class="task-card">
+
+        <div class="task-title">
+
+            <div>
+                <span class="task-number">03</span>
+
+                <div>
+                    <h2></h2>
+
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+            <span class="">
+                
+            </span>
+
+        </div>
+
+
+        <div class="employees">
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+               
+            </label>
+
+        </div>
+
+
+        <div class="save-area">
+
+            <button onclick="saveMapping(this, 'Dashboard Design')">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Mapping
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TASK 4 -->
+
+    <div class="task-card">
+
+        <div class="task-title">
+
+            <div>
+                <span class="task-number">04</span>
+
+                <div>
+                    <h2></h2>
+
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+            <span class="">
+                
+            </span>
+
+        </div>
+
+
+        <div class="employees">
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                Rahul Kumar
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+            <label>
+                <input type="checkbox"
+                       value="">
+                <i class="fa-solid fa-user"></i>
+                
+            </label>
+
+        </div>
+
+
+        <div class="save-area">
+
+            <button onclick="saveMapping(this, 'Testing')">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Save Mapping
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script >
+    function saveMapping(button, taskName) {
+
+    // Get the task card
+    const taskCard = button.closest(".task-card");
+
+    // Get selected employees
+    const checkedEmployees =
+        taskCard.querySelectorAll(
+            'input[type="checkbox"]:checked'
+        );
+
+    let employees = [];
+
+    checkedEmployees.forEach(function(employee) {
+        employees.push(employee.value);
+    });
+
+
+    // Check if employee is selected
+
+    if (employees.length === 0) {
+
+        alert(
+            "Please select at least one employee for " +
+            taskName
+        );
+
+        return;
+    }
+
+
+    // Mapping object
+
+    const mapping = {
+        project:
+            document.getElementById("project").value,
+
+        task:
+            taskName,
+
+        employees:
+            employees
+    };
+
+
+    // Store mapping in browser
+
+    let allMappings =
+        JSON.parse(
+            localStorage.getItem("taskMappings")
+        ) || [];
+
+
+    // Remove old mapping for same task
+
+    allMappings =
+        allMappings.filter(function(item) {
+
+            return item.task !== taskName;
+
+        });
+
+
+    // Add new mapping
+
+    allMappings.push(mapping);
+
+
+    localStorage.setItem(
+        "taskMappings",
+        JSON.stringify(allMappings)
+    );
+
+
+    // Change button
+
+    button.innerHTML =
+        '<i class="fa-solid fa-check"></i> Saved';
+
+    button.classList.add("saved");
+
+
+    alert(
+        taskName +
+        " mapped to:\n\n" +
+        employees.join(", ")
+    );
+
+}
+</script>
+
+</body>
+</html>

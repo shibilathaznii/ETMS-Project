@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>View Tasks - Manager</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="viewtask.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="viewtask.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span> View Tasks</span>
+            </a>
+        </li>
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Project Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>View Tasks</h1>
+            <p>View and monitor tasks assigned to your team</p>
+        </div>
+
+        <div class="manager-profile">
+
+            <div class="profile-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div>
+                <strong></strong>
+                <small>Manager</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+            <div class="summary-icon total">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+                <span>Total Tasks</span>
+                <strong id="totalTasks">0</strong>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon pending">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <span>Pending</span>
+                <strong id="pendingTasks">0</strong>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon progress">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+            <div>
+                <span>In Progress</span>
+                <strong id="progressTasks">0</strong>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon completed">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <span>Completed</span>
+                <strong id="completedTasks">0</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- TASK TABLE -->
+
+    <section class="task-card">
+
+        <div class="task-header">
+
+            <div>
+                <h2>Team Tasks</h2>
+                <p>All tasks assigned by you</p>
+            </div>
+
+            <button
+                class="add-btn"
+                onclick="window.location.href='task-mapping.html'">
+
+                <i class="fa-solid fa-plus"></i>
+                Add Task
+
+            </button>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filters">
+
+            <div class="search">
+
+                <i class="fa-solid fa-search"></i>
+
+                <input
+                    type="text"
+                    id="searchTask"
+                    placeholder="Search task..."
+                    onkeyup="filterTasks()">
+
+            </div>
+
+
+            <select
+                id="projectFilter"
+                onchange="filterTasks()">
+
+                <option value="all">
+                    All Projects
+                </option>
+
+            </select>
+
+
+            <select
+                id="statusFilter"
+                onchange="filterTasks()">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="In Progress">
+                    In Progress
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+
+            <select
+                id="priorityFilter"
+                onchange="filterTasks()">
+
+                <option value="all">
+                    All Priority
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+                <option value="Low">
+                    Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>S.No</th>
+                        <th>Task</th>
+                        <th>Project</th>
+                        <th>Assigned To</th>
+                        <th>Priority</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="taskTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TASK DETAILS -->
+
+    <div
+        class="modal"
+        id="taskModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2>Task Details</h2>
+
+                <button onclick="closeModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <div id="taskDetails"></div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+    let tasks = [
+    {
+       
+    },
+
+    {
+        
+    },
+
+    
+];
+
+
+// LOAD TASKS
+
+function loadTasks(data = tasks) {
+
+    const table =
+        document.getElementById("taskTable");
+
+    table.innerHTML = "";
+
+    data.forEach((task, index) => {
+
+        const row =
+            document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>
+                <strong>${task.title}</strong>
+            </td>
+
+            <td>${task.project}</td>
+
+            <td>${task.assignedTo}</td>
+
+            <td>
+                <span class="priority ${task.priority.toLowerCase()}">
+                    ${task.priority}
+                </span>
+            </td>
+
+            <td>${task.startDate}</td>
+
+            <td>${task.endDate}</td>
+
+            <td>
+                <span class="status ${getStatusClass(task.status)}">
+                    ${task.status}
+                </span>
+            </td>
+
+            <td>
+
+                <button
+                    class="view-btn"
+                    onclick="viewTask(${task.id})">
+
+                    <i class="fa-solid fa-eye"></i>
+                    View
+
+                </button>
+
+            </td>
+        `;
+
+        table.appendChild(row);
+
+    });
+
+    updateSummary();
+
+}
+
+
+// STATUS CLASS
+
+function getStatusClass(status) {
+
+    if (status === "Pending") {
+        return "pending";
+    }
+
+    if (status === "In Progress") {
+        return "progress";
+    }
+
+    return "completed";
+}
+
+
+// UPDATE SUMMARY
+
+function updateSummary() {
+
+    document.getElementById("totalTasks")
+        .innerText = tasks.length;
+
+    document.getElementById("pendingTasks")
+        .innerText =
+        tasks.filter(
+            task => task.status === "Pending"
+        ).length;
+
+    document.getElementById("progressTasks")
+        .innerText =
+        tasks.filter(
+            task => task.status === "In Progress"
+        ).length;
+
+    document.getElementById("completedTasks")
+        .innerText =
+        tasks.filter(
+            task => task.status === "Completed"
+        ).length;
+}
+
+
+// SEARCH + FILTER
+
+function filterTasks() {
+
+    const search =
+        document.getElementById("searchTask")
+        .value
+        .toLowerCase();
+
+    const project =
+        document.getElementById("projectFilter")
+        .value;
+
+    const status =
+        document.getElementById("statusFilter")
+        .value;
+
+    const priority =
+        document.getElementById("priorityFilter")
+        .value;
+
+
+    const filtered =
+        tasks.filter(task => {
+
+            const searchMatch =
+                task.title.toLowerCase()
+                .includes(search) ||
+
+                task.assignedTo.toLowerCase()
+                .includes(search);
+
+            const projectMatch =
+                project === "all" ||
+                task.project === project;
+
+            const statusMatch =
+                status === "all" ||
+                task.status === status;
+
+            const priorityMatch =
+                priority === "all" ||
+                task.priority === priority;
+
+            return (
+                searchMatch &&
+                projectMatch &&
+                statusMatch &&
+                priorityMatch
+            );
+
+        });
+
+
+    loadTasks(filtered);
+}
+
+
+// LOAD PROJECT FILTER
+
+function loadProjects() {
+
+    const projectFilter =
+        document.getElementById("projectFilter");
+
+    const projects =
+        [...new Set(
+            tasks.map(task => task.project)
+        )];
+
+    projects.forEach(project => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = project;
+        option.innerText = project;
+
+        projectFilter.appendChild(option);
+
+    });
+
+}
+
+
+// VIEW TASK
+
+function viewTask(id) {
+
+    const task =
+        tasks.find(task => task.id === id);
+
+    if (!task) return;
+
+
+    document.getElementById("taskDetails")
+        .innerHTML = `
+
+        <div class="detail-row">
+            <span>Task Title</span>
+            <strong>${task.title}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Project</span>
+            <strong>${task.project}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Assigned To</span>
+            <strong>${task.assignedTo}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Priority</span>
+            <strong>${task.priority}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Start Date</span>
+            <strong>${task.startDate}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>End Date</span>
+            <strong>${task.endDate}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Status</span>
+            <strong>${task.status}</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Description</span>
+            <strong>${task.description}</strong>
+        </div>
+
+    `;
+
+
+    document.getElementById("taskModal")
+        .style.display = "flex";
+}
+
+
+// CLOSE MODAL
+
+function closeModal() {
+
+    document.getElementById("taskModal")
+        .style.display = "none";
+
+}
+
+
+// LOGOUT
+
+function logout() {
+
+    if (
+        confirm("Are you sure you want to logout?")
+    ) {
+
+        window.location.href =
+            "login.html";
+
+    }
+}
+
+
+// INITIAL LOAD
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProjects();
+        loadTasks();
+
+    }
+);
+</script>
+
+</body>
+</html>

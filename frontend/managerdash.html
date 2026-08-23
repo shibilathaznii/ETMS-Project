@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manager Dashboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="managerdash.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="viewtask.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span> View Tasks</span>
+            </a>
+        </li>
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Project Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Manager Dashboard</h1>
+            <p>Manage projects, tasks and your team</p>
+        </div>
+
+        <div class="top-right">
+
+            <div class="notification"
+                 onclick="showNotifications()">
+
+                <i class="fa-regular fa-bell"></i>
+                <span></span>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+
+                <div>
+                    <strong>Manager</strong>
+                    <small>Project Manager</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <section class="welcome">
+
+        <div>
+            <h2>Welcome back, Manager! 👋</h2>
+
+            <p>
+                Here's what's happening with your team today.
+            </p>
+        </div>
+
+        <div class="date-box">
+            <i class="fa-solid fa-calendar"></i>
+            <span id="currentDate"></span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= SUMMARY CARDS ================= -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon blue">
+                <i class="fa-solid fa-folder"></i>
+            </div>
+
+            <div>
+                <p>Total Projects</p>
+                <h2 id="totalProjects"></h2>
+                <small>Active projects</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon purple">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <div>
+                <p>Total Tasks</p>
+                <h2 id="totalTasks"></h2>
+                <small>Assigned tasks</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon orange">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div>
+                <p>Pending Tasks</p>
+                <h2 id="pendingTasks"></h2>
+                <small>Need attention</small>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <p>Completed Tasks</p>
+                <h2 id="completedTasks"></h2>
+                <small>Successfully completed</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUICK ACTIONS ================= -->
+
+    <section class="quick-section">
+
+        <h2 class="section-title">Quick Actions</h2>
+
+        <div class="quick-grid">
+
+            <a href="viewpro.html" class="quick-card">
+                <i class="fa-solid fa-folder-plus"></i>
+                <span>view Project</span>
+            </a>
+
+            <a href="createtask.html" class="quick-card">
+                <i class="fa-solid fa-plus"></i>
+                <span>Create Task</span>
+            </a>
+
+            <a href="taskmap.html" class="quick-card">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Assign Task</span>
+            </a>
+
+            <a href="managerreport.html" class="quick-card">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>View Reports</span>
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RECENT TASKS + PROJECTS ================= -->
+
+    <section class="content-grid">
+
+
+        <!-- RECENT TASKS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>Recent Tasks</h2>
+                    <p>Latest team tasks</p>
+                </div>
+
+                <a href="viewtask.html">View All</a>
+
+            </div>
+
+
+            
+
+            
+
+
+            
+
+            
+
+        </div>
+
+
+        <!-- MY PROJECTS -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>My Projects</h2>
+                    <p>Project progress</p>
+                </div>
+
+                <a href="project.html">View All</a>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <div class="project-header">
+                    <h3></h3>
+                    <span></span>
+                </div>
+
+                <p> Tasks</p>
+
+                <div class="progress-bar">
+                  <div class="">  </div>
+                </div>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <div class="project-header">
+                    <h3></h3>
+                    <span></span>
+                </div>
+
+                <p> Tasks</p>
+
+                <div class="progress-bar">
+                    <div class="complete-bar">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="project-item">
+
+                <div class="project-header">
+                    <h3></h3>
+                    <span></span>
+                </div>
+
+                <p> Tasks</p>
+
+                <div class="progress-bar">
+                    <div class=""></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WORKLOAD + LEAVE ================= -->
+
+    <section class="content-grid">
+
+
+        <!-- WORKLOAD REQUEST -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-people-arrows"></i>
+                        Workload Requests
+                    </h2>
+
+                    <p>
+                        Employees requesting support
+                    </p>
+                </div>
+
+                <span class="request-count"></span>
+
+            </div>
+
+
+            
+
+        <!-- LEAVE REQUEST -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Team Leave Requests
+                    </h2>
+
+                    <p>Recent leave requests</p>
+                </div>
+
+                <span class="request-count yellow">
+                    
+                </span>
+
+            </div>
+
+
+           
+
+                
+            <div class="leave-item">
+
+                <div class="leave-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="leave-info">
+
+                    <h3></h3>
+
+                    <p></p>
+
+                    <small></small>
+
+                </div>
+
+                <span>
+                    
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEAM MEMBERS ================= -->
+
+    <section class="panel team-panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Team Members
+                </h2>
+
+                <p>Your assigned team</p>
+            </div>
+
+            <a href="teammembers.html">
+                View Team
+            </a>
+
+        </div>
+
+
+        <div class="team-grid">
+
+            
+
+
+            
+
+                
+
+
+            <div class="team-member">
+
+                <div class="avatar"></div>
+
+                <div>
+                    <h3></h3>
+                    <p></p>
+                </div>
+
+                <span class="online"></span>
+
+            </div>
+
+
+            <div class="team-member">
+
+                <div class="avatar"></div>
+
+                <div>
+                    <h3></h3>
+                    <p></p>
+                </div>
+
+                <span class="offline"></span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+    // ===============================
+// CURRENT DATE
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const dateElement =
+        document.getElementById("currentDate");
+
+    if (dateElement) {
+
+        const today = new Date();
+
+        dateElement.textContent =
+            today.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            });
+    }
+
+});
+
+
+// ===============================
+// NOTIFICATIONS
+// ===============================
+
+function showNotifications() {
+
+    alert(
+        "Notifications\n\n" +
+        "1. New workload request from \n" +
+        "2. New workload request from \n" +
+        "3. New leave request from "
+    );
+
+}
+
+
+// ===============================
+// VIEW WORKLOAD REQUEST
+// ===============================
+
+function viewWorkload(employeeName) {
+
+    window.location.href =
+        "managerworkload.html?employee=" +
+        encodeURIComponent(employeeName);
+
+}
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+function logout() {
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if (confirmLogout) {
+
+        window.location.href = "task.html";
+
+    }
+
+}
+</script>
+
+</body>
+</html>

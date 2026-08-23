@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="admindash.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addmanager.html">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Managers</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="tasks.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Admin Dashboard</h1>
+
+                <p>
+                    Welcome back, Admin. Here's your system overview.
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-count">
+                        
+                    </span>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-image">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <strong>Admin</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= SUMMARY CARDS ================= -->
+
+        <section class="summary-grid">
+
+
+            <!-- EMPLOYEES -->
+
+            <div class="summary-card">
+
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+
+                    <p>Total Employees</p>
+
+                    <h2></h2>
+
+                    <span class="card-link">
+                        View Employees
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROJECTS -->
+
+            <div class="summary-card">
+
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-folder"></i>
+                </div>
+
+                <div>
+
+                    <p>Total Projects</p>
+
+                    <h2></h2>
+
+                    <span class="card-link">
+                        View Projects
+                    </span>
+
+                </div>
+
+            </div>
+            <div class="summary-card">
+
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-folder"></i>
+                </div>
+
+                <div>
+
+                    <p>Total task</p>
+
+                    <h2></h2>
+
+                    <span class="card-link">
+                        View task
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+
+            
+
+            
+
+
+
+            <!-- WORKLOAD -->
+
+            <div class="summary-card">
+
+                <div class="card-icon red">
+                    <i class="fa-solid fa-people-arrows"></i>
+                </div>
+
+                <div>
+
+                    <p>Workload Requests</p>
+
+                    <h2></h2>
+
+                    <span class="card-link">
+                     <a href="adminworkload.html"
+                        class="view Request" >
+                        View Request
+                      </a>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RECENT PROJECTS ================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-folder-open"></i>
+                        Recent Projects
+                    </h2>
+
+                    <p>
+                        Recently created and updated projects
+                    </p>
+
+                </div>
+
+
+                <a href="manageproject.html"
+                   class="view-all">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+                            <th>Project Name</th>
+                            <th>Manager</th>
+                            <th>Employees</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        
+
+
+                        
+
+
+
+                        
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= RECENT TASKS ================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-list-check"></i>
+                        Recent Tasks
+                    </h2>
+
+                    <p>
+                        Recently assigned tasks
+                    </p>
+
+                </div>
+
+
+                <a href="tasks.html"
+                   class="view-all">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Task</th>
+                            <th>Project</th>
+                            <th>Employee</th>
+                            <th>Priority</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        
+
+
+
+                        
+
+
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= WORKLOAD REQUESTS ================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-people-arrows"></i>
+                        Workload Requests
+                    </h2>
+
+                    <p>
+                        Employees who reported high workload
+                    </p>
+
+                </div>
+
+
+                <a href="adminworkload.html"
+                   class="view-all">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Employee</th>
+                            <th>Pending Tasks</th>
+                            <th>Workload Level</th>
+                            <th>Reason</th>
+                            <th>Expected Date</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        
+
+                       
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= LEAVE REQUESTS ================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Recent Leave Requests
+                    </h2>
+
+                    <p>
+                        Latest employee leave applications
+                    </p>
+
+                </div>
+
+
+                <a href="viewleaverequest.html"
+                   class="view-all">
+
+                    View All
+
+                </a>
+
+            </div>
+
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Employee</th>
+                            <th>Leave Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Days</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    </tbody>
+                    </table>
+                    </div>
+                    </section>
+                    </main>
+                    </div>
+  <script>
+    // ===============================
+// ADMIN DASHBOARD JAVASCRIPT
+// ===============================
+
+
+// PAGE LOAD
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("Admin Dashboard Loaded");
+
+
+    // ===============================
+    // NOTIFICATION
+    // ===============================
+
+    const notification =
+        document.querySelector(".notification");
+
+    if (notification) {
+
+        notification.addEventListener("click", function () {
+
+            alert(
+                "You have 3 new notifications.\n\n" +
+                "1. New workload request from \n" +
+                "2. New leave request from \n" +
+                "3. New project created"
+            );
+
+        });
+
+    }
+
+
+    // ===============================
+    // SIDEBAR ACTIVE MENU
+    // ===============================
+
+    const menuLinks =
+        document.querySelectorAll(".menu li a");
+
+    menuLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            document
+                .querySelectorAll(".menu li")
+                .forEach(function (item) {
+
+                    item.classList.remove("active");
+
+                });
+
+
+            this.parentElement.classList.add("active");
+
+        });
+
+    });
+
+
+    // ===============================
+    // LOAD DASHBOARD DATA
+    // ===============================
+
+    updateDashboardCounts();
+
+});
+
+
+
+// ===============================
+// VIEW PROJECT
+// ===============================
+
+function viewProject(projectName) {
+
+    window.location.href =
+        "manageproject.html?project=" +
+        encodeURIComponent(projectName);
+
+}
+
+
+
+// ===============================
+// UPDATE DASHBOARD COUNTS
+// ===============================
+
+function updateDashboardCounts() {
+
+    // Demo values
+    // Later these values can come from Django database
+
+    const totalEmployees = '';
+
+    const totalProjects = '';
+
+    const totalTasks = '';
+
+    const workloadRequests = '';
+
+
+    const cards =
+        document.querySelectorAll(".summary-card");
+
+
+    if (cards.length >= 4) {
+
+        cards[0]
+            .querySelector("h2")
+            .innerText = totalEmployees;
+
+        cards[1]
+            .querySelector("h2")
+            .innerText = totalProjects;
+
+        cards[2]
+            .querySelector("h2")
+            .innerText = totalTasks;
+
+        cards[3]
+            .querySelector("h2")
+            .innerText = workloadRequests;
+
+    }
+
+}
+
+
+
+// ===============================
+// WORKLOAD REQUEST
+// ===============================
+
+function openWorkloadRequests() {
+
+    window.location.href =
+        "adminworkload.html";
+
+}
+
+
+
+// ===============================
+// LEAVE MANAGEMENT
+// ===============================
+
+function openLeaveManagement() {
+
+    window.location.href =
+        "viewleaverequest.html";
+
+}
+
+
+
+// ===============================
+// PROJECTS
+// ===============================
+
+function openProjects() {
+
+    window.location.href =
+        "manageproject.html";
+
+}
+
+
+
+// ===============================
+// TASKS
+// ===============================
+
+function openTasks() {
+
+    window.location.href =
+        "tasks.html";
+
+}
+
+
+
+// ===============================
+// EMPLOYEES
+// ===============================
+
+function openEmployees() {
+
+    window.location.href =
+        "addemp.html";
+
+}
+
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+function logout() {
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if (confirmLogout) {
+
+        window.location.href =
+            "task.html";
+
+    }
+
+}
+
+
+
+// ===============================
+// VIEW WORKLOAD DETAILS
+// ===============================
+
+function viewWorkload(employeeName) {
+
+    window.location.href =
+        "adminworkload.html?employee=" +
+        encodeURIComponent(employeeName);
+
+}
+
+
+
+// ===============================
+// VIEW LEAVE REQUEST
+// ===============================
+
+function viewLeave(employeeName) {
+
+    window.location.href =
+        "viewleavereequest.html?employee=" +
+        encodeURIComponent(employeeName);
+
+}
+
+
+
+// ===============================
+// SEARCH PROJECT
+// ===============================
+
+function searchProject() {
+
+    const searchInput =
+        document.getElementById("projectSearch");
+
+    if (!searchInput) {
+        return;
+    }
+
+
+    const searchValue =
+        searchInput.value.toLowerCase();
+
+
+    const rows =
+        document.querySelectorAll(
+            ".project-table tbody tr"
+        );
+
+
+    rows.forEach(function (row) {
+
+        const projectName =
+            row.innerText.toLowerCase();
+
+
+        if (
+            projectName.includes(searchValue)
+        ) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+
+// ===============================
+// REFRESH DASHBOARD
+// ===============================
+
+function refreshDashboard() {
+
+    location.reload();
+
+}
+  </script>                  

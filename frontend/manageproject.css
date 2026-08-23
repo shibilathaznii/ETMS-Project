@@ -1,0 +1,817 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f7fc;
+    color: #172033;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    background: #172033;
+    color: white;
+
+    padding-top: 20px;
+
+    z-index: 1000;
+}
+
+
+.logo {
+    padding: 10px 20px 25px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 8px;
+}
+
+
+.menu {
+    list-style: none;
+}
+
+
+.menu li {
+    margin: 5px 12px;
+}
+
+
+.menu a,
+.logout a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    color: #cbd2df;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    transition: .2s;
+}
+
+
+.menu li.active a,
+.menu a:hover,
+.logout a:hover {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.logout {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    width: 100%;
+
+    padding: 0 12px;
+}
+
+
+
+/* ================= MAIN ================= */
+
+.main-content {
+
+    margin-left: 240px;
+
+    padding: 25px;
+
+    min-height: 100vh;
+}
+
+
+/* ================= MAIN ================= */
+
+.main {
+    margin-left: 255px;
+    min-height: 100vh;
+}
+
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    height: 68px;
+
+    background: white;
+
+    border-bottom: 1px solid #e4e8ef;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 28px;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-info small {
+    display: block;
+    color: #777;
+    margin-top: 3px;
+}
+
+.notification {
+    font-size: 21px;
+    margin-right: 12px;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #e7ecff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #243ec7;
+}
+
+
+/* ================= PAGE ================= */
+
+.page-header {
+    padding: 28px 25px 18px;
+}
+
+.page-header h1 {
+    font-size: 27px;
+}
+
+.page-header p {
+    margin-top: 8px;
+    color: #6c7485;
+}
+
+
+/* ================= TABS ================= */
+
+.tabs {
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+
+    padding-left: 25px;
+}
+
+.tab {
+    border: none;
+    background: transparent;
+
+    padding: 17px 22px;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.tab.active {
+    color: #2844cf;
+
+    border-bottom: 3px solid #2844cf;
+}
+
+
+/* ================= PROJECT ================= */
+
+#projectPage {
+    padding: 25px;
+}
+
+.project-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.project-heading h2 {
+    font-size: 21px;
+}
+
+.project-heading p {
+    color: #737b8b;
+    margin-top: 5px;
+}
+
+.heading-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.create-project {
+    background: #3045d5;
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.filter-btn {
+    background: white;
+
+    border: 1px solid #d7dce5;
+
+    padding: 12px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+/* FILTER */
+
+.filter-box {
+    display: none;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    gap: 12px;
+}
+
+.filter-box.show {
+    display: flex;
+}
+
+.filter-box input,
+.filter-box select {
+    padding: 11px;
+
+    border: 1px solid #d8dce5;
+
+    border-radius: 6px;
+
+    outline: none;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-card {
+    background: white;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 1000px;
+}
+
+th {
+    background: #f4f6fb;
+
+    color: #50586b;
+
+    padding: 14px;
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+td {
+    padding: 15px 14px;
+
+    border-top: 1px solid #edf0f4;
+
+    font-size: 13px;
+}
+
+.manager-badge {
+    color: #3349c9;
+
+    background: #edf0ff;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+}
+
+.employee-count {
+    color: #344054;
+}
+
+.status {
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.active {
+    color: #159447;
+    background: #dcfce7;
+}
+
+.progress-status {
+    color: #2456c6;
+    background: #dbeafe;
+}
+
+.completed {
+    color: #159447;
+    background: #dcfce7;
+}
+
+.pending {
+    color: #c67b00;
+    background: #fff0c7;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.actions button {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 6px;
+
+    border: 1px solid #e0e4eb;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+.view {
+    color: #2563eb;
+}
+
+.edit {
+    color: #2563eb;
+}
+
+.delete {
+    color: #ef4444;
+}
+
+
+/* ================= SUMMARY ================= */
+
+.summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.summary-card {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 9px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    margin-bottom: 15px;
+}
+
+.blue-card .summary-icon {
+    background: #e8efff;
+    color: #2454d7;
+}
+
+.green-card .summary-icon {
+    background: #e4faed;
+    color: #16a34a;
+}
+
+.orange-card .summary-icon {
+    background: #fff1d9;
+    color: #e88900;
+}
+
+.red-card .summary-icon {
+    background: #ffe5e8;
+    color: #e11d48;
+}
+
+.purple-card .summary-icon {
+    background: #f0e7ff;
+    color: #7c3aed;
+}
+
+.summary-card h3 {
+    font-size: 15px;
+}
+
+.summary-card p {
+    color: #70798a;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin: 8px 0 18px;
+}
+
+.summary-card button {
+    border: none;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.blue-card button {
+    background: #1857d8;
+}
+
+.green-card button {
+    background: #13a34a;
+}
+
+.orange-card button {
+    background: #ed8b00;
+}
+
+.red-card button {
+    background: #e51d35;
+}
+
+.purple-card button {
+    background: #7134d6;
+}
+
+
+/* ================= SIDE PANEL ================= */
+
+.side-panel {
+    position: fixed;
+
+    right: -450px;
+    top: 0;
+
+    width: 430px;
+
+    height: 100vh;
+
+    background: white;
+
+    box-shadow: -5px 0 20px rgba(0,0,0,.15);
+
+    z-index: 200;
+
+    transition: .3s;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel.open {
+    right: 0;
+}
+
+.panel-header {
+    padding: 20px;
+
+    border-bottom: 1px solid #eee;
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.panel-title {
+    display: flex;
+
+    gap: 12px;
+}
+
+.panel-title h2 {
+    font-size: 18px;
+}
+
+.panel-title p {
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+.panel-icon {
+    width: 42px;
+    height: 42px;
+
+    background: #edf0ff;
+
+    color: #3045d5;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+}
+
+.panel-header button {
+    border: none;
+    background: none;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.panel-body {
+    padding: 20px;
+
+    overflow-y: auto;
+
+    flex: 1;
+}
+
+.panel-body label {
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 13px;
+
+    margin: 15px 0 7px;
+}
+
+.panel-body input,
+.panel-body select,
+.panel-body textarea {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #d9dee8;
+
+    border-radius: 6px;
+
+    outline: none;
+}
+
+.panel-body textarea {
+    height: 80px;
+
+    resize: vertical;
+}
+
+.date-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+.employee-search {
+    margin-top: 10px;
+}
+
+.employee-list {
+    margin-top: 8px;
+
+    border: 1px solid #e1e5eb;
+
+    border-radius: 7px;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+}
+
+.employee {
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px !important;
+
+    margin: 0 !important;
+
+    border-bottom: 1px solid #eee;
+
+    cursor: pointer;
+}
+
+.employee:hover {
+    background: #f5f7ff;
+}
+
+.employee input {
+    width: auto !important;
+}
+
+.employee-avatar {
+    width: 34px;
+    height: 34px;
+
+    background: #dce5ff;
+
+    color: #2946c9;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.employee span:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.employee span small {
+    color: #777;
+
+    margin-top: 3px;
+}
+
+.selected-count {
+    margin-top: 10px;
+
+    color: #3045d5;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* PANEL FOOTER */
+
+.panel-footer {
+    padding: 15px 20px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.panel-footer button {
+    flex: 1;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.cancel {
+    background: white;
+
+    border: 1px solid #ddd;
+}
+
+.submit {
+    background: #3045d5;
+
+    color: white;
+
+    border: none;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px) {
+
+    .summary {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width:800px) {
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar .logo div,
+    .sidebar a {
+        font-size: 0;
+    }
+
+    .sidebar a i {
+        font-size: 18px;
+    }
+
+    .main {
+        margin-left: 70px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        width: 100%;
+    }
+
+}
