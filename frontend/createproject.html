@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+
+    <link rel="stylesheet" href="createproject.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+
+
+    <aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="viewtask.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span> View Tasks</span>
+            </a>
+        </li>
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Project Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<div class="main">
+
+    <div class="header">
+        <h1>
+            <i class="fa-solid fa-plus-circle"></i>
+            Create Task
+        </h1>
+
+        <p>Create a new task for the selected project</p>
+    </div>
+
+
+    <div class="task-card">
+
+        <form id="taskForm">
+
+            <label>Project</label>
+
+            <select id="project" required>
+                <option value="">-- Select Project --</option>
+                <option>Website Development</option>
+                <option>Employee Task Management System</option>
+                <option>Mobile Application</option>
+            </select>
+
+
+            <label>Task Title</label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Enter task title"
+                required>
+
+
+            <label>Description</label>
+
+            <textarea
+                id="description"
+                placeholder="Enter task description"
+                required></textarea>
+
+
+            <label>Priority</label>
+
+            <div class="priority">
+
+                <label>
+                    <input type="radio"
+                           name="priority"
+                           value="High"
+                           required>
+                    <span class="high">High</span>
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="priority"
+                           value="Medium">
+                    <span class="medium">Medium</span>
+                </label>
+
+                <label>
+                    <input type="radio"
+                           name="priority"
+                           value="Low">
+                    <span class="low">Low</span>
+                </label>
+
+            </div>
+
+
+            <div class="date-row">
+
+                <div>
+                    <label>Start Date</label>
+                    <input type="date"
+                           id="startDate"
+                           required>
+                </div>
+
+                <div>
+                    <label>End Date</label>
+                    <input type="date"
+                           id="endDate"
+                           required>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="create-btn">
+                <i class="fa-solid fa-plus"></i>
+                Create Task
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="task-list">
+
+        <h2>Created Tasks</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Task Title</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="taskTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script >
+    let tasks = [];
+
+const form = document.getElementById("taskForm");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const project =
+        document.getElementById("project").value;
+
+    const title =
+        document.getElementById("title").value;
+
+    const description =
+        document.getElementById("description").value;
+
+    const startDate =
+        document.getElementById("startDate").value;
+
+    const endDate =
+        document.getElementById("endDate").value;
+
+    const priority =
+        document.querySelector(
+            'input[name="priority"]:checked'
+        ).value;
+
+
+    // DATE VALIDATION
+
+    if (endDate < startDate) {
+
+        alert(
+            "End date cannot be before start date."
+        );
+
+        return;
+    }
+
+
+    // CREATE TASK
+
+    const task = {
+
+        id: Date.now(),
+
+        project: project,
+
+        title: title,
+
+        description: description,
+
+        priority: priority,
+
+        startDate: startDate,
+
+        endDate: endDate,
+
+        employees: []
+
+    };
+
+
+    tasks.push(task);
+
+    displayTasks();
+
+    form.reset();
+
+    alert(
+        "Task created successfully!"
+    );
+
+});
+
+
+function displayTasks() {
+
+    const table =
+        document.getElementById("taskTable");
+
+    table.innerHTML = "";
+
+
+    tasks.forEach(function(task, index) {
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>
+                <strong>${task.title}</strong>
+            </td>
+
+            <td>
+                ${task.description}
+            </td>
+
+            <td>
+                <span class="${task.priority.toLowerCase()}">
+                    ${task.priority}
+                </span>
+            </td>
+
+            <td>
+                ${task.startDate}
+            </td>
+
+            <td>
+                ${task.endDate}
+            </td>
+
+            <td>
+
+                <button
+                    class="map-btn"
+                    onclick="openMapping(${task.id})">
+
+                    <i class="fa-solid fa-users"></i>
+                    Map Employees
+
+                </button>
+
+            </td>
+
+        `;
+
+        table.appendChild(row);
+
+    });
+
+}
+
+
+/* OPEN TASK MAPPING */
+
+function openMapping(taskId) {
+
+    localStorage.setItem(
+        "selectedTaskId",
+        taskId
+    );
+
+    window.location.href =
+        "taskmap.html";
+}
+</script>
+
+</body>
+</html>

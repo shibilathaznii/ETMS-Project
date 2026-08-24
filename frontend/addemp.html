@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employees - Employee Task Management System</title>
+
+    <link rel="stylesheet" href="addemp.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="department.html">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewtask.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminsubmission.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    <span>Submissions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+
+        <div>
+            <h1>Employees</h1>
+            <p>Manage all employees in the system.</p>
+        </div>
+
+        <div class="admin-info">
+            <i class="fa-solid fa-bell"></i>
+
+            <div class="admin-circle">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <b>Admin</b>
+                <small>Administrator</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- EMPLOYEE HEADER -->
+    <div class="employee-header">
+
+        <div>
+            <h2>Employee Management</h2>
+            <p>Add, edit and manage employees.</p>
+        </div>
+
+        <button class="add-btn" onclick="openAddEmployee()">
+            <i class="fa-solid fa-plus"></i>
+            Add Employee
+        </button>
+
+    </div>
+
+
+    <!-- FILTER SECTION -->
+    <div class="filters">
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search employee name, ID or email..."
+                onkeyup="filterEmployees()">
+        </div>
+
+        <select id="departmentFilter" onchange="filterEmployees()">
+            <option value="">All Departments</option>
+            
+        </select>
+
+        <select id="statusFilter" onchange="filterEmployees()">
+            <option value="">All Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+
+    </div>
+
+
+    <!-- EMPLOYEE TABLE -->
+    <div class="table-card">
+
+        <table id="employeeTable">
+
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Employee ID</th>
+                    <th>Employee</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="employeeBody">
+
+                
+                
+
+
+                
+
+
+                
+
+                
+
+            </tbody>
+
+        </table>
+
+        <div class="table-footer">
+            Showing employees in the system
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ADD EMPLOYEE MODAL -->
+
+<div class="modal" id="employeeModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2>Add Employee</h2>
+
+            <button onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="employeeForm">
+        <div class="profile-image">
+            <img src="profile.jpg" alt="Profile Picture">
+        </div>
+
+        <button class="change-photo"
+                onclick="changePhoto()">
+            Change Photo
+        </button>
+
+            <label>Employee ID</label>
+            <input type="text"
+                   id="employeeId"
+                   placeholder="Enter employee ID"
+                   required>
+                   
+
+            <label>Employee Name</label>
+            <input type="text"
+                   id="employeeName"
+                   placeholder="Enter employee name"
+                   required>
+
+            <label>Department</label>
+            <select id="employeeDepartment" required>
+                <option value="">Select Department</option>
+                <option></option></option>
+                <option></option>
+                <option></option>
+                
+            </select>
+
+            <label>Designation</label>
+            <input type="text"
+                   id="designation"
+                   placeholder="Enter designation"
+                   required>
+
+            <label>Email</label>
+            <input type="email"
+                   id="email"
+                   placeholder="Enter email"
+                   required>
+
+            <label>Mobile</label>
+            <input type="text"
+                   id="mobile"
+                   placeholder="Enter mobile number"
+                   required>
+            <label>Password</label>
+            <input type="text"
+                   id="password"
+                   placeholder="Enter password"
+                   required>
+
+            <label>Status</label>
+            <select id="employeeStatus">
+                <option>Active</option>
+                <option>Inact
+                <option>ive</option>
+            </select>
+
+            <div class="modal-buttons">
+                <button type="button"
+                        class="cancel-btn"
+                        onclick="closeModal()">
+                    Cancel
+                </button>
+
+                <button type="submit"
+                        class="save-btn">
+                    <i class="fa-solid fa-check"></i>
+                    Add Employee
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+    // OPEN ADD EMPLOYEE MODAL
+
+function openAddEmployee(){
+
+    document.getElementById("employeeModal").style.display = "flex";
+
+}
+
+
+// CLOSE MODAL
+
+function closeModal(){
+
+    document.getElementById("employeeModal").style.display = "none";
+
+}
+
+
+// ADD EMPLOYEE
+
+document.getElementById("employeeForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let id = document.getElementById("employeeId").value;
+    let name = document.getElementById("employeeName").value;
+    let department = document.getElementById("employeeDepartment").value;
+    let designation = document.getElementById("designation").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let status = document.getElementById("employeeStatus").value;
+
+    if(
+        id === "" ||
+        name === "" ||
+        department === "" ||
+        designation === "" ||
+        email === "" ||
+        mobile === ""
+    ){
+
+        alert("Please fill all fields.");
+        return;
+
+    }
+
+
+    let initials = name
+        .split(" ")
+        .map(word => word.charAt(0))
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
+
+
+    let statusClass =
+        status === "Active"
+        ? "active-status"
+        : "inactive-status";
+
+
+    let table = document.getElementById("employeeBody");
+
+    let row = table.insertRow();
+
+    let number = table.rows.length;
+
+
+    row.innerHTML = `
+
+        <td>${number}</td>
+
+        <td>${id}</td>
+
+        <td class="employee-name">
+
+            <div class="avatar">
+                ${initials}
+            </div>
+
+            <span>${name}</span>
+
+        </td>
+
+        <td>${department}</td>
+
+        <td>${designation}</td>
+
+        <td>${email}</td>
+
+        <td>${mobile}</td>
+
+        <td>
+            <span class="status ${statusClass}">
+                ${status}
+            </span>
+        </td>
+
+        <td class="actions">
+
+            <button class="view"
+                    onclick="viewEmployee('${name}')">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+
+            <button class="edit"
+                    onclick="editEmployee('${name}')">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+
+            <button class="delete"
+                    onclick="deleteEmployee(this)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+
+        </td>
+
+    `;
+
+
+    alert("Employee added successfully!");
+
+    document.getElementById("employeeForm").reset();
+
+    closeModal();
+
+});
+
+
+// SEARCH + FILTER
+
+function filterEmployees(){
+
+    let search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let department =
+        document.getElementById("departmentFilter")
+        .value;
+
+    let status =
+        document.getElementById("statusFilter")
+        .value;
+
+
+    let rows =
+        document
+        .getElementById("employeeBody")
+        .getElementsByTagName("tr");
+
+
+    for(let i = 0; i < rows.length; i++){
+
+        let rowText =
+            rows[i].innerText.toLowerCase();
+
+        let rowDepartment =
+            rows[i].cells[3].innerText;
+
+        let rowStatus =
+            rows[i].cells[7].innerText.trim();
+
+
+        let searchMatch =
+            rowText.includes(search);
+
+        let departmentMatch =
+            department === "" ||
+            rowDepartment === department;
+
+        let statusMatch =
+            status === "" ||
+            rowStatus === status;
+
+
+        if(
+            searchMatch &&
+            departmentMatch &&
+            statusMatch
+        ){
+
+            rows[i].style.display = "";
+
+        }else{
+
+            rows[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+// VIEW EMPLOYEE
+
+function viewEmployee(name){
+
+    alert(
+        "Employee Details\n\n" +
+        "Name: " + name
+    );
+
+}
+
+
+// EDIT EMPLOYEE
+
+function editEmployee(name){
+
+    alert(
+        "Edit Employee: " + name
+    );
+
+}
+
+
+// DELETE EMPLOYEE
+
+function deleteEmployee(button){
+
+    let confirmation =
+        confirm("Are you sure you want to delete this employee?");
+
+
+    if(confirmation){
+
+        button.closest("tr").remove();
+
+        updateNumbers();
+
+        alert("Employee deleted successfully!");
+
+    }
+
+}
+
+
+// UPDATE SERIAL NUMBERS
+
+function updateNumbers(){
+
+    let rows =
+        document
+        .getElementById("employeeBody")
+        .getElementsByTagName("tr");
+
+
+    for(let i = 0; i < rows.length; i++){
+
+        rows[i].cells[0].innerText = i + 1;
+
+    }
+
+}
+
+
+// CLOSE MODAL WHEN CLICKING OUTSIDE
+
+window.onclick = function(event){
+
+    let modal =
+        document.getElementById("employeeModal");
+
+    if(event.target === modal){
+
+        closeModal();
+
+
+    }
+    function changePhoto() {
+
+    const photo = prompt(
+        "Enter profile image file name:",
+        "profile.jpg"
+    );
+
+    if (photo) {
+        document.querySelector(".profile-image img").src = photo;
+    }
+}
+
+};
+</script>
+
+</body>
+</html>

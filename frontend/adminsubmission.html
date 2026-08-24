@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Submissions | Admin</title>
+
+    <link rel="stylesheet" href="adminsubmission.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="department.html">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewtask.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="adminsubmission.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    <span>Submissions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="page-title">
+            <button class="menu-btn" id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+                <h1>Project Submissions</h1>
+                <p>Review manager projects and staff task submissions</p>
+            </div>
+        </div>
+
+        <div class="top-actions">
+
+            <button class="notification-btn">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+            </button>
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content">
+
+        <!-- STAT CARDS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                </div>
+
+                <div>
+                    <span>Total Submissions</span>
+                    <h2 id="totalSubmissions">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <h2 id="pendingSubmissions">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Approved</span>
+                    <h2 id="approvedSubmissions">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon red">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+
+                <div>
+                    <span>Rejected</span>
+                    <h2 id="rejectedSubmissions">0</h2>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SUBMISSION CARD -->
+
+        <div class="submission-card">
+
+            <!-- HEADER -->
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Submission Management</h2>
+                    <p>View and manage submitted projects and tasks</p>
+                </div>
+
+                <button class="refresh-btn" id="refreshBtn">
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <!-- TABS -->
+
+            <div class="tabs">
+
+                <button class="tab active" data-type="all">
+                    <i class="fa-solid fa-layer-group"></i>
+                    All Submissions
+                    <span id="allCount">0</span>
+                </button>
+
+                <button class="tab" data-type="manager">
+                    <i class="fa-solid fa-user-tie"></i>
+                    Manager Projects
+                    <span id="managerCount">0</span>
+                </button>
+
+                <button class="tab" data-type="staff">
+                    <i class="fa-solid fa-user"></i>
+                    Staff Tasks
+                    <span id="staffCount">0</span>
+                </button>
+
+            </div>
+
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search project, task, manager or staff..."
+                    >
+
+                </div>
+
+
+                <div class="filter-box">
+
+                    <select id="statusFilter">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Approved">
+                            Approved
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Project / Task</th>
+
+                            <th>Submitted By</th>
+
+                            <th>Type</th>
+
+                            <th>Manager</th>
+
+                            <th>Submission Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="submissionTable">
+
+                    </tbody>
+
+                </table>
+
+                <div id="emptyMessage" class="empty-message">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <h3>No submissions found</h3>
+                    <p>There are no submissions matching your search.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= VIEW MODAL ================= -->
+
+<div class="modal-overlay" id="viewModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Submission Details</h2>
+                <p>Review submitted work</p>
+            </div>
+
+            <button class="close-btn" id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detail-grid">
+
+                <div class="detail-item">
+                    <label>Submission Type</label>
+                    <strong id="modalType">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Project Name</label>
+                    <strong id="modalProject">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Task Name</label>
+                    <strong id="modalTask">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Submitted By</label>
+                    <strong id="modalSubmittedBy">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Manager</label>
+                    <strong id="modalManager">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Department</label>
+                    <strong id="modalDepartment">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Submission Date</label>
+                    <strong id="modalDate">-</strong>
+                </div>
+
+                <div class="detail-item">
+                    <label>Status</label>
+                    <span id="modalStatus" class="status-badge">
+                        Pending
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="description-section">
+
+                <label>Description / Work Update</label>
+
+                <div class="description-box" id="modalDescription">
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="remark-section">
+
+                <label>Submitter Remark</label>
+
+                <div class="description-box" id="modalRemark">
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="proof-section">
+
+                <label>Work Proof</label>
+
+                <div id="modalProof">
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="admin-remark">
+
+                <label for="adminRemark">
+                    Admin Remark
+                </label>
+
+                <textarea
+                    id="adminRemark"
+                    placeholder="Enter your remark..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button class="btn secondary" id="cancelBtn">
+                Close
+            </button>
+
+            <button class="btn danger" id="rejectBtn">
+                <i class="fa-solid fa-xmark"></i>
+                Reject
+            </button>
+
+            <button class="btn success" id="approveBtn">
+                <i class="fa-solid fa-check"></i>
+                Approve
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script> 
+   /* ==========================================
+   ADMIN PROJECT SUBMISSION
+   Manager + Staff Submissions
+========================================== */
+
+
+/* ==========================================
+   SAMPLE DATA
+========================================== */
+
+const defaultSubmissions = [
+
+    
+
+];
+
+
+/* ==========================================
+   LOAD DATA
+========================================== */
+
+let submissions =
+    JSON.parse(localStorage.getItem("adminSubmissions")) ||
+    defaultSubmissions;
+
+let currentType = "all";
+let selectedId = null;
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const tableBody =
+    document.getElementById("submissionTable");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const statusFilter =
+    document.getElementById("statusFilter");
+
+const emptyMessage =
+    document.getElementById("emptyMessage");
+
+const viewModal =
+    document.getElementById("viewModal");
+
+const adminRemark =
+    document.getElementById("adminRemark");
+
+
+/* ==========================================
+   SAVE DATA
+========================================== */
+
+function saveData() {
+
+    localStorage.setItem(
+        "adminSubmissions",
+        JSON.stringify(submissions)
+    );
+
+}
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    renderTable();
+
+    updateCounts();
+
+});
+
+
+/* ==========================================
+   RENDER TABLE
+========================================== */
+
+function renderTable() {
+
+    tableBody.innerHTML = "";
+
+    const searchText =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    const selectedStatus =
+        statusFilter.value;
+
+
+    const filtered =
+        submissions.filter(item => {
+
+            const matchesType =
+                currentType === "all" ||
+                item.type === currentType;
+
+
+            const matchesStatus =
+                selectedStatus === "all" ||
+                item.status === selectedStatus;
+
+
+            const searchableText = [
+
+                item.project,
+                item.task,
+                item.submittedBy,
+                item.manager,
+                item.department,
+                item.type,
+                item.status
+
+            ]
+            .join(" ")
+            .toLowerCase();
+
+
+            const matchesSearch =
+                searchableText.includes(searchText);
+
+
+            return (
+                matchesType &&
+                matchesStatus &&
+                matchesSearch
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        emptyMessage.style.display = "block";
+
+        return;
+
+    }
+
+
+    emptyMessage.style.display = "none";
+
+
+    filtered.forEach((item, index) => {
+
+        const row =
+            document.createElement("tr");
+
+
+        const initials =
+            getInitials(item.submittedBy);
+
+
+        const typeClass =
+            item.type === "manager"
+                ? "type-manager"
+                : "type-staff";
+
+
+        const typeText =
+            item.type === "manager"
+                ? "Manager Project"
+                : "Staff Task";
+
+
+        const statusClass =
+            getStatusClass(item.status);
+
+
+        row.innerHTML = `
+
+            <td>${index + 1}</td>
+
+            <td>
+
+                <div class="project-name">
+                    ${escapeHTML(item.project)}
+                </div>
+
+                <div class="task-name">
+                    ${escapeHTML(item.task)}
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <div class="person">
+
+                    <div class="person-avatar">
+                        ${initials}
+                    </div>
+
+                    <span>
+                        ${escapeHTML(item.submittedBy)}
+                    </span>
+
+                </div>
+
+            </td>
+
+
+            <td>
+
+                <span class="type-badge ${typeClass}">
+                    ${typeText}
+                </span>
+
+            </td>
+
+
+            <td>
+                ${escapeHTML(item.manager)}
+            </td>
+
+
+            <td>
+                ${escapeHTML(item.date)}
+            </td>
+
+
+            <td>
+
+                <span class="status-badge ${statusClass}">
+                    ${escapeHTML(item.status)}
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="view-btn"
+                    onclick="viewSubmission(${item.id})">
+
+                    <i class="fa-regular fa-eye"></i>
+                    View
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        tableBody.appendChild(row);
+
+    });
+
+}
+
+
+/* ==========================================
+   UPDATE COUNTS
+========================================== */
+
+function updateCounts() {
+
+    const total =
+        submissions.length;
+
+    const pending =
+        submissions.filter(
+            item => item.status === "Pending"
+        ).length;
+
+    const approved =
+        submissions.filter(
+            item => item.status === "Approved"
+        ).length;
+
+    const rejected =
+        submissions.filter(
+            item => item.status === "Rejected"
+        ).length;
+
+    const manager =
+        submissions.filter(
+            item => item.type === "manager"
+        ).length;
+
+    const staff =
+        submissions.filter(
+            item => item.type === "staff"
+        ).length;
+
+
+    document.getElementById(
+        "totalSubmissions"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "pendingSubmissions"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "approvedSubmissions"
+    ).textContent = approved;
+
+
+    document.getElementById(
+        "rejectedSubmissions"
+    ).textContent = rejected;
+
+
+    document.getElementById(
+        "allCount"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "managerCount"
+    ).textContent = manager;
+
+
+    document.getElementById(
+        "staffCount"
+    ).textContent = staff;
+
+}
+
+
+/* ==========================================
+   VIEW SUBMISSION
+========================================== */
+
+function viewSubmission(id) {
+
+    const item =
+        submissions.find(
+            submission => submission.id === id
+        );
+
+
+    if (!item) {
+        return;
+    }
+
+
+    selectedId = id;
+
+
+    document.getElementById(
+        "modalType"
+    ).textContent =
+        item.type === "manager"
+            ? "Manager Project Submission"
+            : "Staff Task Submission";
+
+
+    document.getElementById(
+        "modalProject"
+    ).textContent =
+        item.project || "-";
+
+
+    document.getElementById(
+        "modalTask"
+    ).textContent =
+        item.task || "-";
+
+
+    document.getElementById(
+        "modalSubmittedBy"
+    ).textContent =
+        item.submittedBy || "-";
+
+
+    document.getElementById(
+        "modalManager"
+    ).textContent =
+        item.manager || "-";
+
+
+    document.getElementById(
+        "modalDepartment"
+    ).textContent =
+        item.department || "-";
+
+
+    document.getElementById(
+        "modalDate"
+    ).textContent =
+        item.date || "-";
+
+
+    const modalStatus =
+        document.getElementById("modalStatus");
+
+
+    modalStatus.textContent =
+        item.status;
+
+
+    modalStatus.className =
+        "status-badge " +
+        getStatusClass(item.status);
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        item.description || "-";
+
+
+    document.getElementById(
+        "modalRemark"
+    ).textContent =
+        item.remark || "-";
+
+
+    const proof =
+        document.getElementById("modalProof");
+
+
+    if (item.proof && item.proof !== "#") {
+
+        proof.innerHTML = `
+
+            <a
+                class="proof-link"
+                href="${item.proof}"
+                target="_blank">
+
+                <i class="fa-solid fa-paperclip"></i>
+                View Submitted Proof
+
+            </a>
+
+        `;
+
+    } else {
+
+        proof.innerHTML = `
+            <span style="color:#6b7280;font-size:13px;">
+                No proof file attached
+            </span>
+        `;
+
+    }
+
+
+    adminRemark.value =
+        item.adminRemark || "";
+
+
+    viewModal.classList.add("show");
+
+}
+
+
+/* ==========================================
+   CLOSE MODAL
+========================================== */
+
+function closeModal() {
+
+    viewModal.classList.remove("show");
+
+    selectedId = null;
+
+}
+
+
+document
+    .getElementById("closeModal")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById("cancelBtn")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+viewModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === viewModal) {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* ==========================================
+   APPROVE
+========================================== */
+
+document
+    .getElementById("approveBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (!selectedId) {
+                return;
+            }
+
+
+            const item =
+                submissions.find(
+                    submission =>
+                        submission.id === selectedId
+                );
+
+
+            if (!item) {
+                return;
+            }
+
+
+            item.status = "Approved";
+
+            item.adminRemark =
+                adminRemark.value.trim();
+
+
+            saveData();
+
+            updateCounts();
+
+            renderTable();
+
+            closeModal();
+
+
+            alert(
+                "Submission approved successfully."
+            );
+
+        }
+    );
+
+
+/* ==========================================
+   REJECT
+========================================== */
+
+document
+    .getElementById("rejectBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (!selectedId) {
+                return;
+            }
+
+
+            const remark =
+                adminRemark.value.trim();
+
+
+            if (!remark) {
+
+                alert(
+                    "Please enter an Admin remark before rejecting."
+                );
+
+                adminRemark.focus();
+
+                return;
+
+            }
+
+
+            const item =
+                submissions.find(
+                    submission =>
+                        submission.id === selectedId
+                );
+
+
+            if (!item) {
+                return;
+            }
+
+
+            item.status = "Rejected";
+
+            item.adminRemark = remark;
+
+
+            saveData();
+
+            updateCounts();
+
+            renderTable();
+
+            closeModal();
+
+
+            alert(
+                "Submission rejected."
+            );
+
+        }
+    );
+
+
+/* ==========================================
+   TABS
+========================================== */
+
+document
+    .querySelectorAll(".tab")
+    .forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .querySelectorAll(".tab")
+                    .forEach(t =>
+                        t.classList.remove("active")
+                    );
+
+
+                this.classList.add("active");
+
+
+                currentType =
+                    this.dataset.type;
+
+
+                renderTable();
+
+            }
+        );
+
+    });
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+searchInput.addEventListener(
+    "input",
+    renderTable
+);
+
+
+/* ==========================================
+   STATUS FILTER
+========================================== */
+
+statusFilter.addEventListener(
+    "change",
+    renderTable
+);
+
+
+/* ==========================================
+   REFRESH
+========================================== */
+
+document
+    .getElementById("refreshBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            renderTable();
+
+            updateCounts();
+
+        }
+    );
+
+
+/* ==========================================
+   MOBILE SIDEBAR
+========================================== */
+
+document
+    .getElementById("menuBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .querySelector(".sidebar")
+                .classList.toggle("open");
+
+        }
+    );
+
+
+/* ==========================================
+   HELPER FUNCTIONS
+========================================== */
+
+function getInitials(name) {
+
+    if (!name) {
+        return "U";
+    }
+
+
+    return name
+        .split(" ")
+        .map(word => word.charAt(0))
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
+
+}
+
+
+function getStatusClass(status) {
+
+    if (status === "Approved") {
+        return "status-approved";
+    }
+
+    if (status === "Rejected") {
+        return "status-rejected";
+    }
+
+    return "status-pending";
+
+}
+
+
+function escapeHTML(value) {
+
+    if (value === undefined || value === null) {
+        return "";
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+} 
+</script>
+
+</body>
+</html>

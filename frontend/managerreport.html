@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reports Dashboard</title>
+
+<link rel="stylesheet" href="managerreport.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+    <aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+   
+
+   
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Reports</h1>
+
+                <p>
+                    Team, task, project, workload and leave reports
+                </p>
+            </div>
+
+            <div class="manager-profile">
+
+                <div class="notification"
+                     onclick="showNotifications()">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span></span>
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-image">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+
+                    <div>
+                        <strong>Manager</strong>
+                        <small>Project Manager</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= SUMMARY CARDS ================= -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon blue">
+                    <i class="fa-solid fa-folder"></i>
+                </div>
+
+                <div>
+                    <p>Total Projects</p>
+                    <h2></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon purple">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+                    <p>Total Tasks</p>
+                    <h2></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <p>Pending Tasks</p>
+                    <h2></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <p>Completed Tasks</p>
+                    <h2></h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FILTER ================= -->
+
+        <section class="filter-card">
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search employee, project..."
+                    onkeyup="applyFilters()">
+
+            </div>
+
+
+            <!-- REPORT TYPE -->
+
+            <select id="reportType"
+                    onchange="applyFilters()">
+
+                <option value="all">
+                    All Reports
+                </option>
+
+                <option value="task">
+                    Task Report
+                </option>
+
+                <option value="project">
+                    Project Report
+                </option>
+
+                <option value="team">
+                    Team Performance
+                </option>
+
+                <option value="workload">
+                    Workload Report
+                </option>
+
+                <option value="leave">
+                    Leave Report
+                </option>
+
+            </select>
+
+
+            <!-- FROM DATE -->
+
+            <div class="date-box">
+
+                <label>From</label>
+
+                <input
+                    type="date"
+                    id="fromDate">
+
+            </div>
+
+
+            <!-- TO DATE -->
+
+            <div class="date-box">
+
+                <label>To</label>
+
+                <input
+                    type="date"
+                    id="toDate">
+
+            </div>
+
+
+            <!-- FILTER BUTTON -->
+
+            <button class="filter-btn"
+                    onclick="applyFilters()">
+
+                <i class="fa-solid fa-filter"></i>
+                Filter
+
+            </button>
+
+
+            <!-- RESET -->
+
+            <button class="reset-btn"
+                    onclick="resetFilters()">
+
+                <i class="fa-solid fa-rotate-left"></i>
+                Reset
+
+            </button>
+
+        </section>
+
+
+        <!-- ================= ACTION BUTTONS ================= -->
+
+        <div class="action-bar">
+
+            <button class="print-btn"
+                    onclick="printReport()">
+
+                <i class="fa-solid fa-print"></i>
+                Print Report
+
+            </button>
+
+
+            <button class="export-btn"
+                    onclick="exportCSV()">
+
+                <i class="fa-solid fa-file-csv"></i>
+                Export CSV
+
+            </button>
+
+        </div>
+
+
+        <!-- ================= TASK REPORT ================= -->
+
+        <section class="report-card report-section"
+                 data-report="task">
+
+            <div class="report-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-list-check"></i>
+                        Task Report
+                    </h2>
+
+                    <p>
+                        Employee task progress
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+                            <th>Employee</th>
+                            <th>Date</th>
+                            <th>Assigned</th>
+                            <th>Pending</th>
+                            <th>In Progress</th>
+                            <th>Completed</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROJECT REPORT ================= -->
+
+        <section class="report-card report-section"
+                 data-report="project">
+
+            <div class="report-header">
+
+                <h2>
+                    <i class="fa-solid fa-folder"></i>
+                    Project Report
+                </h2>
+
+                <p>
+                    Project progress and completion
+                </p>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Project</th>
+                            <th>Date</th>
+                            <th>Team Members</th>
+                            <th>Total Tasks</th>
+                            <th>Completed</th>
+                            <th>Pending</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TEAM PERFORMANCE ================= -->
+
+        <section class="report-card report-section"
+                 data-report="team">
+
+            <div class="report-header">
+
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Team Performance Report
+                </h2>
+
+                <p>
+                    Employee task completion performance
+                </p>
+
+            </div>
+
+
+            <div class="performance-grid">
+
+                <div class="performance-box">
+
+                    <div class="employee-title">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h3></h3>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress">
+                            
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Task Completion
+                    </p>
+
+                </div>
+
+
+                <div class="performance-box">
+
+                    <div class="employee-title">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h3></h3>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress">
+                            
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Task Completion
+                    </p>
+
+                </div>
+
+
+                <div class="performance-box">
+
+                    <div class="employee-title">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h3></h3>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress">
+                            
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Task Completion
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WORKLOAD REPORT ================= -->
+
+        <section class="report-card report-section"
+                 data-report="workload">
+
+            <div class="report-header">
+
+                <h2>
+                    <i class="fa-solid fa-people-arrows"></i>
+                    Workload Report
+                </h2>
+
+                <p>
+                    Employee workload requests
+                </p>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Employee</th>
+                            <th>Date</th>
+                            <th>Pending Tasks</th>
+                            <th>Workload</th>
+                            <th>Request</th>
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LEAVE REPORT ================= -->
+
+        <section class="report-card report-section"
+                 data-report="leave">
+
+            <div class="report-header">
+
+                <h2>
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Leave Report
+                </h2>
+
+                <p>
+                    Team leave requests
+                </p>
+
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                       <tr>
+                           <th>Employee</th>
+                           <th>Request Date</th>
+                           <th>Leave Type</th>
+                           <th>From</th>
+                           <th>To</th>
+                           <th>Status</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+            </section>
+            </main>
+            </div>
+<script>
+    // ==========================================
+// APPLY ALL FILTERS
+// ==========================================
+
+function applyFilters() {
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const reportType =
+        document.getElementById("reportType")
+        .value;
+
+    const fromDate =
+        document.getElementById("fromDate")
+        .value;
+
+    const toDate =
+        document.getElementById("toDate")
+        .value;
+
+
+    // Check date range
+
+    if (fromDate && toDate && fromDate > toDate) {
+
+        alert(
+            "From Date cannot be greater than To Date."
+        );
+
+        return;
+    }
+
+
+    const sections =
+        document.querySelectorAll(
+            ".report-section"
+        );
+
+
+    sections.forEach(function(section) {
+
+        const sectionType =
+            section.dataset.report;
+
+
+        // Report type filter
+
+        let typeMatch =
+            reportType === "all" ||
+            sectionType === reportType;
+
+
+        if (!typeMatch) {
+
+            section.style.display = "none";
+
+            return;
+        }
+
+
+        // Search filter
+
+        let searchMatch = true;
+
+        if (search !== "") {
+
+            searchMatch =
+                section.innerText
+                .toLowerCase()
+                .includes(search);
+
+        }
+
+
+        if (!searchMatch) {
+
+            section.style.display = "none";
+
+            return;
+        }
+
+
+        section.style.display = "";
+
+
+        // Date filter
+
+        const rows =
+            section.querySelectorAll(
+                "tbody tr"
+            );
+
+
+        rows.forEach(function(row) {
+
+            const rowDate =
+                row.dataset.date;
+
+
+            let dateMatch = true;
+
+
+            if (rowDate && fromDate) {
+
+                if (rowDate < fromDate) {
+
+                    dateMatch = false;
+
+                }
+
+            }
+
+
+            if (rowDate && toDate) {
+
+                if (rowDate > toDate) {
+
+                    dateMatch = false;
+
+                }
+
+            }
+
+
+            if (dateMatch) {
+
+                row.style.display = "";
+
+            } else {
+
+                row.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+}
+
+
+// ==========================================
+// RESET FILTERS
+// ==========================================
+
+function resetFilters() {
+
+    document.getElementById("searchInput")
+        .value = "";
+
+    document.getElementById("reportType")
+        .value = "all";
+
+    document.getElementById("fromDate")
+        .value = "";
+
+    document.getElementById("toDate")
+        .value = "";
+
+
+    const sections =
+        document.querySelectorAll(
+            ".report-section"
+        );
+
+
+    sections.forEach(function(section) {
+
+        section.style.display = "";
+
+        const rows =
+            section.querySelectorAll(
+                "tbody tr"
+            );
+
+
+        rows.forEach(function(row) {
+
+            row.style.display = "";
+
+        });
+
+    });
+
+}
+
+
+// ==========================================
+// PRINT
+// ==========================================
+
+function printReport() {
+
+    window.print();
+
+}
+
+
+// ==========================================
+// EXPORT CSV
+// ==========================================
+
+function exportCSV() {
+
+    const sections =
+        document.querySelectorAll(
+            ".report-section"
+        );
+
+
+    let csv = [];
+
+    csv.push(
+        "MANAGER REPORT"
+    );
+
+    csv.push(
+        "Generated Date," +
+        new Date().toLocaleDateString()
+    );
+
+    csv.push("");
+
+
+    sections.forEach(function(section) {
+
+        if (
+            section.style.display === "none"
+        ) {
+            return;
+        }
+
+
+        const title =
+            section.querySelector(
+                "h2"
+            );
+
+
+        if (!title) {
+            return;
+        }
+
+
+        csv.push(
+            title.innerText.trim()
+        );
+
+
+        const table =
+            section.querySelector(
+                "table"
+            );
+
+
+        if (!table) {
+            return;
+        }
+
+
+        const rows =
+            table.querySelectorAll(
+                "tr"
+            );
+
+
+        rows.forEach(function(row) {
+
+            if (
+                row.style.display === "none"
+            ) {
+                return;
+            }
+
+
+            const cells =
+                row.querySelectorAll(
+                    "th, td"
+                );
+
+
+            const data = [];
+
+
+            cells.forEach(function(cell) {
+
+                let value =
+                    cell.innerText
+                    .replace(/,/g, " ")
+                    .replace(/\n/g, " ")
+                    .trim();
+
+
+                data.push(value);
+
+            });
+
+
+            csv.push(
+                data.join(",")
+            );
+
+        });
+
+
+        csv.push("");
+
+    });
+
+
+    const blob =
+        new Blob(
+            [csv.join("\n")],
+            {
+                type: "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        "manager-report.csv";
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+// ==========================================
+// NOTIFICATION
+// ==========================================
+
+function showNotifications() {
+
+    alert(
+        "Notifications\n\n" +
+        "• New workload request from Abir Singh\n" +
+        "• New leave request from Anu Thomas"
+    );
+
+}
+
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+function logout() {
+
+    const result =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if (result) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+</script>            

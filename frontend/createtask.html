@@ -1,0 +1,2882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manager - Manage Tasks</title>
+
+    <link rel="stylesheet" href="createtask.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h2>Manage Tasks</h2>
+            <p>Create, map and monitor team tasks</p>
+        </div>
+
+        <div class="top-user">
+
+            <div class="avatar">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div>
+                <strong id="topManagerName">Abir Singh</strong>
+                <small>Manager</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- ================= STAT CARDS ================= -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+                    <span>Total Tasks</span>
+                    <h3 id="totalTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <h3 id="pendingTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-spinner"></i>
+                </div>
+
+                <div>
+                    <span>In Progress</span>
+                    <h3 id="progressTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Completed</span>
+                    <h3 id="completedTasks">0</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= TASK CARD ================= -->
+
+        <div class="task-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h3>Team Tasks</h3>
+                    <p>Manage tasks assigned to your project team</p>
+                </div>
+
+                <button class="add-btn" id="openAddTask">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Task
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= FILTER ================= -->
+
+            <div class="filters">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search task, project or staff">
+
+                </div>
+
+
+                <select id="projectFilter">
+
+                    <option value="">
+                        All Projects
+                    </option>
+
+                </select>
+
+
+                <select id="statusFilter">
+
+                    <option value="">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="clear-btn"
+                    id="clearFilters">
+
+                    Clear
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= TABLE ================= -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Task</th>
+
+                            <th>Project</th>
+
+                            <th>Department</th>
+
+                            <th>Assigned Staff</th>
+
+                            <th>Priority</th>
+
+                            <th>Due Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="taskTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty"
+                id="emptyState">
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                <h3>No Tasks Found</h3>
+
+                <p>
+                    No task matches the current filter.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     ADD / EDIT TASK MODAL
+========================================================= -->
+
+<div class="modal" id="taskModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Add Task
+                </h2>
+
+                <p>
+                    Assign a task to your project team
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                id="closeTaskModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="taskForm">
+
+            <input
+                type="hidden"
+                id="editTaskId">
+
+
+            <!-- PROJECT ONLY -->
+
+            <label>
+                Project *
+            </label>
+
+            <select
+                id="projectSelect"
+                required>
+
+                <option value="">
+                    Select Project
+                </option>
+
+            </select>
+
+
+            <!-- AUTOMATIC PROJECT INFORMATION -->
+
+            <div class="project-info">
+
+                <div>
+
+                    <small>
+                        Department
+                    </small>
+
+                    <strong id="autoDepartment">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Manager
+                    </small>
+
+                    <strong id="autoManager">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Available Team
+                    </small>
+
+                    <strong id="teamCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- TASK TITLE -->
+
+            <label>
+                Task Title *
+            </label>
+
+            <input
+                type="text"
+                id="taskTitle"
+                placeholder="Enter task title"
+                required>
+
+
+            <!-- PRIORITY + STATUS -->
+
+            <div class="two-column">
+
+                <div>
+
+                    <label>
+                        Priority *
+                    </label>
+
+                    <select
+                        id="priority"
+                        required>
+
+                        <option value="">
+                            Select Priority
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="taskStatus">
+
+                        <option>
+                            Pending
+                        </option>
+
+                        <option>
+                            In Progress
+                        </option>
+
+                        <option>
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATES -->
+
+            <div class="two-column">
+
+                <div>
+
+                    <label>
+                        Start Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="startDate"
+                        required>
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Due Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dueDate"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TASK MAPPING ================= -->
+
+            <div class="mapping-box">
+
+                <div class="mapping-header">
+
+                    <div>
+
+                        <h3>
+                            Task Mapping
+                        </h3>
+
+                        <p>
+                            Select staff from this project's assigned team
+                        </p>
+
+                    </div>
+
+                    <span>
+
+                        <b id="selectedCount">0</b>
+
+                        /
+
+                        <b id="availableCount">0</b>
+
+                        Selected
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="staffList"
+                    class="staff-list">
+
+                    <div class="staff-empty">
+                        Select a project first
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <label>
+                Task Description
+            </label>
+
+            <textarea
+                id="taskDescription"
+                placeholder="Enter task description"></textarea>
+
+
+            <!-- MANAGER REMARK -->
+
+            <label>
+                Manager Remark / Instructions
+            </label>
+
+            <textarea
+                id="managerRemark"
+                placeholder="Enter instructions for staff"></textarea>
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelTask">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Task
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     VIEW TASK MODAL
+========================================================= -->
+
+<div class="modal" id="viewModal">
+
+    <div class="modal-box view-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    View Task
+                </h2>
+
+                <p>
+                    Task details and employee updates
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                id="closeViewModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div id="viewTaskContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+   /* =========================================================
+   MANAGER TASK MANAGEMENT
+   LocalStorage Demo
+========================================================= */
+
+
+/* =========================================================
+   CURRENT MANAGER
+========================================================= */
+
+const CURRENT_MANAGER = "Abir Singh";
+
+
+/* =========================================================
+   STORAGE KEYS
+========================================================= */
+
+const PROJECT_KEY = "adminProjects";
+
+const TASK_KEY = "managerTasks";
+
+
+/* =========================================================
+   ADMIN PROJECT DATA
+   IMPORTANT:
+   Manager does NOT select department or manager.
+========================================================= */
+
+let projects =
+    JSON.parse(
+        localStorage.getItem(PROJECT_KEY)
+    );
+
+
+/* =========================================================
+   DEMO PROJECT DATA
+   These represent projects created by ADMIN.
+========================================================= */
+
+if (!projects || projects.length === 0) {
+
+    projects = [
+
+        {
+            id: 101,
+
+            name: "Website Development",
+
+            department: "Technical",
+
+            manager: "Abir Singh",
+
+            teamMembers: [
+                "Rahul Kumar",
+                "Anu Thomas",
+                "Meera Joseph"
+            ]
+        },
+
+
+        {
+            id: 102,
+
+            name: "Employee Task Management System",
+
+            department: "Technical",
+
+            manager: "Abir Singh",
+
+            teamMembers: [
+                "Rahul Kumar",
+                "Vishnu Raj",
+                "Neha S",
+                "Anu Thomas"
+            ]
+        },
+
+
+        {
+            id: 103,
+
+            name: "HR Management Portal",
+
+            department: "Human Resources",
+
+            manager: "Meera Nair",
+
+            teamMembers: [
+                "Arun Das",
+                "Sneha Thomas"
+            ]
+        }
+
+    ];
+
+    localStorage.setItem(
+        PROJECT_KEY,
+        JSON.stringify(projects)
+    );
+
+}
+
+
+/* =========================================================
+   TASK DATA
+========================================================= */
+
+let tasks =
+    JSON.parse(
+        localStorage.getItem(TASK_KEY)
+    );
+
+
+/* =========================================================
+   DEMO TASK DATA
+========================================================= */
+
+if (!tasks || tasks.length === 0) {
+
+    tasks = [
+
+        {
+            id: 1,
+
+            title: "Login Page",
+
+            projectId: 101,
+
+            project: "Website Development",
+
+            department: "Technical",
+
+            manager: "Abir Singh",
+
+            staff: [
+                "Rahul Kumar",
+                "Anu Thomas"
+            ],
+
+            priority: "High",
+
+            startDate: "2026-08-24",
+
+            dueDate: "2026-08-30",
+
+            status: "In Progress",
+
+            description:
+                "Create responsive login page.",
+
+            managerRemark:
+                "Use the approved dashboard design.",
+
+            updates: [
+
+                {
+                    employee: "Rahul Kumar",
+
+                    status: "In Progress",
+
+                    remark:
+                        "Login form completed. Validation is being added.",
+
+                    proof: "",
+
+                    date: "24-08-2026"
+                }
+
+            ]
+        },
+
+
+        {
+            id: 2,
+
+            title: "Database Connection",
+
+            projectId: 101,
+
+            project: "Website Development",
+
+            department: "Technical",
+
+            manager: "Abir Singh",
+
+            staff: [
+                "Meera Joseph"
+            ],
+
+            priority: "Medium",
+
+            startDate: "2026-08-24",
+
+            dueDate: "2026-08-31",
+
+            status: "Pending",
+
+            description:
+                "Connect the project with SQLite database.",
+
+            managerRemark:
+                "Use the approved database structure.",
+
+            updates: []
+
+        }
+
+    ];
+
+    saveTasks();
+
+}
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const taskModal =
+    document.getElementById(
+        "taskModal"
+    );
+
+const viewModal =
+    document.getElementById(
+        "viewModal"
+    );
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        initialize();
+
+    }
+);
+
+
+function initialize() {
+
+    setManagerName();
+
+    loadProjects();
+
+    renderTasks();
+
+    updateStats();
+
+    attachEvents();
+
+}
+
+
+/* =========================================================
+   MANAGER NAME
+========================================================= */
+
+function setManagerName() {
+
+    document.getElementById(
+        "sideManagerName"
+    ).textContent =
+        CURRENT_MANAGER;
+
+
+    document.getElementById(
+        "topManagerName"
+    ).textContent =
+        CURRENT_MANAGER;
+
+}
+
+
+/* =========================================================
+   GET ONLY MANAGER'S PROJECTS
+========================================================= */
+
+function getMyProjects() {
+
+    return projects.filter(
+        project =>
+            project.manager ===
+            CURRENT_MANAGER
+    );
+
+}
+
+
+/* =========================================================
+   GET ONLY MANAGER'S TASKS
+========================================================= */
+
+function getMyTasks() {
+
+    return tasks.filter(
+        task =>
+            task.manager ===
+            CURRENT_MANAGER
+    );
+
+}
+
+
+/* =========================================================
+   LOAD PROJECTS
+========================================================= */
+
+function loadProjects() {
+
+    const select =
+        document.getElementById(
+            "projectSelect"
+        );
+
+
+    const filter =
+        document.getElementById(
+            "projectFilter"
+        );
+
+
+    select.innerHTML = `
+        <option value="">
+            Select Project
+        </option>
+    `;
+
+
+    filter.innerHTML = `
+        <option value="">
+            All Projects
+        </option>
+    `;
+
+
+    getMyProjects().forEach(
+        project => {
+
+            select.innerHTML += `
+
+                <option value="${project.id}">
+
+                    ${escapeHTML(project.name)}
+
+                </option>
+
+            `;
+
+
+            filter.innerHTML += `
+
+                <option value="${project.id}">
+
+                    ${escapeHTML(project.name)}
+
+                </option>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT SELECT
+   Department and Manager AUTOMATIC
+========================================================= */
+
+function projectChanged() {
+
+    const projectId =
+        Number(
+            document.getElementById(
+                "projectSelect"
+            ).value
+        );
+
+
+    const project =
+        projects.find(
+            p =>
+                p.id === projectId
+        );
+
+
+    if (!project) {
+
+        resetProjectInformation();
+
+        return;
+
+    }
+
+
+    /* AUTOMATIC DEPARTMENT */
+
+    document.getElementById(
+        "autoDepartment"
+    ).textContent =
+        project.department;
+
+
+    /* AUTOMATIC MANAGER */
+
+    document.getElementById(
+        "autoManager"
+    ).textContent =
+        project.manager;
+
+
+    /* TEAM COUNT */
+
+    document.getElementById(
+        "teamCount"
+    ).textContent =
+        project.teamMembers.length;
+
+
+    /* LOAD ONLY ADMIN ASSIGNED TEAM */
+
+    loadTeamMembers(project);
+
+}
+
+
+/* =========================================================
+   LOAD PROJECT TEAM MEMBERS
+========================================================= */
+
+function loadTeamMembers(
+    project,
+    selectedMembers = []
+) {
+
+    const list =
+        document.getElementById(
+            "staffList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    if (
+        !project.teamMembers ||
+        project.teamMembers.length === 0
+    ) {
+
+        list.innerHTML = `
+            <div class="staff-empty">
+                No team members assigned to this project.
+            </div>
+        `;
+
+        updateSelectedCount();
+
+        return;
+
+    }
+
+
+    project.teamMembers.forEach(
+        employee => {
+
+            const label =
+                document.createElement(
+                    "label"
+                );
+
+
+            label.className =
+                "staff-item";
+
+
+            const checked =
+                selectedMembers.includes(
+                    employee
+                )
+                ? "checked"
+                : "";
+
+
+            label.innerHTML = `
+
+                <input
+                    type="checkbox"
+                    value="${escapeHTML(employee)}"
+                    ${checked}
+                >
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(employee)}
+                    </strong>
+
+                    <small>
+                        Assigned Project Team Member
+                    </small>
+
+                </div>
+
+            `;
+
+
+            label
+                .querySelector("input")
+                .addEventListener(
+                    "change",
+                    updateSelectedCount
+                );
+
+
+            list.appendChild(label);
+
+        }
+    );
+
+
+    updateSelectedCount();
+
+}
+
+
+/* =========================================================
+   SELECTED STAFF COUNT
+========================================================= */
+
+function updateSelectedCount() {
+
+    const selected =
+        document.querySelectorAll(
+            "#staffList input:checked"
+        ).length;
+
+
+    const total =
+        document.querySelectorAll(
+            "#staffList input"
+        ).length;
+
+
+    document.getElementById(
+        "selectedCount"
+    ).textContent =
+        selected;
+
+
+    document.getElementById(
+        "availableCount"
+    ).textContent =
+        total;
+
+}
+
+
+/* =========================================================
+   RESET PROJECT INFORMATION
+========================================================= */
+
+function resetProjectInformation() {
+
+    document.getElementById(
+        "autoDepartment"
+    ).textContent = "-";
+
+
+    document.getElementById(
+        "autoManager"
+    ).textContent = "-";
+
+
+    document.getElementById(
+        "teamCount"
+    ).textContent = "0";
+
+
+    document.getElementById(
+        "staffList"
+    ).innerHTML = `
+
+        <div class="staff-empty">
+
+            Select a project first
+
+        </div>
+
+    `;
+
+
+    updateSelectedCount();
+
+}
+
+
+/* =========================================================
+   ATTACH EVENTS
+========================================================= */
+
+function attachEvents() {
+
+    document.getElementById(
+        "openAddTask"
+    ).addEventListener(
+        "click",
+        openAddTask
+    );
+
+
+    document.getElementById(
+        "closeTaskModal"
+    ).addEventListener(
+        "click",
+        closeTaskModal
+    );
+
+
+    document.getElementById(
+        "cancelTask"
+    ).addEventListener(
+        "click",
+        closeTaskModal
+    );
+
+
+    document.getElementById(
+        "closeViewModal"
+    ).addEventListener(
+        "click",
+        closeViewModal
+    );
+
+
+    document.getElementById(
+        "projectSelect"
+    ).addEventListener(
+        "change",
+        projectChanged
+    );
+
+
+    document.getElementById(
+        "taskForm"
+    ).addEventListener(
+        "submit",
+        saveTask
+    );
+
+
+    document.getElementById(
+        "searchInput"
+    ).addEventListener(
+        "input",
+        renderTasks
+    );
+
+
+    document.getElementById(
+        "projectFilter"
+    ).addEventListener(
+        "change",
+        renderTasks
+    );
+
+
+    document.getElementById(
+        "statusFilter"
+    ).addEventListener(
+        "change",
+        renderTasks
+    );
+
+
+    document.getElementById(
+        "clearFilters"
+    ).addEventListener(
+        "click",
+        clearFilters
+    );
+
+}
+
+
+/* =========================================================
+   OPEN ADD TASK
+========================================================= */
+
+function openAddTask() {
+
+    document.getElementById(
+        "taskForm"
+    ).reset();
+
+
+    document.getElementById(
+        "editTaskId"
+    ).value = "";
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Task";
+
+
+    resetProjectInformation();
+
+
+    taskModal.style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   SAVE TASK
+========================================================= */
+
+function saveTask(event) {
+
+    event.preventDefault();
+
+
+    const projectId =
+        Number(
+            document.getElementById(
+                "projectSelect"
+            ).value
+        );
+
+
+    const project =
+        projects.find(
+            p =>
+                p.id === projectId
+        );
+
+
+    if (!project) {
+
+        alert(
+            "Please select a project."
+        );
+
+        return;
+
+    }
+
+
+    /* SECURITY CHECK */
+
+    if (
+        project.manager !==
+        CURRENT_MANAGER
+    ) {
+
+        alert(
+            "This project is not assigned to you."
+        );
+
+        return;
+
+    }
+
+
+    /* SELECT STAFF */
+
+    const selectedStaff =
+        Array.from(
+            document.querySelectorAll(
+                "#staffList input:checked"
+            )
+        ).map(
+            input =>
+                input.value
+        );
+
+
+    if (
+        selectedStaff.length === 0
+    ) {
+
+        alert(
+            "Please select at least one staff member."
+        );
+
+        return;
+
+    }
+
+
+    const title =
+        document.getElementById(
+            "taskTitle"
+        ).value.trim();
+
+
+    if (!title) {
+
+        alert(
+            "Enter task title."
+        );
+
+        return;
+
+    }
+
+
+    const startDate =
+        document.getElementById(
+            "startDate"
+        ).value;
+
+
+    const dueDate =
+        document.getElementById(
+            "dueDate"
+        ).value;
+
+
+    if (
+        startDate &&
+        dueDate &&
+        dueDate < startDate
+    ) {
+
+        alert(
+            "Due date cannot be before start date."
+        );
+
+        return;
+
+    }
+
+
+    const editId =
+        document.getElementById(
+            "editTaskId"
+        ).value;
+
+
+    const taskInformation = {
+
+        title: title,
+
+        projectId: project.id,
+
+        project: project.name,
+
+        /* AUTOMATIC */
+
+        department:
+            project.department,
+
+        /* AUTOMATIC */
+
+        manager:
+            project.manager,
+
+        staff:
+            selectedStaff,
+
+        priority:
+            document.getElementById(
+                "priority"
+            ).value,
+
+        startDate:
+            startDate,
+
+        dueDate:
+            dueDate,
+
+        status:
+            document.getElementById(
+                "taskStatus"
+            ).value,
+
+        description:
+            document.getElementById(
+                "taskDescription"
+            ).value.trim(),
+
+        managerRemark:
+            document.getElementById(
+                "managerRemark"
+            ).value.trim()
+
+    };
+
+
+    /* =====================================================
+       EDIT EXISTING TASK
+    ===================================================== */
+
+    if (editId) {
+
+        const index =
+            tasks.findIndex(
+                task =>
+                    String(task.id) ===
+                    String(editId)
+            );
+
+
+        if (index === -1) {
+
+            alert(
+                "Task not found."
+            );
+
+            return;
+
+        }
+
+
+        tasks[index] = {
+
+            ...tasks[index],
+
+            ...taskInformation
+
+        };
+
+
+        alert(
+            "Task updated successfully."
+        );
+
+    }
+
+
+    /* =====================================================
+       CREATE NEW TASK
+    ===================================================== */
+
+    else {
+
+        const newTask = {
+
+            id:
+                Date.now(),
+
+            ...taskInformation,
+
+            updates: []
+
+        };
+
+
+        tasks.push(
+            newTask
+        );
+
+
+        alert(
+            "Task created and mapped successfully."
+        );
+
+    }
+
+
+    saveTasks();
+
+    renderTasks();
+
+    updateStats();
+
+    closeTaskModal();
+
+}
+
+
+/* =========================================================
+   RENDER TASK TABLE
+========================================================= */
+
+function renderTasks() {
+
+    const tbody =
+        document.getElementById(
+            "taskTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toLowerCase();
+
+
+    const projectFilter =
+        document.getElementById(
+            "projectFilter"
+        ).value;
+
+
+    const statusFilter =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    let result =
+        getMyTasks();
+
+
+    /* SEARCH */
+
+    if (search) {
+
+        result =
+            result.filter(
+                task => {
+
+                    const text = (
+
+                        task.title +
+
+                        " " +
+
+                        task.project +
+
+                        " " +
+
+                        task.department +
+
+                        " " +
+
+                        task.staff.join(" ")
+
+                    ).toLowerCase();
+
+
+                    return text.includes(
+                        search
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* PROJECT FILTER */
+
+    if (projectFilter) {
+
+        result =
+            result.filter(
+                task =>
+                    String(
+                        task.projectId
+                    ) ===
+                    String(
+                        projectFilter
+                    )
+            );
+
+    }
+
+
+    /* STATUS FILTER */
+
+    if (statusFilter) {
+
+        result =
+            result.filter(
+                task =>
+                    task.status ===
+                    statusFilter
+            );
+
+    }
+
+
+    tbody.innerHTML = "";
+
+
+    document.getElementById(
+        "emptyState"
+    ).style.display =
+        result.length === 0
+        ? "block"
+        : "none";
+
+
+    result.forEach(
+        (task, index) => {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+
+                <td>
+
+                    <div class="task-title">
+
+                        ${escapeHTML(
+                            task.title
+                        )}
+
+                    </div>
+
+                    <div class="task-subtitle">
+
+                        ${task.updates?.length || 0}
+                        employee update(s)
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+                        task.project
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escapeHTML(
+                        task.department
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <div class="staff-cell">
+
+                        ${task.staff
+                            .map(
+                                staff =>
+                                    escapeHTML(staff)
+                            )
+                            .join(", ")
+                        }
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="badge
+                    ${priorityClass(
+                        task.priority
+                    )}">
+
+                        ${escapeHTML(
+                            task.priority
+
+                      )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${formatDate(
+                        task.dueDate
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <span class="badge
+                    ${statusClass(
+                        task.status
+                    )}">
+
+                        ${escapeHTML(
+                            task.status
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div class="actions">
+
+
+                        <!-- VIEW -->
+
+                        <button
+                            class="action-btn view-btn"
+                            title="View Task"
+                            onclick="viewTask(${task.id})">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+
+                        <!-- EDIT -->
+
+                        <button
+                            class="action-btn edit-btn"
+                            title="Edit Task"
+                            onclick="editTask(${task.id})">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+
+                        <!-- DELETE -->
+
+                        <button
+                            class="action-btn delete-btn"
+                            title="Delete Task"
+                            onclick="deleteTask(${task.id})">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIEW TASK
+   Includes Employee Updated Task
+========================================================= */
+
+function viewTask(id) {
+
+    const task =
+        tasks.find(
+            t =>
+                t.id === id
+        );
+
+
+    if (!task) return;
+
+
+    /* =====================================================
+       TEAM MEMBERS
+    ===================================================== */
+
+    let teamHTML = "";
+
+
+    task.staff.forEach(
+        employee => {
+
+            teamHTML += `
+
+                <div class="team-member">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    ${escapeHTML(
+                        employee
+                    )}
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /* =====================================================
+       EMPLOYEE UPDATES
+    ===================================================== */
+
+    let updatesHTML = "";
+
+
+    const updates =
+        task.updates || [];
+
+
+    if (
+        updates.length === 0
+    ) {
+
+        updatesHTML = `
+
+            <div class="no-updates">
+
+                <i class="fa-regular fa-clock"></i>
+
+                <br><br>
+
+                No employee task update submitted yet.
+
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        updatesHTML =
+            updates
+            .map(
+                update => {
+
+                    let proofHTML = "";
+
+
+                    if (
+                        update.proof
+                    ) {
+
+                        /*
+                         * If actual URL/data URL is available,
+                         * open it.
+                         */
+
+                        const proofValue =
+                            String(
+                                update.proof
+                            );
+
+
+                        if (
+                            proofValue.startsWith(
+                                "data:"
+                            ) ||
+                            proofValue.startsWith(
+                                "http"
+                            )
+                        ) {
+
+                            proofHTML = `
+
+                                <a
+                                    href="${proofValue}"
+                                    target="_blank"
+                                    class="proof-btn">
+
+                                    <i class="fa-solid fa-paperclip"></i>
+
+                                    View Proof
+
+                                </a>
+
+                            `;
+
+                        }
+
+                        else {
+
+                            proofHTML = `
+
+                                <span
+                                    class="proof-btn">
+
+                                    <i class="fa-solid fa-paperclip"></i>
+
+                                    ${escapeHTML(
+                                        proofValue
+                                    )}
+
+                                </span>
+
+                            `;
+
+                        }
+
+                    }
+
+
+                    return `
+
+                        <div class="update-card">
+
+                            <div class="update-top">
+
+                                <span class="employee-name">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    ${escapeHTML(
+                                        update.employee
+                                    )}
+
+                                </span>
+
+
+                                <span class="badge
+                                ${statusClass(
+                                    update.status
+                                )}">
+
+                                    ${escapeHTML(
+                                        update.status
+                                    )}
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="update-info">
+
+                                <strong>
+                                    Employee Remark
+                                </strong>
+
+                                <p>
+
+                                    ${escapeHTML(
+                                        update.remark ||
+                                        "No remark provided."
+                                    )}
+
+                                </p>
+
+
+                                ${proofHTML}
+
+
+                                <span class="update-date">
+
+                                    Updated:
+                                    ${escapeHTML(
+                                        update.date ||
+                                        "-"
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+    }
+
+
+    /* =====================================================
+       VIEW CONTENT
+    ===================================================== */
+
+    document.getElementById(
+        "viewTaskContent"
+    ).innerHTML = `
+
+        <!-- TASK DETAILS -->
+
+        <div class="detail-grid">
+
+
+            <div class="detail-item">
+
+                <small>
+                    Task Title
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.title
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Project
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.project
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Department
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.department
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Manager
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.manager
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Priority
+                </small>
+
+                <strong>
+
+                    <span class="badge
+                    ${priorityClass(
+                        task.priority
+                    )}">
+
+                        ${escapeHTML(
+                            task.priority
+                        )}
+
+                    </span>
+
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Current Status
+                </small>
+
+                <strong>
+
+                    <span class="badge
+                    ${statusClass(
+                        task.status
+                    )}">
+
+                        ${escapeHTML(
+                            task.status
+                        )}
+
+                    </span>
+
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Start Date
+                </small>
+
+                <strong>
+                    ${formatDate(
+                        task.startDate
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item">
+
+                <small>
+                    Due Date
+                </small>
+
+                <strong>
+                    ${formatDate(
+                        task.dueDate
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item full">
+
+                <small>
+                    Description
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.description ||
+                        "No description"
+                    )}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-item full">
+
+                <small>
+                    Manager Remark
+                </small>
+
+                <strong>
+                    ${escapeHTML(
+                        task.managerRemark ||
+                        "No manager remark"
+                    )}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TEAM -->
+
+        <div class="team-section">
+
+            <h3 class="section-title">
+
+                <i class="fa-solid fa-users"></i>
+
+                Assigned Team Members
+
+            </h3>
+
+
+            <div class="team-list">
+
+                ${teamHTML}
+
+            </div>
+
+        </div>
+
+
+        <!-- EMPLOYEE UPDATES -->
+
+        <div class="update-section">
+
+            <h3 class="section-title">
+
+                <i class="fa-solid fa-user-clock"></i>
+
+                Employee Task Updates
+
+            </h3>
+
+
+            ${updatesHTML}
+
+        </div>
+
+    `;
+
+
+    viewModal.style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   EDIT TASK
+========================================================= */
+
+function editTask(id) {
+
+    const task =
+        tasks.find(
+            t =>
+                t.id === id
+        );
+
+
+    if (!task) return;
+
+
+    /* CHECK MANAGER */
+
+    if (
+        task.manager !==
+        CURRENT_MANAGER
+    ) {
+
+        alert(
+            "You cannot edit this task."
+        );
+
+        return;
+
+    }
+
+
+    const project =
+        projects.find(
+            p =>
+                p.id ===
+                task.projectId
+        );
+
+
+    if (!project) {
+
+        alert(
+            "Project not found."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "editTaskId"
+    ).value =
+        task.id;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Task";
+
+
+    /* PROJECT */
+
+    document.getElementById(
+        "projectSelect"
+    ).value =
+        project.id;
+
+
+    /* AUTOMATIC INFORMATION */
+
+    projectChanged();
+
+
+    /* SELECT STAFF */
+
+    loadTeamMembers(
+        project,
+        task.staff
+    );
+
+
+    /* TASK */
+
+    document.getElementById(
+        "taskTitle"
+    ).value =
+        task.title;
+
+
+    document.getElementById(
+        "priority"
+    ).value =
+        task.priority;
+
+
+    document.getElementById(
+        "taskStatus"
+    ).value =
+        task.status;
+
+
+    document.getElementById(
+        "startDate"
+    ).value =
+        task.startDate;
+
+
+    document.getElementById(
+        "dueDate"
+    ).value =
+        task.dueDate;
+
+
+    document.getElementById(
+        "taskDescription"
+    ).value =
+        task.description || "";
+
+
+    document.getElementById(
+        "managerRemark"
+    ).value =
+        task.managerRemark || "";
+
+
+    taskModal.style.display =
+        "flex";
+
+}
+
+
+/* =========================================================
+   DELETE TASK
+========================================================= */
+
+function deleteTask(id) {
+
+    const task =
+        tasks.find(
+            t =>
+                t.id === id
+        );
+
+
+    if (!task) return;
+
+
+    const confirmDelete =
+        confirm(
+            `Delete "${task.title}"?`
+        );
+
+
+    if (!confirmDelete)
+        return;
+
+
+    tasks =
+        tasks.filter(
+            t =>
+                t.id !== id
+        );
+
+
+    saveTasks();
+
+    renderTasks();
+
+    updateStats();
+
+
+    alert(
+        "Task deleted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStats() {
+
+    const mine =
+        getMyTasks();
+
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent =
+        mine.length;
+
+
+    document.getElementById(
+        "pendingTasks"
+    ).textContent =
+        mine.filter(
+            t =>
+                t.status ===
+                "Pending"
+        ).length;
+
+
+    document.getElementById(
+        "progressTasks"
+    ).textContent =
+        mine.filter(
+            t =>
+                t.status ===
+                "In Progress"
+        ).length;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent =
+        mine.filter(
+            t =>
+                t.status ===
+                "Completed"
+        ).length;
+
+}
+
+
+/* =========================================================
+   CLEAR FILTERS
+========================================================= */
+
+function clearFilters() {
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "projectFilter"
+    ).value = "";
+
+
+    document.getElementById(
+        "statusFilter"
+    ).value = "";
+
+
+    renderTasks();
+
+}
+
+
+/* =========================================================
+   CLOSE ADD / EDIT MODAL
+========================================================= */
+
+function closeTaskModal() {
+
+    taskModal.style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   CLOSE VIEW MODAL
+========================================================= */
+
+function closeViewModal() {
+
+    viewModal.style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   STATUS CLASS
+========================================================= */
+
+function statusClass(status) {
+
+    if (
+        status ===
+        "Completed"
+    ) {
+
+        return "completed";
+
+    }
+
+
+    if (
+        status ===
+        "In Progress"
+    ) {
+
+        return "progress";
+
+    }
+
+
+    return "pending";
+
+}
+
+
+/* =========================================================
+   PRIORITY CLASS
+========================================================= */
+
+function priorityClass(priority) {
+
+    return String(
+        priority
+    ).toLowerCase();
+
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(date) {
+
+    if (!date)
+        return "-";
+
+
+    const parts =
+        String(date).split("-");
+
+
+    if (
+        parts.length !== 3
+    ) {
+
+        return date;
+
+    }
+
+
+    return (
+        parts[2] +
+        "-" +
+        parts[1] +
+        "-" +
+        parts[0]
+    );
+
+}
+
+
+/* =========================================================
+   SAVE TASKS
+========================================================= */
+
+function saveTasks() {
+
+    localStorage.setItem(
+        TASK_KEY,
+        JSON.stringify(tasks)
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   LISTEN FOR STAFF UPDATES
+   If staff page changes managerTasks in another tab,
+   manager page refreshes automatically.
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key ===
+            TASK_KEY
+        ) {
+
+            tasks =
+                JSON.parse(
+                    event.newValue
+                ) || [];
+
+
+            renderTasks();
+
+            updateStats();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   REFRESH WHEN PAGE BECOMES ACTIVE
+========================================================= */
+
+window.addEventListener(
+    "focus",
+    function() {
+
+        tasks =
+            JSON.parse(
+                localStorage.getItem(
+                    TASK_KEY
+                )
+            ) || [];
+
+
+        renderTasks();
+
+        updateStats();
+
+    }
+);
+
+
+/* =========================================================
+   MAKE FUNCTIONS AVAILABLE TO HTML
+========================================================= */
+
+window.viewTask =
+    viewTask;
+
+window.editTask =
+    editTask;
+
+window.deleteTask =
+    deleteTask;
+</script>
+
+</body>
+</html>

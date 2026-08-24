@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Submission | Manager</title>
+
+    <link rel="stylesheet" href="projectsubmission.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+        <div class="title-area">
+
+            <button class="menu-btn" id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+                <h1>Project Submission</h1>
+                <p>Submit completed project to Admin</p>
+            </div>
+
+        </div>
+
+        <div class="manager-profile">
+
+            <div class="notification">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+
+            <div class="avatar">A</div>
+
+            <div>
+                <strong></strong>
+                <small>Manager</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="content">
+
+        <!-- PROJECT SELECT -->
+        <div class="card">
+
+            <div class="card-title">
+                <div>
+                    <h2>Submit Project</h2>
+                    <p>Select a completed project and submit it to Admin.</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Project Name
+                    </label>
+
+                    <select id="projectSelect">
+
+                        <option value="">
+                            Select Project
+                        </option>
+
+                        
+
+                        
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Manager Name</label>
+
+                    <input
+                        type="text"
+                        id="managerName"
+                        value=""
+                        readonly
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Department</label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        value=""
+                        readonly
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Submission Date</label>
+
+                    <input
+                        type="date"
+                        id="submissionDate"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT SUMMARY -->
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-icon blue">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+                    <span>Total Tasks</span>
+                    <h3 id="totalTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Completed</span>
+                    <h3 id="completedTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <h3 id="pendingTasks">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon purple">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div>
+                    <span>Staff Members</span>
+                    <h3 id="staffCount">0</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STAFF TASKS -->
+        <div class="card">
+
+            <div class="card-title">
+
+                <div>
+                    <h2>Staff Task Submissions</h2>
+                    <p>Review employee tasks before submitting the project.</p>
+                </div>
+
+                <span class="project-status" id="projectStatus">
+                    Draft
+                </span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>S.No</th>
+                            <th>Staff Member</th>
+                            <th>Task</th>
+                            <th>Assigned Date</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="taskTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT DETAILS -->
+        <div class="card">
+
+            <div class="card-title">
+
+                <div>
+                    <h2>Project Submission Details</h2>
+                    <p>Add final project information.</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Project Remark
+                </label>
+
+                <textarea
+                    id="projectRemark"
+                    placeholder="Enter project completion remark..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Upload Project Proof
+                </label>
+
+                <div class="upload-box">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <p>
+                        Upload project report, screenshots or other proof
+                    </p>
+
+                    <input
+                        type="file"
+                        id="projectProof"
+                    >
+
+                </div>
+
+                <small id="fileName">
+                    No file selected
+                </small>
+
+            </div>
+
+
+            <div class="submit-area">
+
+                <button
+                    class="btn cancel"
+                    id="saveDraftBtn"
+                >
+                    <i class="fa-regular fa-floppy-disk"></i>
+                    Save Draft
+                </button>
+
+                <button
+                    class="btn submit"
+                    id="submitAdminBtn"
+                >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Submit Project to Admin
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREVIOUS SUBMISSIONS -->
+        <div class="card">
+
+            <div class="card-title">
+
+                <div>
+                    <h2>Previous Submissions</h2>
+                    <p>Track projects already submitted to Admin.</p>
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Project</th>
+                            <th>Submission Date</th>
+                            <th>Status</th>
+                            <th>Admin Remark</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="submissionTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- TASK VIEW MODAL -->
+<div class="modal-overlay" id="taskModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Employee Task Details</h2>
+                <p>View submitted staff work</p>
+            </div>
+
+            <button id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="detail-grid">
+
+                <div>
+                    <label>Staff Name</label>
+                    <strong id="modalStaff">-</strong>
+                </div>
+
+                <div>
+                    <label>Task</label>
+                    <strong id="modalTask">-</strong>
+                </div>
+
+                <div>
+                    <label>Assigned Date</label>
+                    <strong id="modalAssigned">-</strong>
+                </div>
+
+                <div>
+                    <label>Deadline</label>
+                    <strong id="modalDeadline">-</strong>
+                </div>
+
+                <div>
+                    <label>Status</label>
+                    <span id="modalStatus">-</span>
+                </div>
+
+            </div>
+
+
+            <div class="modal-section">
+
+                <label>Employee Work Update</label>
+
+                <div
+                    class="work-box"
+                    id="modalDescription">
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="modal-section">
+
+                <label>Employee Remark</label>
+
+                <div
+                    class="work-box"
+                    id="modalRemark">
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="modal-section">
+
+                <label>Proof</label>
+
+                <div id="modalProof">
+                    No proof uploaded
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn cancel"
+                id="closeModalBtn">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    /* =========================================
+   MANAGER PROJECT SUBMISSION
+========================================= */
+
+
+/* =========================================
+   STAFF TASK DATA
+========================================= */
+
+const staffTasks = [
+
+    {
+        id: 1,
+        staff: "Rahul Kumar",
+        project: "Employee Task Management System",
+        task: "Database Connection",
+        assigned: "12-08-2026",
+        deadline: "20-08-2026",
+        status: "Completed",
+        description:
+            "SQLite database connection and required database tables have been completed.",
+        remark:
+            "Database connection tested successfully.",
+        proof: ""
+    },
+
+    {
+        id: 2,
+        staff: "Anu Thomas",
+        project: "Employee Task Management System",
+        task: "Login Page",
+        assigned: "12-08-2026",
+        deadline: "18-08-2026",
+        status: "Completed",
+        description:
+            "Login page with username, password and validation completed.",
+        remark:
+            "Login page is working correctly.",
+        proof: ""
+    },
+
+    {
+        id: 3,
+        staff: "Meera Joseph",
+        project: "Employee Task Management System",
+        task: "Dashboard Design",
+        assigned: "13-08-2026",
+        deadline: "20-08-2026",
+        status: "Completed",
+        description:
+            "Responsive dashboard design completed.",
+        remark:
+            "Dashboard layout completed successfully.",
+        proof: ""
+    },
+
+    {
+        id: 4,
+        staff: "Rahul Kumar",
+        project: "Employee Task Management System",
+        task: "Testing",
+        assigned: "18-08-2026",
+        deadline: "22-08-2026",
+        status: "Completed",
+        description:
+            "Application testing completed.",
+        remark:
+            "Major modules tested successfully.",
+        proof: ""
+    },
+
+    {
+        id: 5,
+        staff: "Anu Thomas",
+        project: "Website Development",
+        task: "Frontend Development",
+        assigned: "15-08-2026",
+        deadline: "25-08-2026",
+        status: "In Progress",
+        description:
+            "Frontend development is currently in progress.",
+        remark:
+            "Some pages are still under development.",
+        proof: ""
+    }
+
+];
+
+
+/* =========================================
+   PROJECT SUBMISSIONS
+========================================= */
+
+let projectSubmissions =
+    JSON.parse(
+        localStorage.getItem("managerProjectSubmissions")
+    ) || [];
+
+
+let selectedTask = null;
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const projectSelect =
+    document.getElementById("projectSelect");
+
+const taskTable =
+    document.getElementById("taskTable");
+
+const taskModal =
+    document.getElementById("taskModal");
+
+
+/* =========================================
+   DATE
+========================================= */
+
+document.getElementById(
+    "submissionDate"
+).value = new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+/* =========================================
+   PROJECT CHANGE
+========================================= */
+
+projectSelect.addEventListener(
+    "change",
+    function() {
+
+        renderTasks();
+
+    }
+);
+
+
+/* =========================================
+   RENDER TASKS
+========================================= */
+
+function renderTasks() {
+
+    const project =
+        projectSelect.value;
+
+
+    taskTable.innerHTML = "";
+
+
+    if (!project) {
+
+        document.getElementById(
+            "totalTasks"
+        ).textContent = "0";
+
+        document.getElementById(
+            "completedTasks"
+        ).textContent = "0";
+
+        document.getElementById(
+            "pendingTasks"
+        ).textContent = "0";
+
+        document.getElementById(
+            "staffCount"
+        ).textContent = "0";
+
+        return;
+
+    }
+
+
+    const tasks =
+        staffTasks.filter(
+            task => task.project === project
+        );
+
+
+    let completed = 0;
+
+    tasks.forEach(task => {
+
+        if (task.status === "Completed") {
+            completed++;
+        }
+
+    });
+
+
+    const pending =
+        tasks.length - completed;
+
+
+    const staff =
+        new Set(
+            tasks.map(task => task.staff)
+        ).size;
+
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent = tasks.length;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent = completed;
+
+
+    document.getElementById(
+        "pendingTasks"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "staffCount"
+    ).textContent = staff;
+
+
+    tasks.forEach(
+        (task, index) => {
+
+            const row =
+                document.createElement("tr");
+
+
+            let statusClass =
+                "pending";
+
+
+            if (task.status === "Completed") {
+                statusClass = "completed";
+            }
+
+            else if (
+                task.status === "In Progress"
+            ) {
+                statusClass = "in-progress";
+            }
+
+
+            row.innerHTML = `
+
+                <td>${index + 1}</td>
+
+                <td>
+                    <strong>
+                        ${escapeHTML(task.staff)}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(task.task)}
+                </td>
+
+                <td>
+                    ${escapeHTML(task.assigned)}
+                </td>
+
+                <td>
+                    ${escapeHTML(task.deadline)}
+                </td>
+
+                <td>
+
+                    <span class="task-status ${statusClass}">
+                        ${escapeHTML(task.status)}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="view-btn"
+                        onclick="viewTask(${task.id})">
+
+                        <i class="fa-regular fa-eye"></i>
+                        View
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            taskTable.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   VIEW TASK
+========================================= */
+
+function viewTask(id) {
+
+    selectedTask =
+        staffTasks.find(
+            task => task.id === id
+        );
+
+
+    if (!selectedTask) {
+        return;
+    }
+
+
+    document.getElementById(
+        "modalStaff"
+    ).textContent =
+        selectedTask.staff;
+
+
+    document.getElementById(
+        "modalTask"
+    ).textContent =
+        selectedTask.task;
+
+
+    document.getElementById(
+        "modalAssigned"
+    ).textContent =
+        selectedTask.assigned;
+
+
+    document.getElementById(
+        "modalDeadline"
+    ).textContent =
+        selectedTask.deadline;
+
+
+    const status =
+        document.getElementById(
+            "modalStatus"
+        );
+
+
+    status.textContent =
+        selectedTask.status;
+
+
+    status.className =
+        "task-status " +
+        (
+            selectedTask.status === "Completed"
+                ? "completed"
+                : selectedTask.status === "In Progress"
+                    ? "in-progress"
+                    : "pending"
+        );
+
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
+        selectedTask.description;
+
+
+    document.getElementById(
+        "modalRemark"
+    ).textContent =
+        selectedTask.remark;
+
+
+    if (selectedTask.proof) {
+
+        document.getElementById(
+            "modalProof"
+        ).innerHTML = `
+
+            <a
+                href="${selectedTask.proof}"
+                target="_blank"
+                class="view-btn">
+
+                <i class="fa-solid fa-paperclip"></i>
+                View Proof
+
+            </a>
+
+        `;
+
+    }
+
+    else {
+
+        document.getElementById(
+            "modalProof"
+        ).innerHTML = `
+            <span style="color:#64748b;font-size:13px;">
+                No proof uploaded
+            </span>
+        `;
+
+    }
+
+
+    taskModal.classList.add("show");
+
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeTaskModal() {
+
+    taskModal.classList.remove("show");
+
+}
+
+
+document.getElementById(
+    "closeModal"
+).addEventListener(
+    "click",
+    closeTaskModal
+);
+
+
+document.getElementById(
+    "closeModalBtn"
+).addEventListener(
+    "click",
+    closeTaskModal
+);
+
+
+taskModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === taskModal) {
+            closeTaskModal();
+        }
+
+    }
+);
+
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+document.getElementById(
+    "projectProof"
+).addEventListener(
+    "change",
+    function() {
+
+        if (this.files.length > 0) {
+
+            document.getElementById(
+                "fileName"
+            ).textContent =
+                this.files[0].name;
+
+        }
+
+        else {
+
+            document.getElementById(
+                "fileName"
+            ).textContent =
+                "No file selected";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   SAVE DRAFT
+========================================= */
+
+document.getElementById(
+    "saveDraftBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        if (!projectSelect.value) {
+
+            alert(
+                "Please select a project."
+            );
+
+            return;
+
+        }
+
+
+        saveProject("Draft");
+
+
+        alert(
+            "Project saved as draft."
+        );
+
+    }
+);
+
+
+/* =========================================
+   SUBMIT TO ADMIN
+========================================= */
+
+document.getElementById(
+    "submitAdminBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        const project =
+            projectSelect.value;
+
+
+        if (!project) {
+
+            alert(
+                "Please select a project."
+            );
+
+            return;
+
+        }
+
+
+        const tasks =
+            staffTasks.filter(
+                task => task.project === project
+            );
+
+
+        const completed =
+            tasks.filter(
+                task => task.status === "Completed"
+            ).length;
+
+
+        const pending =
+            tasks.length - completed;
+
+
+        /* IMPORTANT:
+           ALL TASKS MUST BE COMPLETED
+        */
+
+        if (pending > 0) {
+
+            alert(
+                "Cannot submit the project. Please complete all employee tasks first."
+            );
+
+            return;
+
+        }
+
+
+        const remark =
+            document.getElementById(
+                "projectRemark"
+            ).value.trim();
+
+
+        if (!remark) {
+
+            alert(
+                "Please enter a project remark."
+            );
+
+            document.getElementById(
+                "projectRemark"
+            ).focus();
+
+            return;
+
+        }
+
+
+        saveProject(
+            "Submitted to Admin"
+        );
+
+
+        document.getElementById(
+            "projectStatus"
+        ).textContent =
+            "Submitted to Admin";
+
+
+        alert(
+            "Project submitted to Admin successfully."
+        );
+
+
+        renderSubmissions();
+
+    }
+);
+
+
+/* =========================================
+   SAVE PROJECT
+========================================= */
+
+function saveProject(status) {
+
+    const project =
+        projectSelect.value;
+
+
+    const tasks =
+        staffTasks.filter(
+            task => task.project === project
+        );
+
+
+    const submission = {
+
+        id: Date.now(),
+
+        project: project,
+
+        manager:
+            document.getElementById(
+                "managerName"
+            ).value,
+
+        department:
+            document.getElementById(
+                "department"
+            ).value,
+
+        date:
+            document.getElementById(
+                "submissionDate"
+            ).value,
+
+        remark:
+            document.getElementById(
+                "projectRemark"
+            ).value,
+
+        file:
+            document.getElementById(
+                "projectProof"
+            ).files[0]?.name || "",
+
+        totalTasks:
+            tasks.length,
+
+        completedTasks:
+            tasks.filter(
+                task =>
+                    task.status === "Completed"
+            ).length,
+
+        status: status,
+
+        adminRemark: ""
+
+    };
+
+
+    projectSubmissions.push(
+        submission
+    );
+
+
+    localStorage.setItem(
+        "managerProjectSubmissions",
+        JSON.stringify(
+            projectSubmissions
+        )
+    );
+
+
+    renderSubmissions();
+
+}
+
+
+/* =========================================
+   PREVIOUS SUBMISSIONS
+========================================= */
+
+function renderSubmissions() {
+
+    const table =
+        document.getElementById(
+            "submissionTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    projectSubmissions.forEach(
+        submission => {
+
+            const row =
+                document.createElement("tr");
+
+
+            let statusClass =
+                "pending";
+
+
+            if (
+                submission.status === "Submitted to Admin"
+            ) {
+
+                statusClass = "in-progress";
+
+            }
+
+
+            if (
+                submission.status === "Approved"
+            ) {
+
+                statusClass = "completed";
+
+            }
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(
+                        submission.project
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        submission.date
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="task-status ${statusClass}">
+                        ${escapeHTML(
+                            submission.status
+                        )}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${
+                        submission.adminRemark
+                            ? escapeHTML(
+                                submission.adminRemark
+                            )
+                            : "Waiting for Admin review"
+                    }
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+document.getElementById(
+    "menuBtn"
+).addEventListener(
+    "click",
+    function() {
+
+        document
+            .querySelector(".sidebar")
+            .classList.toggle("open");
+
+    }
+);
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+renderSubmissions();
+</script>
+
+</body>
+</html>

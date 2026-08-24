@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Team Leave Requests</title>
+
+    <link rel="stylesheet" href="managerleave.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+            <h1>Team Leave Requests</h1>
+            <p>Review employee leave requests and forward them to Admin</p>
+        </div>
+
+        <div class="manager-profile">
+            <i class="fa-solid fa-circle-user"></i>
+            <div>
+                <b>Manager</b>
+                <small>Project Manager</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div class="cards">
+
+        <div class="card blue">
+            <i class="fa-solid fa-file-lines"></i>
+            <h2 id="totalRequests">0</h2>
+            <p>Total Requests</p>
+        </div>
+
+        <div class="card orange">
+            <i class="fa-solid fa-clock"></i>
+            <h2 id="pendingRequests">0</h2>
+            <p>Pending</p>
+        </div>
+
+        <div class="card green">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2 id="approvedRequests">0</h2>
+            <p>Approved</p>
+        </div>
+
+        <div class="card purple">
+            <i class="fa-solid fa-paper-plane"></i>
+            <h2 id="forwardedRequests">0</h2>
+            <p>Forwarded to Admin</p>
+        </div>
+
+    </div>
+
+
+    <!-- REQUEST TABLE -->
+
+    <div class="leave-box">
+
+        <div class="heading">
+
+            <div>
+                <h2>Team Leave Requests</h2>
+                <p>Employee leave applications</p>
+            </div>
+
+            <select id="statusFilter"
+                    onchange="displayRequests()">
+
+                <option value="All">All Requests</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Forwarded">Forwarded</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>Employee</th>
+                        <th>Department</th>
+                        <th>Leave Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Days</th>
+                        <th>Balance</th>
+                        <th>Proof</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="leaveTableBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- EMPLOYEE BALANCE MODAL -->
+
+<div class="modal" id="balanceModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                <i class="fa-solid fa-wallet"></i>
+                Employee Leave Balance
+            </h2>
+
+            <button onclick="closeBalance()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="employee-info">
+
+            <h3 id="balanceEmployee">
+                Employee
+            </h3>
+
+            <p id="balanceDepartment">
+                Department
+            </p>
+
+        </div>
+
+
+        <div class="balance-cards">
+
+            <div class="balance-card medical">
+
+                <i class="fa-solid fa-notes-medical"></i>
+
+                <h4>Medical Leave</h4>
+
+                <h2 id="medicalBalance">0</h2>
+
+                <span>Days Available</span>
+
+            </div>
+
+
+            <div class="balance-card general">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <h4>General Leave</h4>
+
+                <h2 id="generalBalance">0</h2>
+
+                <span>Days Available</span>
+
+            </div>
+
+
+            <div class="balance-card total">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h4>Total Available</h4>
+
+                <h2 id="totalBalance">0</h2>
+
+                <span>Days Available</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="balance-details">
+
+            <p>
+                <b>Total Leave:</b>
+                <span id="totalQuota">0</span> Days
+            </p>
+
+            <p>
+                <b>Used Leave:</b>
+                <span id="usedLeave">0</span> Days
+            </p>
+
+            <p>
+                <b>Available Leave:</b>
+                <span id="availableLeave">0</span> Days
+            </p>
+
+        </div>
+
+
+        <button class="close-btn"
+                onclick="closeBalance()">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="managerleave.js"></script>
+
+</body>
+</html>

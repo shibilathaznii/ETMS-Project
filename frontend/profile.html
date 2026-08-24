@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Employee</title>
+    <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="empdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="emptasks.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span>My Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="completed.html">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Report Workload</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkloadstatus.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Workload Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="applyleave.html">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <span>Apply Leave</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="leavestatus.html">
+                <i class="fa-solid fa-clock"></i>
+                <span>Leave Status</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>My Profile</h1>
+            <p>View and manage your employee profile</p>
+        </div>
+
+        <div class="top-profile">
+
+            <div class="top-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <strong></strong>
+                <small></small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PROFILE -->
+
+    <section class="profile-layout">
+
+        <!-- LEFT PROFILE CARD -->
+
+        <div class="profile-card">
+
+            <div class="profile-photo">
+
+                <img id="profileImage"
+                     src="employee.jpg"
+                     alt="Employee Photo">
+
+                <label for="photoInput"
+                       class="camera-btn">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                    hidden>
+
+            </div>
+
+            <h2 id="displayName">
+                
+            </h2>
+
+            <p class="role">
+                <i class="fa-solid fa-user"></i>
+                
+            </p>
+
+            <div class="profile-id">
+                Employee ID:
+                <strong></strong>
+            </div>
+
+            <div class="profile-department">
+                <i class="fa-solid fa-building"></i>
+                
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT DETAILS -->
+
+        <div class="details-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Personal Information</h2>
+                    <p>Update your profile information</p>
+                </div>
+
+                <button
+                    id="editBtn"
+                    onclick="enableEdit()">
+
+                    <i class="fa-solid fa-pen"></i>
+                    Edit Profile
+
+                </button>
+
+            </div>
+
+
+            <form id="profileForm"
+                  onsubmit="saveProfile(event)">
+
+
+                <div class="form-grid">
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="employeeName"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMPLOYEE ID -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Employee ID
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                            <input
+                                type="text"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DEPARTMENT -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Department
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-building"></i>
+
+                            <input
+                                type="text"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- POSITION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Position
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            <input
+                                type="text"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- JOIN DATE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Joining Date
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                            <input
+                                type="text"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MANAGER -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Manager
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-user-tie"></i>
+
+                            <input
+                                type="text"
+                                value=""
+                                disabled>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SAVE BUTTON -->
+
+                <div class="save-area"
+                     id="saveArea">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="cancelEdit()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY -->
+
+    <section class="security-card">
+
+        <div class="security-icon">
+            <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <div class="security-info">
+
+            <h2>Account Security</h2>
+
+            <p>
+                Keep your account secure by updating
+                your password regularly.
+            </p>
+
+        </div>
+
+        <button
+            class="password-btn"
+            onclick="changePassword()">
+
+            <i class="fa-solid fa-key"></i>
+            Change Password
+
+        </button>
+
+    </section>
+
+</main>
+
+
+<script>
+    const photoInput =
+    document.getElementById("photoInput");
+
+const profileImage =
+    document.getElementById("profileImage");
+
+photoInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image file.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+
+        profileImage.src =
+            event.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* EDIT PROFILE */
+
+function enableEdit() {
+
+    const inputs =
+        document.querySelectorAll(
+            "#profileForm input"
+        );
+
+    inputs.forEach(function(input) {
+
+        // Employee ID, Department,
+        // Position, Joining Date and Manager
+        // remain readonly/disabled.
+
+        if (
+            input.id === "employeeName" ||
+            input.id === "email" ||
+            input.id === "phone"
+        ) {
+            input.disabled = false;
+        }
+
+    });
+
+    document.getElementById("saveArea")
+        .style.display = "flex";
+
+    document.getElementById("editBtn")
+        .style.display = "none";
+}
+
+
+/* SAVE PROFILE */
+
+function saveProfile(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("employeeName").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    if (!name.trim() || !email.trim() || !phone.trim()) {
+
+        alert("Please fill all required fields.");
+
+        return;
+    }
+
+    document.getElementById("displayName")
+        .innerText = name;
+
+    alert("Profile updated successfully!");
+
+    disableEditing();
+}
+
+
+/* CANCEL */
+
+function cancelEdit() {
+
+    disableEditing();
+
+}
+
+
+/* DISABLE EDITING */
+
+function disableEditing() {
+
+    const editableInputs = [
+        "employeeName",
+        "email",
+        "phone"
+    ];
+
+    editableInputs.forEach(function(id) {
+
+        document.getElementById(id).disabled = true;
+
+    });
+
+    document.getElementById("saveArea")
+        .style.display = "none";
+
+    document.getElementById("editBtn")
+        .style.display = "block";
+}
+
+
+/* CHANGE PASSWORD */
+
+function changePassword() {
+
+    window.location.href = "change-password.html";
+
+}
+
+
+/* LOGOUT */
+
+function logout() {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        window.location.href = "task.html";
+
+    }
+
+}
+</script>
+
+</body>
+</html>

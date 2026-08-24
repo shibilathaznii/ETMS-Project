@@ -1,0 +1,3707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Tasks | Admin</title>
+
+    <link rel="stylesheet" href="viewtask.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="department.html">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="viewtask.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminsubmission.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    <span>Submissions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li >
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="title-area">
+
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+
+                <h1>Manage Tasks</h1>
+
+                <p>
+                    View and manage all project tasks
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <i class="fa-regular fa-bell bell"></i>
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="admin-info">
+
+                <strong>Admin</strong>
+
+                <small>Administrator</small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content">
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <div>
+
+                    <span>Total Tasks</span>
+
+                    <h2 id="totalTasks">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+
+                    <span>Pending</span>
+
+                    <h2 id="pendingTasks">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-spinner"></i>
+                </div>
+
+                <div>
+
+                    <span>In Progress</span>
+
+                    <h2 id="progressTasks">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span>Completed</span>
+
+                    <h2 id="completedTasks">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TASK CARD -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>All Tasks</h2>
+
+                    <p>
+                        Admin can view every manager and staff task
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="add-btn"
+                    onclick="openAddTask()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Task
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filters">
+
+                <div class="search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search task, project or employee...">
+
+                </div>
+
+
+                <select id="projectFilter">
+
+                    <option value="All">
+                        All Projects
+                    </option>
+
+                </select>
+
+
+                <select id="departmentFilter">
+
+                    <option value="All">
+                        All Departments
+                    </option>
+
+                    <option value="Technical">
+                        Technical
+                    </option>
+
+                    <option value="HR">
+                        HR
+                    </option>
+
+                    <option value="Finance">
+                        Finance
+                    </option>
+
+                    <option value="Marketing">
+                        Marketing
+                    </option>
+
+                </select>
+
+
+                <select id="managerFilter">
+
+                    <option value="All">
+                        All Managers
+                    </option>
+
+                </select>
+
+
+                <select id="statusFilter">
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                    <option value="Returned">
+                        Returned
+                    </option>
+
+                </select>
+
+
+                <select id="priorityFilter">
+
+                    <option value="All">
+                        All Priority
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Task</th>
+
+                            <th>Project</th>
+
+                            <th>Department</th>
+
+                            <th>Manager</th>
+
+                            <th>Assigned Staff</th>
+
+                            <th>Priority</th>
+
+                            <th>End Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="taskTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     ADD TASK MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="addModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Add Task</h2>
+
+                <p>
+                    Create and map a task to employees
+                </p>
+
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeAddTask()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="addTaskForm">
+
+            <div class="modal-body">
+
+
+                <!-- TASK TITLE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Task Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        placeholder="Enter task title"
+                        required>
+
+                </div>
+
+
+                <!-- PROJECT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project
+                    </label>
+
+                    <select
+                        id="taskProject"
+                        required>
+
+                        <option value="">
+                            Select Project
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DEPARTMENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <select
+                        id="taskDepartment"
+                        required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MANAGER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Manager
+                    </label>
+
+                    <select
+                        id="taskManager"
+                        required
+                        disabled>
+
+                        <option value="">
+                            Select Department First
+                        </option>
+
+                    </select>
+
+                    <small class="field-note">
+
+                        Only managers from the selected
+                        department are shown.
+
+                    </small>
+
+                </div>
+
+
+                <!-- EMPLOYEE SUMMARY -->
+
+                <div
+                    class="employee-summary"
+                    id="employeeSummary"
+                    style="display:none;">
+
+                    <div>
+
+                        <span>
+                            Total Employees
+                        </span>
+
+                        <strong id="totalEmployees">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Already Assigned
+                        </span>
+
+                        <strong id="assignedEmployees">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Available
+                        </span>
+
+                        <strong
+                            id="availableEmployees">
+
+                            0
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TASK MAPPING -->
+
+                <div
+                    class="mapping-box"
+                    id="mappingBox"
+                    style="display:none;">
+
+                    <div class="mapping-header">
+
+                        <div>
+
+                            <h3>
+                                Task Mapping
+                            </h3>
+
+                            <p>
+                                Select employees for this task
+                            </p>
+
+                        </div>
+
+
+                        <span id="mappingSelected">
+                            0 Selected
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="mappingList"
+                        class="employee-list">
+                    </div>
+
+                </div>
+
+
+                <!-- PRIORITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <select
+                        id="taskPriority"
+                        required>
+
+                        <option value="">
+                            Select Priority
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DATES -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskStart"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            End Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskEnd"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Task Description
+                    </label>
+
+                    <textarea
+                        id="taskDescription"
+                        placeholder="Enter task description">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn secondary"
+                    onclick="closeAddTask()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn primary">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Task
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     VIEW TASK MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="viewModal">
+
+    <div class="modal large-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Task Details
+                </h2>
+
+                <p>
+                    Complete task and staff update
+                </p>
+
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeView()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <div class="details-grid">
+
+                <div class="detail">
+
+                    <label>
+                        Task
+                    </label>
+
+                    <strong id="viewTask"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Project
+                    </label>
+
+                    <strong id="viewProject"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <strong id="viewDepartment"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Manager
+                    </label>
+
+                    <strong id="viewManager"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <strong id="viewPriority"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <strong id="viewStatus"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Start Date
+                    </label>
+
+                    <strong id="viewStart"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        End Date
+                    </label>
+
+                    <strong id="viewEnd"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Progress
+                    </label>
+
+                    <strong id="viewProgress"></strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ASSIGNED STAFF -->
+
+            <div class="info-section">
+
+                <label>
+                    Assigned Staff
+                </label>
+
+                <div
+                    id="viewStaff"
+                    class="team-members">
+                </div>
+
+            </div>
+
+
+            <!-- STAFF UPDATE -->
+
+            <div class="update-section">
+
+                <div class="update-title">
+
+                    <h3>
+                        Staff Task Update
+                    </h3>
+
+                    <span id="updateStatusBadge">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="update-grid">
+
+                    <div>
+
+                        <label>
+                            Updated By
+                        </label>
+
+                        <strong id="updatedBy">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Updated Date
+                        </label>
+
+                        <strong id="updatedDate">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Progress
+                        </label>
+
+                        <strong id="staffProgress">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-section">
+
+                    <label>
+                        Work Update
+                    </label>
+
+                    <div
+                        id="workUpdate"
+                        class="remark-box">
+                    </div>
+
+                </div>
+
+
+                <div class="info-section">
+
+                    <label>
+                        Attachment
+                    </label>
+
+                    <div
+
+id="attachment"
+
+class="attachment-box">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MANAGER REMARK -->
+
+<div class="info-section">
+
+<label>
+
+Manager Remark
+
+</label>
+
+<div
+
+id="managerRemark"
+
+class="remark-box">
+
+</div>
+
+</div>
+
+<!-- ADMIN REMARK -->
+
+<div class="info-section">
+
+<label>
+
+Admin Remark
+
+</label>
+
+
+
+<textarea
+
+id="adminRemark"
+
+placeholder="Enter admin remark">
+
+</textarea>
+
+<button
+
+class="save-remark"
+
+onclick="saveAdminRemark()">
+
+<i class="fa-solid fa-save"></i>
+
+Save Remark
+
+</button>
+
+</div>
+
+</div>
+<div class="modal-footer">
+
+<button
+
+class="btn secondary"
+
+onclick="closeView()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!--
+
+EDIT TASK MODAL
+
+-->
+
+<div class="modal-overlay" id="editModal">
+
+<div class="modal">
+
+<div class="modal-header">
+
+<div>
+
+<h2>
+
+Edit Task
+
+</h2>
+
+<p>
+
+Update task information
+
+</p>
+
+</div>
+
+<button
+
+class="close"
+
+onclick="closeEdit()">
+
+<i class="fa-solid fa-xmark"></i>
+
+</button>
+
+</div>
+</div>
+
+<div class="modal-body">
+
+<input
+
+type="hidden"
+
+id="editTaskId">
+
+<div class="form-group">
+
+<label>
+
+Task Title
+
+</label>
+
+<input
+
+type="text"
+
+id="editTitle">
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Priority
+
+</label>
+
+<select id="editPriority">
+
+<option value="High">
+
+High
+
+</option>
+
+<option value="Medium">
+
+Medium
+
+</option>
+
+<option value="Low">
+
+Low
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Status
+
+</label>
+<select id="editStatus">
+
+<option value="Pending">
+
+Pending
+
+</option>
+
+<option value="In Progress">
+
+In Progress
+
+</option>
+
+<option value="Completed">
+
+Completed
+
+</option>
+
+<option value="Returned">
+
+Returned
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-row">
+
+<div class="form-group">
+
+<label>
+
+Start Date
+
+</label>
+
+<input
+
+type="date"
+
+id="editStart">
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+End Date
+
+</label>
+
+<input
+
+type="date"
+
+id="editEnd">
+
+</div>
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+
+id="editDescription">
+
+</textarea>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+
+class="btn secondary"
+
+onclick="closeEdit()">
+
+Cancel
+
+</button>
+
+<button
+
+class="btn primary"
+
+onclick="updateTask()">
+
+<i class="fa-solid fa-save"></i>
+
+Save Changes
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+    
+
+/* =====================================================
+   DEPARTMENT DATA
+===================================================== */
+
+const departments = {
+
+    Technical: {
+
+        managers: [
+            {
+                id: "MGR001",
+                name: "Priya Manager"
+            },
+            {
+                id: "MGR002",
+                name: "Arun Manager"
+            }
+        ],
+
+        employees: [
+            {
+                id: "EMP001",
+                name: "Abir Singh",
+                status: "Active"
+            },
+            {
+                id: "EMP002",
+                name: "Rahul Kumar",
+                status: "Active"
+            },
+            {
+                id: "EMP003",
+                name: "Anu Thomas",
+                status: "Active"
+            },
+            {
+                id: "EMP004",
+                name: "Meera Joseph",
+                status: "Active"
+            },
+            {
+                id: "EMP005",
+                name: "Akhil Raj",
+                status: "Active"
+            },
+            {
+                id: "EMP006",
+                name: "Neha S",
+                status: "Active"
+            },
+            {
+                id: "EMP007",
+                name: "Vishnu K",
+                status: "Active"
+            },
+            {
+                id: "EMP008",
+                name: "Fathima P",
+                status: "Active"
+            }
+        ]
+    },
+
+
+    HR: {
+
+        managers: [
+            {
+                id: "MGR003",
+                name: "Meera Manager"
+            },
+            {
+                id: "MGR004",
+                name: "Anjali Manager"
+            }
+        ],
+
+        employees: [
+            {
+                id: "EMP009",
+                name: "Sneha Thomas",
+                status: "Active"
+            },
+            {
+                id: "EMP010",
+                name: "Asha Raj",
+                status: "Active"
+            },
+            {
+                id: "EMP011",
+                name: "Nithin P",
+                status: "Active"
+            },
+            {
+                id: "EMP012",
+                name: "Diya K",
+                status: "Active"
+            },
+            {
+                id: "EMP013",
+                name: "Riya S",
+                status: "Active"
+            }
+        ]
+    },
+
+
+    Finance: {
+
+        managers: [
+            {
+                id: "MGR005",
+                name: "Suresh Manager"
+            },
+            {
+                id: "MGR006",
+                name: "Lakshmi Manager"
+            }
+        ],
+
+        employees: [
+            {
+                id: "EMP014",
+                name: "Arun Kumar",
+                status: "Active"
+            },
+            {
+                id: "EMP015",
+                name: "Divya Mohan",
+                status: "Active"
+            },
+            {
+                id: "EMP016",
+                name: "Manu K",
+                status: "Active"
+            },
+            {
+                id: "EMP017",
+                name: "Reshma P",
+                status: "Active"
+            },
+            {
+                id: "EMP018",
+                name: "Hari S",
+                status: "Active"
+            },
+            {
+                id: "EMP019",
+                name: "Aparna V",
+                status: "Active"
+            }
+        ]
+    },
+
+
+    Marketing: {
+
+        managers: [
+            {
+                id: "MGR007",
+                name: "Joseph Manager"
+            },
+            {
+                id: "MGR008",
+                name: "Sandra Manager"
+            }
+        ],
+
+        employees: [
+            {
+                id: "EMP020",
+                name: "Joel Mathew",
+                status: "Active"
+            },
+            {
+                id: "EMP021",
+                name: "Sandra P",
+                status: "Active"
+            },
+            {
+                id: "EMP022",
+                name: "Kevin Thomas",
+                status: "Active"
+            },
+            {
+                id: "EMP023",
+                name: "Amal Raj",
+                status: "Active"
+            }
+        ]
+    }
+
+};
+
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+
+let projects =
+    JSON.parse(
+        localStorage.getItem("adminProjects")
+    ) || [
+
+        {
+            id: 1,
+
+            name: "Website Development",
+
+            code: "PRJ001",
+
+            department: "Technical",
+
+            manager: "Priya Manager",
+
+            managerId: "MGR001",
+
+            team: [
+                "EMP001",
+                "EMP002",
+                "EMP003"
+            ]
+        },
+
+
+        {
+            id: 2,
+
+            name: "Employee Management System",
+
+            code: "PRJ002",
+
+            department: "HR",
+
+            manager: "Meera Manager",
+
+            managerId: "MGR003",
+
+            team: [
+                "EMP009",
+                "EMP010"
+            ]
+        }
+
+    ];
+
+
+/* =====================================================
+   TASK DATA
+===================================================== */
+
+let tasks =
+    JSON.parse(
+        localStorage.getItem("adminTasks")
+    ) || [
+
+        {
+            id: 1,
+
+            title: "Login Page",
+
+            code: "TSK001",
+
+            projectId: 1,
+
+            project: "Website Development",
+
+            department: "Technical",
+
+            manager: "Priya Manager",
+
+            managerId: "MGR001",
+
+            employees: [
+                "EMP001"
+            ],
+
+            priority: "High",
+
+            start: "2026-08-24",
+
+            end: "2026-08-28",
+
+            status: "In Progress",
+
+            progress: 70,
+
+            description:
+                "Develop login page for the employee task management system.",
+
+            staffUpdate:
+                "Login page frontend completed. Backend connection remaining.",
+
+            updatedBy:
+                "Abir Singh",
+
+            updatedDate:
+                "2026-08-24",
+
+            attachment:
+                "login-page-screenshot.pdf",
+
+            managerRemark:
+                "Good progress. Complete backend connection.",
+
+            adminRemark: ""
+        },
+
+
+        {
+            id: 2,
+
+            title: "Database Connection",
+
+            code: "TSK002",
+
+            projectId: 1,
+
+            project: "Website Development",
+
+            department: "Technical",
+
+            manager: "Priya Manager",
+
+            managerId: "MGR001",
+
+            employees: [
+                "EMP002"
+            ],
+
+            priority: "High",
+
+            start: "2026-08-24",
+
+            end: "2026-08-27",
+
+            status: "Completed",
+
+            progress: 100,
+
+            description:
+                "Connect SQLite database with the application.",
+
+            staffUpdate:
+                "SQLite database connection completed successfully.",
+
+            updatedBy:
+                "Rahul Kumar",
+
+            updatedDate:
+                "2026-08-24",
+
+            attachment:
+                "database-connection.pdf",
+
+            managerRemark:
+                "Task completed successfully.",
+
+            adminRemark:
+                "Verified."
+        },
+
+
+        {
+            id: 3,
+
+            title: "Dashboard Design",
+
+            code: "TSK003",
+
+            projectId: 1,
+
+            project: "Website Development",
+
+            department: "Technical",
+
+            manager: "Priya Manager",
+
+            managerId: "MGR001",
+
+            employees: [
+                "EMP003"
+            ],
+
+            priority: "Medium",
+
+            start: "2026-08-24",
+
+            end: "2026-08-29",
+
+            status: "Pending",
+
+            progress: 0,
+
+            description:
+                "Design admin and employee dashboards.",
+
+            staffUpdate: "",
+
+            updatedBy: "",
+
+            updatedDate: "",
+
+            attachment: "",
+
+            managerRemark: "",
+
+            adminRemark: ""
+        },
+
+
+        {
+            id: 4,
+
+            title: "Employee Form",
+
+            code: "TSK004",
+
+            projectId: 2,
+
+            project: "Employee Management System",
+
+            department: "HR",
+
+            manager: "Meera Manager",
+
+            managerId: "MGR003",
+
+            employees: [
+                "EMP009"
+            ],
+
+            priority: "Medium",
+
+            start: "2026-08-24",
+
+            end: "2026-08-30",
+
+            status: "Completed",
+
+            progress: 100,
+
+            description:
+                "Create employee registration form.",
+
+            staffUpdate:
+                "Employee form completed and tested.",
+
+            updatedBy:
+                "Sneha Thomas",
+
+            updatedDate:
+                "2026-08-24",
+
+            attachment:
+                "employee-form.png",
+
+            managerRemark:
+                "Approved.",
+
+            adminRemark:
+                "Reviewed."
+        }
+
+    ];
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveTasks() {
+
+    localStorage.setItem(
+        "adminTasks",
+        JSON.stringify(tasks)
+    );
+
+}
+
+
+/* =====================================================
+   SAVE PROJECTS
+===================================================== */
+
+function saveProjects() {
+
+    localStorage.setItem(
+        "adminProjects",
+        JSON.stringify(projects)
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISE
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProjectOptions();
+
+        loadManagerFilter();
+
+        renderTasks();
+
+    }
+);
+
+
+/* =====================================================
+   PROJECT OPTIONS
+===================================================== */
+
+function loadProjectOptions() {
+
+    const select =
+        document.getElementById(
+            "taskProject"
+        );
+
+
+    const filter =
+        document.getElementById(
+            "projectFilter"
+        );
+
+
+    select.innerHTML = `
+
+        <option value="">
+            Select Project
+        </option>
+
+    `;
+
+
+    filter.innerHTML = `
+
+        <option value="All">
+            All Projects
+        </option>
+
+    `;
+
+
+    projects.forEach(
+        project => {
+
+            select.innerHTML += `
+
+                <option
+                    value="${project.id}">
+
+                    ${safe(project.name)}
+
+                </option>
+
+            `;
+
+
+            filter.innerHTML += `
+
+                <option
+                    value="${project.id}">
+
+                    ${safe(project.name)}
+
+                </option>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MANAGER FILTER
+===================================================== */
+
+function loadManagerFilter() {
+
+    const select =
+        document.getElementById(
+            "managerFilter"
+        );
+
+
+    select.innerHTML = `
+
+        <option value="All">
+            All Managers
+        </option>
+
+    `;
+
+
+    const managers = [];
+
+
+    Object.values(
+        departments
+    ).forEach(
+        department => {
+
+            department.managers.forEach(
+                manager => {
+
+                    if (
+                        !managers.some(
+                            m =>
+                                m.id === manager.id
+                        )
+                    ) {
+
+                        managers.push(
+                            manager
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    managers.forEach(
+        manager => {
+
+            select.innerHTML += `
+
+                <option
+                    value="${safe(manager.name)}">
+
+                    ${safe(manager.name)}
+
+                </option>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PROJECT CHANGE
+===================================================== */
+
+document.getElementById(
+    "taskProject"
+).addEventListener(
+    "change",
+    function() {
+
+        const projectId =
+            Number(this.value);
+
+
+        const project =
+            projects.find(
+                p =>
+                    p.id === projectId
+            );
+
+
+        if (!project) {
+
+            resetTaskMapping();
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "taskDepartment"
+        ).value =
+            project.department;
+
+
+        loadManagers(
+            project.department,
+            project.manager
+        );
+
+
+        loadEmployeeMapping(
+            project.department,
+            project.team
+        );
+
+    }
+);
+
+
+/* =====================================================
+   DEPARTMENT CHANGE
+===================================================== */
+
+document.getElementById(
+    "taskDepartment"
+).addEventListener(
+    "change",
+    function() {
+
+        const department =
+            this.value;
+
+
+        loadManagers(
+            department
+        );
+
+
+        loadEmployeeMapping(
+            department
+        );
+
+    }
+);
+
+
+/* =====================================================
+   LOAD MANAGERS
+===================================================== */
+
+function loadManagers(
+    department,
+    selectedManager = ""
+) {
+
+    const select =
+        document.getElementById(
+            "taskManager"
+        );
+
+
+    select.innerHTML = "";
+
+
+    if (!department) {
+
+        select.disabled = true;
+
+        select.innerHTML = `
+
+            <option value="">
+                Select Department First
+            </option>
+
+        `;
+
+        return;
+
+    }
+
+
+    select.disabled = false;
+
+
+    select.innerHTML = `
+
+        <option value="">
+            Select Manager
+        </option>
+
+    `;
+
+
+    departments[
+        department
+    ].managers.forEach(
+        manager => {
+
+            const selected =
+                manager.name === selectedManager
+                    ? "selected"
+                    : "";
+
+
+            select.innerHTML += `
+
+                <option
+                    value="${safe(manager.name)}"
+                    data-manager-id="${safe(manager.id)}"
+                    ${selected}>
+
+                    ${safe(manager.name)}
+                    (${safe(manager.id)})
+
+                </option>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD EMPLOYEE MAPPING
+===================================================== */
+
+function loadEmployeeMapping(
+    department,
+    projectTeam = []
+) {
+
+    const summary =
+        document.getElementById(
+            "employeeSummary"
+        );
+
+
+    const mapping =
+        document.getElementById(
+            "mappingBox"
+        );
+
+
+    const list =
+        document.getElementById(
+            "mappingList"
+        );
+
+
+    if (!department) {
+
+        summary.style.display =
+            "none";
+
+        mapping.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const employees =
+        departments[
+            department
+        ].employees;
+
+
+    const alreadyAssigned =
+        getAssignedEmployeeCount(
+            department
+        );
+
+
+    const available =
+        Math.max(
+            0,
+            employees.length -
+            alreadyAssigned
+        );
+
+
+    document.getElementById(
+        "totalEmployees"
+    ).textContent =
+        employees.length;
+
+
+    document.getElementById(
+        "assignedEmployees"
+    ).textContent =
+        alreadyAssigned;
+
+
+    document.getElementById(
+        "availableEmployees"
+    ).textContent =
+        available;
+
+
+    summary.style.display =
+        "grid";
+
+
+    mapping.style.display =
+        "block";
+
+
+    list.innerHTML = "";
+
+
+    employees.forEach(
+        employee => {
+
+            const assignedToTask =
+                projectTeam.includes(
+                    employee.id
+                );
+
+
+            const item =
+                document.createElement(
+                    "label"
+                );
+
+
+            item.className =
+                "employee-item";
+
+
+            const initials =
+                employee.name
+                    .split(" ")
+                    .map(
+                        word =>
+                            word.charAt(0)
+                    )
+                    .join("")
+                    .substring(0, 2);
+
+
+            item.innerHTML = `
+
+                <input
+                    type="checkbox"
+                    class="mapping-check"
+                    value="${safe(employee.id)}"
+                    ${assignedToTask ? "checked" : ""}>
+
+
+                <div class="employee-avatar">
+
+                    ${safe(initials)}
+
+                </div>
+
+
+                <div class="employee-details">
+
+                    <span class="employee-name">
+
+                        ${safe(employee.name)}
+
+                    </span>
+
+                    <span class="employee-id">
+
+                        ${safe(employee.id)}
+
+                    </span>
+
+                </div>
+
+
+                <span class="employee-status">
+
+                    ${safe(employee.status)}
+
+                </span>
+
+            `;
+
+
+            item.querySelector(
+                "input"
+            ).addEventListener(
+                "change",
+                updateMappingCount
+            );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    updateMappingCount();
+
+}
+
+
+/* =====================================================
+   ALREADY ASSIGNED COUNT
+===================================================== */
+
+function getAssignedEmployeeCount(
+    department
+) {
+
+    const employeeIds =
+        new Set();
+
+
+    tasks.forEach(
+        task => {
+
+            if (
+                task.department ===
+                department
+            ) {
+
+                task.employees.forEach(
+                    employeeId => {
+
+                        employeeIds.add(
+                            employeeId
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+
+    return employeeIds.size;
+
+}
+
+
+/* =====================================================
+   MAPPING COUNT
+===================================================== */
+
+function updateMappingCount() {
+
+    const count =
+        document.querySelectorAll(
+            ".mapping-check:checked"
+        ).length;
+
+
+    document.getElementById(
+        "mappingSelected"
+    ).textContent =
+        count +
+        " Selected";
+
+}
+
+
+/* =====================================================
+   RESET MAPPING
+===================================================== */
+
+function resetTaskMapping() {
+
+    document.getElementById(
+        "employeeSummary"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "mappingBox"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "taskDepartment"
+    ).value =
+        "";
+
+}
+
+
+/* =====================================================
+   ADD TASK MODAL
+===================================================== */
+
+function openAddTask() {
+
+    document.getElementById(
+        "addModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeAddTask() {
+
+    document.getElementById(
+        "addModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   ADD TASK
+===================================================== */
+document.getElementById(
+    "addTaskForm"
+).addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const title =
+            document.getElementById(
+                "taskTitle"
+            ).value.trim();
+
+
+        const projectId =
+            Number(
+                document.getElementById(
+                    "taskProject"
+                ).value
+            );
+
+
+        const department =
+            document.getElementById(
+                "taskDepartment"
+            ).value;
+
+
+        const manager =
+            document.getElementById(
+                "taskManager"
+            ).value;
+
+
+        const priority =
+            document.getElementById(
+                "taskPriority"
+            ).value;
+
+
+        const start =
+            document.getElementById(
+                "taskStart"
+            ).value;
+
+
+        const end =
+            document.getElementById(
+                "taskEnd"
+            ).value;
+
+
+        const description =
+            document.getElementById(
+                "taskDescription"
+            ).value.trim();
+
+
+        const project =
+            projects.find(
+                p =>
+                    p.id === projectId
+            );
+
+
+        if (!project) {
+
+            alert(
+                "Please select a project."
+            );
+
+            return;
+
+        }
+
+
+        if (!department) {
+
+            alert(
+                "Please select department."
+            );
+
+            return;
+
+        }
+
+
+        if (!manager) {
+
+            alert(
+                "Please select manager."
+            );
+
+            return;
+
+        }
+
+
+        if (end < start) {
+
+            alert(
+                "End date cannot be before start date."
+            );
+
+            return;
+
+        }
+
+
+        const employees =
+            Array.from(
+                document.querySelectorAll(
+                    ".mapping-check:checked"
+                )
+            ).map(
+                checkbox =>
+                    checkbox.value
+            );
+
+
+        if (
+            employees.length === 0
+        ) {
+
+            alert(
+                "Please select at least one employee."
+            );
+
+            return;
+
+        }
+
+
+        const managerOption =
+            document.querySelector(
+                "#taskManager option:checked"
+            );
+
+
+        const managerId =
+            managerOption
+                ?.dataset
+                .managerId || "";
+
+
+        const newTask = {
+
+            id: Date.now(),
+
+            title: title,
+
+            code:
+                "TSK" +
+                String(
+                    tasks.length + 1
+                ).padStart(
+                    3,
+                    "0"
+                ),
+
+            projectId: projectId,
+
+            project:
+                project.name,
+
+            department:
+                department,
+
+            manager:
+                manager,
+
+            managerId:
+                managerId,
+
+            employees:
+                employees,
+
+            priority:
+                priority,
+
+            start:
+                start,
+
+            end:
+                end,
+
+            status:
+                "Pending",
+
+            progress:
+                0,
+
+            description:
+                description,
+
+            staffUpdate:
+                "",
+
+            updatedBy:
+                "",
+
+            updatedDate:
+                "",
+
+            attachment:
+                "",
+
+            managerRemark:
+                "",
+
+            adminRemark:
+                ""
+
+        };
+
+
+        tasks.push(
+            newTask
+        );
+
+
+        saveTasks();
+
+        renderTasks();
+
+
+        alert(
+            "Task added successfully.\n\n" +
+            "Assigned Employees: " +
+            employees.length
+        );
+
+
+        closeAddTask();
+
+
+        document.getElementById(
+            "addTaskForm"
+        ).reset();
+
+
+        resetTaskMapping();
+
+    }
+);
+
+
+/* =====================================================
+   RENDER TASKS
+===================================================== */
+
+function renderTasks() {
+
+    const table =
+        document.getElementById(
+            "taskTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase();
+
+
+    const projectFilter =
+        document.getElementById(
+            "projectFilter"
+        ).value;
+
+
+    const departmentFilter =
+        document.getElementById(
+            "departmentFilter"
+        ).value;
+
+
+    const managerFilter =
+        document.getElementById(
+            "managerFilter"
+        ).value;
+
+
+    const statusFilter =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const priorityFilter =
+        document.getElementById(
+            "priorityFilter"
+        ).value;
+
+
+    table.innerHTML = "";
+
+
+    const filtered =
+        tasks.filter(
+            task => {
+
+                const staffNames =
+                    task.employees
+                        .map(
+                            id =>
+                                getEmployee(
+                                    task.department,
+                                    id
+                                )?.name || ""
+                        )
+                        .join(" ");
+
+
+                const text =
+                    (
+                        task.title +
+                        " " +
+                        task.code +
+                        " " +
+                        task.project +
+                        " " +
+                        task.manager +
+                        " " +
+                        staffNames
+                    )
+                    .toLowerCase();
+
+
+                return (
+
+                    text.includes(
+                        search
+                    ) &&
+
+                    (
+                        projectFilter === "All" ||
+                        String(
+                            task.projectId
+                        ) ===
+                        projectFilter
+                    ) &&
+
+                    (
+                        departmentFilter === "All" ||
+                        task.department ===
+                        departmentFilter
+                    ) &&
+
+                    (
+                        managerFilter === "All" ||
+                        task.manager ===
+                        managerFilter
+                    ) &&
+
+                    (
+                        statusFilter === "All" ||
+                        task.status ===
+                        statusFilter
+                    ) &&
+
+                    (
+                        priorityFilter === "All" ||
+                        task.priority ===
+                        priorityFilter
+                    )
+
+                );
+
+            }
+        );
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="10"
+                    style="
+                        text-align:center;
+                        padding:30px;
+                    ">
+
+                    No tasks found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        updateStats();
+
+        return;
+
+    }
+
+
+    filtered.forEach(
+        (task, index) => {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const staffHtml =
+                task.employees
+                    .map(
+                        employeeId => {
+
+                            const employee =
+                                getEmployee(
+                                    task.department,
+                                    employeeId
+                                );
+
+
+                            if (!employee)
+                                return "";
+
+
+                            return `
+
+                                <span class="staff-tag">
+
+                                    ${safe(employee.name)}
+
+                                </span>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+
+                <td>
+
+                    <strong>
+                        ${safe(task.title)}
+                    </strong>
+
+                    <small class="task-code">
+
+                        ${safe(task.code)}
+
+                    </small>
+
+                </td>
+
+
+                <td>
+
+                    ${safe(task.project)}
+
+                </td>
+
+
+                <td>
+
+                    ${safe(task.department)}
+
+                </td>
+
+
+                <td>
+
+                    ${safe(task.manager)}
+
+                </td>
+
+
+                <td>
+
+                    <div class="staff-list">
+
+                        ${staffHtml}
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="priority
+                    ${task.priority.toLowerCase()}">
+
+                        ${safe(task.priority)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${formatDate(task.end)}
+
+                </td>
+
+
+                <td>
+
+                    <span class="status
+                    ${statusClass(task.status)}">
+
+                        ${safe(task.status)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div class="action-buttons">
+
+
+                        <button
+                            class="action-btn view"
+                            title="View Task"
+                            onclick="viewTask(${task.id})">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+
+                        <button
+                            class="action-btn edit"
+                            title="Edit Task"
+                            onclick="openEdit(${task.id})">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+
+                        <button
+                            class="action-btn delete"
+                            title="Delete Task"
+                            onclick="deleteTask(${task.id})">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   VIEW TASK
+===================================================== */
+
+let currentViewTaskId = null;
+
+
+function viewTask(id) {
+
+    const task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if (!task)
+        return;
+
+
+    currentViewTaskId =
+        id;
+
+
+    document.getElementById(
+        "viewTask"
+    ).textContent =
+        task.title;
+
+
+    document.getElementById(
+        "viewProject"
+    ).textContent =
+        task.project;
+
+
+    document.getElementById(
+        "viewDepartment"
+    ).textContent =
+        task.department;
+
+
+    document.getElementById(
+        "viewManager"
+    ).textContent =
+        task.manager;
+
+
+    document.getElementById(
+        "viewPriority"
+    ).textContent =
+        task.priority;
+
+
+    document.getElementById(
+        "viewStatus"
+    ).textContent =
+        task.status;
+
+
+    document.getElementById(
+        "viewStart"
+    ).textContent =
+        formatDate(task.start);
+
+
+    document.getElementById(
+        "viewEnd"
+    ).textContent =
+        formatDate(task.end);
+
+
+    document.getElementById(
+        "viewProgress"
+    ).textContent =
+        task.progress +
+        "%";
+
+
+    /* STAFF */
+
+    const staffContainer =
+        document.getElementById(
+            "viewStaff"
+        );
+
+
+    staffContainer.innerHTML =
+        task.employees
+            .map(
+                employeeId => {
+
+                    const employee =
+                        getEmployee(
+                            task.department,
+                            employeeId
+                        );
+
+
+                    if (!employee)
+                        return "";
+
+
+                    return `
+
+                        <span class="team-member">
+
+                            ${safe(employee.name)}
+                            (${safe(employee.id)})
+
+                        </span>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    /* STAFF UPDATE */
+
+    document.getElementById(
+        "updatedBy"
+    ).textContent =
+        task.updatedBy ||
+        "Not updated";
+
+
+    document.getElementById(
+        "updatedDate"
+    ).textContent =
+        task.updatedDate
+            ? formatDate(task.updatedDate)
+            : "-";
+
+
+    document.getElementById(
+        "staffProgress"
+    ).textContent =
+        task.progress +
+        "%";
+
+
+    document.getElementById(
+        "workUpdate"
+    ).textContent =
+        task.staffUpdate ||
+        "No staff update yet.";
+
+
+    document.getElementById(
+        "attachment"
+    ).innerHTML =
+        task.attachment
+            ? `
+                <i class="fa-solid fa-paperclip"></i>
+                ${safe(task.attachment)}
+              `
+            : "No attachment";
+
+
+    document.getElementById(
+        "managerRemark"
+    ).textContent =
+        task.managerRemark ||
+        "No manager remark";
+
+
+    document.getElementById(
+        "adminRemark"
+    ).value =
+        task.adminRemark ||
+        "";
+
+
+    const badge =
+        document.getElementById(
+            "updateStatusBadge"
+        );
+
+
+    badge.textContent =
+        task.status;
+
+
+    badge.className =
+        "status " +
+        statusClass(
+            task.status
+        );
+
+
+    document.getElementById(
+        "viewModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeView() {
+
+    document.getElementById(
+        "viewModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   SAVE ADMIN REMARK
+===================================================== */
+
+function saveAdminRemark() {
+
+    if (
+        currentViewTaskId === null
+    )
+        return;
+
+
+    const task =
+        tasks.find(
+            t =>
+                t.id ===
+                currentViewTaskId
+        );
+
+
+    if (!task)
+        return;
+
+
+    task.adminRemark =
+        document.getElementById(
+            "adminRemark"
+        ).value.trim();
+
+
+    saveTasks();
+
+    renderTasks();
+
+
+    alert(
+        "Admin remark saved successfully."
+    );
+
+}
+
+
+/* =====================================================
+   EDIT TASK
+===================================================== */
+
+function openEdit(id) {
+
+    const task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if (!task)
+        return;
+
+
+    document.getElementById(
+        "editTaskId"
+    ).value =
+        id;
+
+
+    document.getElementById(
+        "editTitle"
+    ).value =
+        task.title;
+
+
+    document.getElementById(
+        "editPriority"
+    ).value =
+        task.priority;
+
+
+    document.getElementById(
+        "editStatus"
+    ).value =
+        task.status;
+
+
+    document.getElementById(
+        "editStart"
+    ).value =
+        task.start;
+
+
+    document.getElementById(
+        "editEnd"
+    ).value =
+        task.end;
+
+
+    document.getElementById(
+        "editDescription"
+    ).value =
+        task.description;
+
+
+    document.getElementById(
+        "editModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeEdit() {
+
+    document.getElementById(
+        "editModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE TASK
+===================================================== */
+
+function updateTask() {
+
+    const id =
+        Number(
+            document.getElementById(
+                "editTaskId"
+            ).value
+        );
+
+
+    const task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if (!task)
+        return;
+
+
+    const start =
+        document.getElementById(
+            "editStart"
+        ).value;
+
+
+    const end =
+        document.getElementById(
+            "editEnd"
+        ).value;
+
+
+    if (end < start) {
+
+        alert(
+            "End date cannot be before start date."
+        );
+
+        return;
+
+    }
+
+
+    task.title =
+        document.getElementById(
+            "editTitle"
+        ).value.trim();
+
+
+    task.priority =
+        document.getElementById(
+            "editPriority"
+        ).value;
+
+
+    task.status =
+        document.getElementById(
+            "editStatus"
+        ).value;
+
+
+    task.start =
+        start;
+
+
+    task.end =
+        end;
+
+
+    task.description =
+        document.getElementById(
+            "editDescription"
+        ).value.trim();
+
+
+    if (
+        task.status === "Completed"
+    ) {
+
+        task.progress = 100;
+
+    }
+
+
+    saveTasks();
+
+    renderTasks();
+
+    closeEdit();
+
+
+    alert(
+        "Task updated successfully."
+    );
+
+}
+
+
+/* =====================================================
+   DELETE TASK
+===================================================== */
+
+function deleteTask(id) {
+
+    const task =
+        tasks.find(
+            t => t.id === id
+        );
+
+
+    if (!task)
+        return;
+
+
+    const confirmation =
+        confirm(
+            "Delete task '" +
+            task.title +
+            "'?"
+        );
+
+
+    if (!confirmation)
+        return;
+
+
+    tasks =
+        tasks.filter(
+            t => t.id !== id
+        );
+
+
+    saveTasks();
+
+    renderTasks();
+
+
+    alert(
+        "Task deleted successfully."
+    );
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function updateStats() {
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent =
+        tasks.length;
+
+
+    document.getElementById(
+        "pendingTasks"
+    ).textContent =
+        tasks.filter(
+            task =>
+                task.status ===
+                "Pending"
+        ).length;
+
+
+    document.getElementById(
+        "progressTasks"
+    ).textContent =
+        tasks.filter(
+            task =>
+                task.status ===
+                "In Progress"
+        ).length;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent =
+        tasks.filter(
+            task =>
+                task.status ===
+                "Completed"
+        ).length;
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    renderTasks
+);
+
+
+document.getElementById(
+    "projectFilter"
+).addEventListener(
+    "change",
+    renderTasks
+);
+
+
+document.getElementById(
+    "departmentFilter"
+).addEventListener(
+    "change",
+    renderTasks
+);
+
+
+document.getElementById(
+    "managerFilter"
+).addEventListener(
+    "change",
+    renderTasks
+);
+
+
+document.getElementById(
+    "statusFilter"
+).addEventListener(
+    "change",
+    renderTasks
+);
+
+
+document.getElementById(
+    "priorityFilter"
+).addEventListener(
+    "change",
+    renderTasks
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+document.getElementById(
+    "mobileMenu"
+).addEventListener(
+    "click",
+    function() {
+
+        document.getElementById(
+            "sidebar"
+        ).classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getEmployee(
+    department,
+    employeeId
+) {
+
+   if (!departments[department])
+        return null;
+
+
+    return departments[
+        department
+    ].employees.find(
+        employee =>
+            employee.id ===
+            employeeId
+    );
+
+}
+
+
+function statusClass(status) {
+
+    if (
+        status === "Completed"
+    )
+        return "completed";
+
+
+    if (
+        status === "In Progress"
+    )
+        return "progress";
+
+
+    if (
+        status === "Returned"
+    )
+        return "returned";
+
+
+    return "pending";
+
+}
+
+
+function formatDate(date) {
+
+    if (!date)
+        return "-";
+
+
+    const parts =
+        date.split("-");
+
+
+    if (
+        parts.length !== 3
+    )
+        return date;
+
+
+    return (
+        parts[2] +
+        "-" +
+        parts[1] +
+        "-" +
+        parts[0]
+    );
+
+}
+
+
+function safe(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    )
+        return "";
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,2927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Projects | Admin</title>
+
+    <link rel="stylesheet" href="manageproject.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="department.html">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewtask.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminsubmission.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    <span>Submissions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="title-area">
+
+            <button class="mobile-menu" id="mobileMenu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+                <h1>Manage Projects</h1>
+                <p>
+                    Manage projects, managers and team members
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="admin-area">
+
+            <i class="fa-regular fa-bell bell"></i>
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="admin-info">
+
+                <strong>Admin</strong>
+
+                <small>Administrator</small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <section class="content">
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+
+                <div>
+                    <span>Total Projects</span>
+                    <h2 id="totalProjects">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <span>Pending</span>
+                    <h2 id="pendingProjects">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-spinner"></i>
+                </div>
+
+                <div>
+                    <span>In Progress</span>
+                    <h2 id="progressProjects">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>Completed</span>
+                    <h2 id="completedProjects">0</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT CARD -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Project Management</h2>
+
+                    <p>
+                        View and manage projects
+                    </p>
+
+                </div>
+                <a href="addmanager.html">
+                <button
+                    class="add-manager-btn">
+                    
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Add Manager
+
+                </button>
+                </a>
+
+
+
+                <button
+                    class="add-btn"
+                    onclick="openAddProject()">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Project
+
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filters">
+
+                <div class="search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search project or manager...">
+
+                </div>
+
+
+                <select id="departmentFilter">
+
+                    <option value="All">
+                        All Departments
+                    </option>
+
+                    <option >
+                        
+                    </option>
+
+                    
+
+                </select>
+
+
+                <select id="statusFilter">
+
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                    <option value="Returned">
+                        Returned
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+
+                <select id="priorityFilter">
+
+                    <option value="All">
+                        All Priority
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Project</th>
+
+                            <th>Department</th>
+
+                            <th>Manager</th>
+
+                            <th>Team</th>
+
+                            <th>Priority</th>
+
+                            <th>End Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="projectTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     ADD PROJECT MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="addModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Add Project</h2>
+
+                <p>
+                    Create a new project
+                </p>
+
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeAddProject()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="addProjectForm">
+
+            <div class="modal-body">
+
+
+                <!-- PROJECT NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectName"
+                        required>
+
+                </div>
+
+
+                <!-- PROJECT CODE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectCode"
+                        required>
+
+                </div>
+
+
+                <!-- DEPARTMENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <select
+                        id="projectDepartment"
+                        required>
+
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        
+
+                        
+
+                    </select>
+
+                </div>
+
+
+                <!-- MANAGER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Manager
+                    </label>
+
+                    <select
+                        id="projectManager"
+                        required
+                        disabled>
+
+                        <option value="">
+                            Select Department First
+                        </option>
+
+                    </select>
+
+                    <small class="field-note">
+                        Only managers from the selected department
+                        will be shown.
+                    </small>
+
+                </div>
+
+
+                <!-- TEAM SECTION -->
+
+                <div
+                    class="team-assignment"
+                    id="teamAssignment"
+                    style="display:none;">
+
+                    <div class="team-heading">
+
+                        <div>
+
+                            <h3>
+                                Assign Team Members
+                            </h3>
+
+                            <p id="departmentEmployeeText">
+                                Select employees from this department
+                            </p>
+
+                        </div>
+
+
+                        <span
+                            class="employee-count"
+                            id="employeeCount">
+
+                            0 Employees
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- SELECT ALL -->
+
+                    <div class="select-all-row">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="selectAllEmployees">
+
+                            Select All
+
+                        </label>
+
+
+                        <span id="selectedCount">
+                             Selected
+                        </span>
+
+                    </div>
+
+
+                    <!-- EMPLOYEES -->
+
+                    <div
+                        id="employeeList"
+                        class="employee-list">
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRIORITY -->
+
+                <div class="form-group">
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <select
+                        id="projectPriority"
+                        required>
+
+                        <option value="">
+                            Select Priority
+                        </option>
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- START DATE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="projectStart"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            End Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="projectEnd"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Project Description
+                    </label>
+
+                    <textarea
+                        id="projectDescription"
+                        placeholder="Enter project description">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn secondary"
+                    onclick="closeAddProject()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn primary">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Create Project
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TEAM MEMBERS MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="teamModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Project Team Members
+                </h2>
+
+                <p id="teamProjectName">
+                    Project team
+                </p>
+
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeTeamMembers()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <input
+                type="hidden"
+                id="teamProjectId">
+
+
+            <div class="team-project-info">
+
+                <div>
+
+                    <span>
+                        Department
+                    </span>
+
+                    <strong id="teamDepartment">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total Employees
+                    </span>
+
+                    <strong id="teamDepartmentCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="team-title">
+
+                <h3>
+                    Assigned Team
+                </h3>
+
+                <span id="memberCount">
+                    0 Members
+                </span>
+
+            </div>
+
+
+            <div
+                id="currentMembers"
+                class="current-members">
+            </div>
+
+
+            <hr>
+
+
+            <div class="team-heading">
+
+                <div>
+
+                    <h3>
+                        Add Team Members
+                    </h3>
+
+                    <p>
+                        Select employees from this department
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="editEmployeeList"
+                class="employee-list">
+            </div>
+
+
+            <div class="selected-bottom">
+
+                <strong id="editSelectedCount">
+                    0 Selected
+                </strong>
+
+
+                <button
+                    class="btn primary"
+                    onclick="updateTeamMembers()">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Update Team
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn secondary"
+                onclick="closeTeamMembers()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     VIEW PROJECT MODAL
+====================================================== -->
+
+<div class="modal-overlay" id="viewModal">
+
+    <div class="modal large-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Project Details
+                </h2>
+
+                <p>
+                    Complete project information
+                </p>
+
+            </div>
+
+
+            <button
+                class="close"
+                onclick="closeView()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="details-grid">
+
+                <div class="detail">
+
+                    <label>
+                        Project Name
+                    </label>
+
+                    <strong id="viewName"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Project Code
+                    </label>
+
+                    <strong id="viewCode"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Department
+                    </label>
+
+                    <strong id="viewDepartment"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Manager
+                    </label>
+
+                    <strong id="viewManager"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Priority
+                    </label>
+
+                    <strong id="viewPriority"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <strong id="viewStatus"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        Start Date
+                    </label>
+
+                    <strong id="viewStart"></strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <label>
+                        End Date
+                    </label>
+
+                    <strong id="viewEnd"></strong>
+
+                </div>
+<div class="detail">
+
+<label>
+
+Progress
+
+</label>
+
+<strong id="viewProgress"></
+
+strong>
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<label>
+
+Team Members
+
+</label>
+
+<div
+
+id="viewTeam"
+
+class="team-members">
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<label>
+
+Description
+
+</label>
+
+<div
+
+id="viewDescription"
+
+class="remark-box">
+
+</div>
+
+</div>
+
+<div class="info-section">
+
+<label>
+
+Manager Remark
+
+</label>
+
+<div
+
+id="viewManagerRemark"
+
+</div>
+
+class="remark-box">
+
+</div>
+<div class="info-section">
+
+<label>
+
+Admin Remark
+
+</label>
+
+<div
+
+id="viewAdminRemark"
+
+class="remark-box">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+
+<button
+
+class="btn secondary"
+
+onclick="closeView()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+    /* =====================================================
+   ADMIN MANAGE PROJECT
+   Department → Manager → Employees → Team
+===================================================== */
+
+
+/* =====================================================
+   DEPARTMENTS
+===================================================== */
+
+const departments = {
+
+    Technical: {
+
+        managers: [
+            
+        ],
+
+        employees: [
+
+            
+        ]
+
+    },
+
+
+    HR: {
+
+        managers: [
+
+           
+        ],
+
+        employees: [
+
+           
+
+            
+
+            
+
+        ]
+
+    },
+}
+
+   
+        
+
+    
+
+
+  
+
+
+/* =====================================================
+   PROJECT DATA
+===================================================== */
+
+let projects =
+    JSON.parse(
+        localStorage.getItem("adminProjects")
+    ) || [
+
+        
+
+    ];
+
+
+/* =====================================================
+   SAVE PROJECTS
+===================================================== */
+
+function saveProjects() {
+
+    localStorage.setItem(
+        "adminProjects",
+        JSON.stringify(projects)
+    );
+
+}
+
+
+/* =====================================================
+   GET EMPLOYEE
+===================================================== */
+
+function getEmployee(
+    department,
+    employeeId
+) {
+
+    if (!departments[department]) {
+        return null;
+    }
+
+    return departments[department]
+        .employees
+        .find(
+            employee =>
+                employee.id === employeeId
+        );
+
+}
+
+
+/* =====================================================
+   GET MANAGER
+===================================================== */
+
+function getManager(
+    department,
+    managerName
+) {
+
+    if (!departments[department]) {
+        return null;
+    }
+
+    return departments[department]
+        .managers
+        .find(
+            manager =>
+                manager.name === managerName
+        );
+
+}
+
+
+/* =====================================================
+   DEPARTMENT CHANGE
+===================================================== */
+
+document.getElementById(
+    "projectDepartment"
+).addEventListener(
+    "change",
+    function() {
+
+        const department =
+            this.value;
+
+
+        loadManagers(department);
+
+        loadEmployees(department);
+
+    }
+);
+
+
+/* =====================================================
+   LOAD MANAGERS
+===================================================== */
+
+function loadManagers(department) {
+
+    const managerSelect =
+        document.getElementById(
+            "projectManager"
+        );
+
+
+    managerSelect.innerHTML = "";
+
+
+    if (!department) {
+
+        managerSelect.disabled = true;
+
+        managerSelect.innerHTML = `
+
+            <option value="">
+                Select Department First
+            </option>
+
+        `;
+
+        return;
+    }
+
+
+    const managerList =
+        departments[department]
+            .managers;
+
+
+    managerSelect.disabled = false;
+
+
+    managerSelect.innerHTML = `
+
+        <option value="">
+            Select ${department} Manager
+        </option>
+
+    `;
+
+
+    managerList.forEach(
+        manager => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                manager.name;
+
+
+            option.dataset.managerId =
+                manager.id;
+
+
+            option.textContent =
+                manager.name +
+                " (" +
+                manager.id +
+                ")";
+
+
+            managerSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD EMPLOYEES
+===================================================== */
+
+function loadEmployees(department) {
+
+    const teamSection =
+        document.getElementById(
+            "teamAssignment"
+        );
+
+
+    const employeeList =
+        document.getElementById(
+            "employeeList"
+        );
+
+
+    const employeeCount =
+        document.getElementById(
+            "employeeCount"
+        );
+
+
+    const departmentText =
+        document.getElementById(
+            "departmentEmployeeText"
+        );
+
+
+    const selectAll =
+        document.getElementById(
+            "selectAllEmployees"
+        );
+
+
+    selectAll.checked = false;
+
+
+    employeeList.innerHTML = "";
+
+
+    if (!department) {
+
+        teamSection.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    const employees =
+        departments[department]
+            .employees;
+
+
+    teamSection.style.display =
+        "block";
+
+
+    employeeCount.textContent =
+        employees.length +
+        " Employees";
+
+
+    departmentText.textContent =
+        department +
+        " Department • " +
+        employees.length +
+        " Employees";
+
+
+    employees.forEach(
+        employee => {
+
+            employeeList.appendChild(
+                createEmployeeElement(
+                    employee,
+                    false
+                )
+            );
+
+        }
+    );
+
+
+    updateSelectedCount(
+        "employeeList",
+        "selectedCount"
+    );
+
+}
+
+
+/* =====================================================
+   CREATE EMPLOYEE ELEMENT
+===================================================== */
+
+function createEmployeeElement(
+    employee,
+    checked
+) {
+
+    const div =
+        document.createElement(
+            "label"
+        );
+
+
+    div.className =
+        "employee-item";
+
+
+    const initials =
+        employee.name
+            .split(" ")
+            .map(
+                name =>
+                    name.charAt(0)
+            )
+            .join("")
+            .substring(0, 2);
+
+
+    div.innerHTML = `
+
+        <input
+            type="checkbox"
+            class="employee-check"
+            value="${employee.id}"
+            ${checked ? "checked" : ""}>
+
+
+        <div class="employee-avatar">
+
+            ${safe(initials)}
+
+        </div>
+
+
+        <div class="employee-details">
+
+            <span class="employee-name">
+
+                ${safe(employee.name)}
+
+            </span>
+
+            <span class="employee-id">
+
+                Employee ID:
+                ${safe(employee.id)}
+
+            </span>
+
+        </div>
+
+
+        <span class="employee-status">
+
+            ${safe(employee.status)}
+
+        </span>
+
+    `;
+
+
+    div.querySelector(
+        "input"
+    ).addEventListener(
+        "change",
+        function() {
+
+            updateSelectedCount(
+                "employeeList",
+                "selectedCount"
+            );
+
+        }
+    );
+
+
+    return div;
+
+}
+
+
+/* =====================================================
+   SELECT ALL
+===================================================== */
+
+document.getElementById(
+    "selectAllEmployees"
+).addEventListener(
+    "change",
+    function() {
+
+        const checkboxes =
+            document.querySelectorAll(
+                "#employeeList .employee-check"
+            );
+
+
+        checkboxes.forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    this.checked;
+
+            }
+        );
+
+
+        updateSelectedCount(
+            "employeeList",
+            "selectedCount"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   UPDATE SELECTED COUNT
+===================================================== */
+
+function updateSelectedCount(
+    containerId,
+    countId
+) {
+
+    const checked =
+        document.querySelectorAll(
+            "#" +
+            containerId +
+            " .employee-check:checked"
+        );
+
+
+    document.getElementById(
+        countId
+    ).textContent =
+        checked.length +
+        " Selected";
+
+}
+
+
+/* =====================================================
+   ADD PROJECT MODAL
+===================================================== */
+
+function openAddProject() {
+
+    document.getElementById(
+        "addModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeAddProject() {
+
+    document.getElementById(
+        "addModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   CREATE PROJECT
+===================================================== */
+
+document.getElementById(
+    "addProjectForm"
+).addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById(
+                "projectName"
+            ).value.trim();
+
+
+        const code =
+            document.getElementById(
+                "projectCode"
+            ).value.trim();
+
+
+        const department =
+            document.getElementById(
+                "projectDepartment"
+            ).value;
+
+
+        const manager =
+            document.getElementById(
+                "projectManager"
+            ).value;
+
+
+        const managerOption =
+            document.querySelector(
+                "#projectManager option:checked"
+            );
+
+
+        const managerId =
+            managerOption
+                ?.dataset
+                .managerId || "";
+
+
+        const priority =
+            document.getElementById(
+                "projectPriority"
+            ).value;
+
+
+        const start =
+            document.getElementById(
+                "projectStart"
+            ).value;
+
+
+        const end =
+            document.getElementById(
+                "projectEnd"
+            ).value;
+
+
+        const description =
+            document.getElementById(
+                "projectDescription"
+            ).value.trim();
+
+
+        if (!department) {
+
+            alert(
+                "Please select department."
+            );
+
+            return;
+
+        }
+
+
+        if (!manager) {
+
+            alert(
+                "Please select manager."
+            );
+
+            return;
+
+        }
+
+
+        if (end < start) {
+
+            alert(
+                "End date cannot be before start date."
+            );
+
+            return;
+
+        }
+
+
+        /* SELECTED TEAM */
+
+        const selectedEmployees =
+            Array.from(
+                document.querySelectorAll(
+                    "#employeeList .employee-check:checked"
+                )
+            ).map(
+                checkbox =>
+                    checkbox.value
+            );
+
+
+        const newProject = {
+
+            id: Date.now(),
+
+            name: name,
+
+            code: code,
+
+            department: department,
+
+            manager: manager,
+
+            managerId: managerId,
+
+            team: selectedEmployees,
+
+            priority: priority,
+
+            start: start,
+
+            end: end,
+
+            status: "Pending",
+
+            progress: 0,
+
+            description: description,
+
+            managerRemark: "",
+
+            adminRemark: "",
+
+            submittedDate:
+                new Date()
+                    .toISOString()
+                    .split("T")[0]
+
+        };
+
+
+        projects.push(
+            newProject
+        );
+
+
+        saveProjects();
+
+        renderProjects();
+
+
+        alert(
+            "Project created successfully.\n\n" +
+            "Department: " +
+            department +
+            "\nManager: " +
+            manager +
+            "\nTeam Members: " +
+            selectedEmployees.length
+        );
+
+
+        closeAddProject();
+
+
+        document.getElementById(
+            "addProjectForm"
+        ).reset();
+
+
+        document.getElementById(
+            "projectManager"
+        ).disabled = true;
+
+
+        document.getElementById(
+            "projectManager"
+        ).innerHTML = `
+
+            <option value="">
+                Select Department First
+            </option>
+
+        `;
+
+
+        document.getElementById(
+            "teamAssignment"
+        ).style.display = "none";
+
+    }
+);
+
+
+/* =====================================================
+   RENDER PROJECTS
+===================================================== */
+
+function renderProjects() {
+
+    const table =
+        document.getElementById(
+            "projectTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+            .toLowerCase();
+
+
+    const department =
+        document.getElementById(
+            "departmentFilter"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const priority =
+        document.getElementById(
+            "priorityFilter"
+        ).value;
+
+
+    table.innerHTML = "";
+
+
+    const filtered =
+        projects.filter(
+            project => {
+
+                const text =
+                    (
+                        project.name +
+                        " " +
+                        project.code +
+                        " " +
+                        project.manager
+                    )
+                    .toLowerCase();
+
+
+                return (
+
+                    text.includes(search) &&
+
+                    (
+                        department === "All" ||
+                        project.department === department
+                    ) &&
+
+                    (
+                        status === "All" ||
+                        project.status === status
+                    ) &&
+
+                    (
+                        priority === "All" ||
+                        project.priority === priority
+                    )
+
+                );
+
+            }
+        );
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="9"
+                    style="text-align:center;padding:30px">
+
+                    No projects found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        updateStats();
+
+        return;
+
+    }
+
+
+    filtered.forEach(
+        (project, index) => {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${index + 1}
+                </td>
+
+
+                <td>
+
+                    <strong>
+                        ${safe(project.name)}
+                    </strong>
+
+                    <small class="project-code">
+
+                        ${safe(project.code)}
+
+                    </small>
+
+                </td>
+
+
+                <td>
+
+                    ${safe(project.department)}
+
+                </td>
+
+
+                <td>
+
+                    ${safe(project.manager)}
+
+                </td>
+
+
+                <td>
+
+                    <span class="team-count">
+
+                        ${project.team.length}
+                        Members
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="priority
+                      ${project.priority.toLowerCase()}">
+
+                        ${safe(project.priority)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${formatDate(project.end)}
+
+                </td>
+
+
+                <td>
+
+                    <span class="status
+                    ${statusClass(project.status)}">
+
+                        ${safe(project.status)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div class="action-buttons">
+
+
+                        <button
+                            class="action-btn view"
+                            title="View Project"
+                            onclick="viewProject(${project.id})">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+
+                        <button
+                            class="action-btn team"
+                            title="Team Members"
+                            onclick="openTeamMembers(${project.id})">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </button>
+
+
+                        <button
+                            class="action-btn delete"
+                            title="Delete Project"
+                            onclick="deleteProject(${project.id})">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   TEAM MEMBERS
+===================================================== */
+
+function openTeamMembers(
+    projectId
+) {
+
+    const project =
+        projects.find(
+            p => p.id === projectId
+        );
+
+
+    if (!project) return;
+
+
+    document.getElementById(
+        "teamProjectId"
+    ).value =
+        projectId;
+
+
+    document.getElementById(
+        "teamProjectName"
+    ).textContent =
+        project.name +
+        " • " +
+        project.manager;
+
+
+    document.getElementById(
+        "teamDepartment"
+    ).textContent =
+        project.department;
+
+
+    const employees =
+        departments[
+            project.department
+        ].employees;
+
+
+    document.getElementById(
+        "teamDepartmentCount"
+    ).textContent =
+        employees.length;
+
+
+    renderCurrentMembers(
+        project
+    );
+
+
+    renderEditEmployees(
+        project
+    );
+
+
+    document.getElementById(
+        "teamModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   CURRENT TEAM
+===================================================== */
+
+function renderCurrentMembers(
+    project
+) {
+
+    const container =
+        document.getElementById(
+            "currentMembers"
+        );
+
+
+    document.getElementById(
+        "memberCount"
+    ).textContent =
+        project.team.length +
+        (
+            project.team.length === 1
+                ? " Member"
+                : " Members"
+        );
+
+
+    if (
+        project.team.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-members">
+
+                No team members assigned.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        project.team
+            .map(
+                employeeId => {
+
+                    const employee =
+                        getEmployee(
+                            project.department,
+                            employeeId
+                        );
+
+
+                    if (!employee)
+                        return "";
+
+
+                    const initials =
+                        employee.name
+                            .split(" ")
+                            .map(
+                                word =>
+                                    word.charAt(0)
+                            )
+                            .join("")
+                            .substring(0, 2);
+
+
+                    return `
+
+                        <div class="member-item">
+
+                            <div class="member-left">
+
+                                <div class="member-avatar">
+
+                                    ${safe(initials)}
+
+                                </div>
+
+
+                                <div>
+
+                                    <span class="member-name">
+
+                                        ${safe(employee.name)}
+
+                                    </span>
+
+                                    <span class="member-id">
+
+                                        ${safe(employee.id)}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="remove-member"
+                                onclick="removeTeamMember(
+                                    ${project.id},
+                                    '${employee.id}'
+                                )">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   EDIT EMPLOYEE LIST
+===================================================== */
+
+function renderEditEmployees(
+    project
+) {
+
+    const container =
+        document.getElementById(
+            "editEmployeeList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const employees =
+        departments[
+            project.department
+        ].employees;
+
+
+    employees.forEach(
+        employee => {
+
+            const checked =
+                project.team.includes(
+                    employee.id
+                );
+
+
+            const item =
+                createEditEmployeeElement(
+                    employee,
+                    checked
+                );
+
+
+            container.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    updateSelectedCount(
+        "editEmployeeList",
+        "editSelectedCount"
+    );
+
+}
+
+
+/* =====================================================
+   CREATE EDIT EMPLOYEE
+===================================================== */
+
+function createEditEmployeeElement(
+    employee,
+    checked
+) {
+
+    const div =
+        document.createElement(
+            "label"
+        );
+
+
+    div.className =
+        "employee-item";
+
+
+    const initials =
+        employee.name
+            .split(" ")
+            .map(
+                word =>
+                    word.charAt(0)
+            )
+            .join("")
+            .substring(0, 2);
+
+
+    div.innerHTML = `
+
+        <input
+            type="checkbox"
+            class="employee-check"
+            value="${employee.id}"
+            ${checked ? "checked" : ""}>
+
+
+        <div class="employee-avatar">
+
+            ${safe(initials)}
+
+        </div>
+
+
+        <div class="employee-details">
+
+            <span class="employee-name">
+
+                ${safe(employee.name)}
+
+            </span>
+
+            <span class="employee-id">
+
+                Employee ID:
+                ${safe(employee.id)}
+
+            </span>
+
+        </div>
+
+
+        <span class="employee-status">
+
+            ${safe(employee.status)}
+
+        </span>
+
+    `;
+
+
+    div.querySelector(
+        "input"
+    ).addEventListener(
+        "change",
+        function() {
+
+            updateSelectedCount(
+                "editEmployeeList",
+                "editSelectedCount"
+            );
+
+        }
+    );
+
+
+    return div;
+
+}
+
+
+/* =====================================================
+   UPDATE TEAM
+===================================================== */
+
+function updateTeamMembers() {
+
+    const projectId =
+        Number(
+            document.getElementById(
+                "teamProjectId"
+            ).value
+        );
+
+
+    const project =
+        projects.find(
+            p => p.id === projectId
+        );
+
+
+    if (!project) return;
+
+
+    const selected =
+        Array.from(
+            document.querySelectorAll(
+                "#editEmployeeList .employee-check:checked"
+            )
+        ).map(
+            checkbox =>
+                checkbox.value
+        );
+
+
+    project.team =
+        selected;
+
+
+    saveProjects();
+
+    renderProjects();
+
+    renderCurrentMembers(
+        project
+    );
+
+
+    alert(
+        "Project team updated successfully."
+    );
+
+}
+
+
+/* =====================================================
+   REMOVE TEAM MEMBER
+===================================================== */
+
+function removeTeamMember(
+    projectId,
+    employeeId
+) {
+
+    const project =
+        projects.find(
+            p => p.id === projectId
+        );
+
+
+    if (!project) return;
+
+
+    const employee =
+        getEmployee(
+            project.department,
+            employeeId
+        );
+
+
+    if (!employee) return;
+
+
+    const confirmation =
+        confirm(
+            "Remove " +
+            employee.name +
+            " from this project?"
+        );
+
+
+    if (!confirmation)
+        return;
+
+
+    project.team =
+        project.team.filter(
+            id =>
+                id !== employeeId
+        );
+
+
+    saveProjects();
+
+    renderProjects();
+
+    renderCurrentMembers(
+        project
+    );
+
+    renderEditEmployees(
+        project
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE TEAM
+===================================================== */
+
+function closeTeamMembers() {
+
+    document.getElementById(
+        "teamModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   VIEW PROJECT
+===================================================== */
+
+function viewProject(id) {
+
+    const project =
+        projects.find(
+            p => p.id === id
+        );
+
+
+    if (!project) return;
+
+
+    document.getElementById(
+        "viewName"
+    ).textContent =
+        project.name;
+
+
+    document.getElementById(
+        "viewCode"
+    ).textContent =
+        project.code;
+
+
+    document.getElementById(
+        "viewDepartment"
+    ).textContent =
+        project.department;
+
+
+    document.getElementById(
+        "viewManager"
+    ).textContent =
+        project.manager;
+
+
+    document.getElementById(
+        "viewPriority"
+    ).textContent =
+        project.priority;
+
+
+    document.getElementById(
+        "viewStatus"
+    ).textContent =
+        project.status;
+
+
+    document.getElementById(
+        "viewStart"
+    ).textContent =
+        formatDate(project.start);
+
+
+    document.getElementById(
+        "viewEnd"
+    ).textContent =
+        formatDate(project.end);
+
+
+    document.getElementById(
+        "viewProgress"
+    ).textContent =
+        project.progress +
+        "%";
+
+
+    document.getElementById(
+        "viewDescription"
+    ).textContent =
+        project.description ||
+        "No description";
+
+
+    document.getElementById(
+        "viewManagerRemark"
+    ).textContent =
+        project.managerRemark ||
+        "No manager remark";
+
+
+    document.getElementById(
+        "viewAdminRemark"
+    ).textContent =
+        project.adminRemark ||
+        "No admin remark";
+
+
+    const teamContainer =
+        document.getElementById(
+            "viewTeam"
+        );
+
+
+    teamContainer.innerHTML =
+        project.team
+            .map(
+                employeeId => {
+
+                    const employee =
+                        getEmployee(
+                            project.department,
+                            employeeId
+                        );
+
+
+                    if (!employee)
+                        return "";
+
+
+                    return `
+
+                        <span class="team-member">
+
+                            ${safe(employee.name)}
+
+                            (${safe(employee.id)})
+
+                        </span>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    document.getElementById(
+        "viewModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeView() {
+
+    document.getElementById(
+        "viewModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+function deleteProject(id) {
+
+    const project =
+        projects.find(
+            p => p.id === id
+        );
+
+
+    if (!project) return;
+
+
+    const confirmation =
+        confirm(
+            "Delete project '" +
+            project.name +
+            "'?"
+        );
+
+
+    if (!confirmation)
+        return;
+
+
+    projects =
+        projects.filter(
+            p => p.id !== id
+        );
+
+
+    saveProjects();
+
+    renderProjects();
+
+
+    alert(
+        "Project deleted successfully."
+    );
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+function updateStats() {
+
+    document.getElementById(
+        "totalProjects"
+    ).textContent =
+        projects.length;
+
+
+    document.getElementById(
+        "pendingProjects"
+    ).textContent =
+        projects.filter(
+            p =>
+                p.status === "Pending"
+        ).length;
+
+
+    document.getElementById(
+        "progressProjects"
+    ).textContent =
+        projects.filter(
+            p =>
+                p.status === "In Progress"
+        ).length;
+
+
+    document.getElementById(
+        "completedProjects"
+    ).textContent =
+        projects.filter(
+            p =>
+                p.status === "Completed"
+        ).length;
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    renderProjects
+);
+
+
+document.getElementById(
+    "departmentFilter"
+).addEventListener(
+    "change",
+    renderProjects
+);
+
+
+document.getElementById(
+    "statusFilter"
+).addEventListener(
+    "change",
+    renderProjects
+);
+
+
+document.getElementById(
+    "priorityFilter"
+).addEventListener(
+    "change",
+    renderProjects
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+document.getElementById(
+    "mobileMenu"
+).addEventListener(
+    "click",
+    function() {
+
+        document.getElementById(
+            "sidebar"
+        ).classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function statusClass(status) {
+
+    if (
+        status === "Completed"
+    )
+        return "completed";
+
+
+    if (
+        status === "In Progress"
+    )
+        return "progress";
+
+
+    if (
+        status === "Returned"
+    )
+        return "returned";
+
+
+    if (
+        status === "Rejected"
+    )
+        return "rejected";
+
+
+    return "pending";
+
+}
+
+
+function formatDate(date) {
+
+    if (!date)
+        return "-";
+
+
+    const parts =
+        date.split("-");
+
+
+    if (
+        parts.length !== 3
+    )
+        return date;
+
+
+    return (
+        parts[2] +
+        "-" +
+        parts[1] +
+        "-" +
+        parts[0]
+    );
+
+}
+
+
+function safe(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    )
+        return "";
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+renderProjects();
+</script>
+
+</body>
+
+</html>

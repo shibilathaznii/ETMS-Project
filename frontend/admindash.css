@@ -1,0 +1,661 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #202636;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    background: #172033;
+    color: white;
+
+    padding-top: 20px;
+
+    z-index: 1000;
+}
+
+
+.logo {
+    padding: 10px 20px 25px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 8px;
+}
+
+
+.menu {
+    list-style: none;
+}
+
+
+.menu li {
+    margin: 5px 12px;
+}
+
+
+.menu a,
+.logout a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px;
+
+    color: #cbd2df;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    transition: .2s;
+}
+
+
+.menu li.active a,
+.menu a:hover,
+.logout a:hover {
+
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.logout {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    width: 100%;
+
+    padding: 0 12px;
+}
+
+/* ================= MAIN ================= */
+
+.main-content {
+
+    margin-left: 240px;
+
+    padding: 25px;
+
+    min-height: 100vh;
+}
+
+
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.topbar h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+}
+
+
+.topbar p {
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+
+/* ================= ADMIN PROFILE ================= */
+
+.admin-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.notification {
+
+    position: relative;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+.notification-count {
+
+    position: absolute;
+
+    top: -7px;
+
+    right: -8px;
+
+    width: 17px;
+
+    height: 17px;
+
+    background: #dc3545;
+
+    color: white;
+
+    font-size: 10px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.profile-image {
+
+    width: 40px;
+
+    height: 40px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.profile strong {
+
+    display: block;
+
+    font-size: 13px;
+}
+
+
+.profile small {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+
+/* ================= SUMMARY ================= */
+
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 22px;
+}
+
+
+.summary-card {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+
+.card-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.card-icon.blue {
+
+    background: #e8efff;
+
+    color: #2563eb;
+}
+
+
+.card-icon.purple {
+
+    background: #eee8ff;
+
+    color: #7c3aed;
+}
+
+
+.card-icon.orange {
+
+    background: #fff3cd;
+
+    color: #e67e22;
+}
+
+
+.card-icon.red {
+
+    background: #ffe1e1;
+
+    color: #dc3545;
+}
+
+
+.summary-card p {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.summary-card h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 5px;
+}
+
+
+.card-link {
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+
+/* ================= SECTIONS ================= */
+
+.dashboard-section {
+
+    background: white;
+
+    padding: 22px;
+
+    margin-top: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.section-header h2 {
+
+    font-size: 18px;
+}
+
+
+.section-header h2 i {
+
+    color: #2563eb;
+
+    margin-right: 7px;
+}
+
+
+.section-header p {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.view-all {
+
+    text-decoration: none;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+
+/* ================= TABLE ================= */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+
+th {
+
+    background: #f7f8fc;
+
+    color: #555;
+
+    padding: 13px;
+
+    text-align: left;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+td {
+
+    padding: 14px 13px;
+
+    border-bottom: 1px solid #eee;
+
+    font-size: 12px;
+}
+
+
+tbody tr:hover {
+
+    background: #fafbff;
+}
+
+
+
+/* ================= PROJECT ================= */
+
+.project-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-weight: 600;
+}
+
+
+.project-name i {
+
+    color: #2563eb;
+
+    font-size: 16px;
+}
+
+
+
+/* ================= STATUS ================= */
+
+.status {
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+.status.progress {
+
+    background: #e8efff;
+
+    color: #2563eb;
+}
+
+
+.status.pending {
+
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+
+.status.completed {
+
+    background: #dff5e5;
+
+    color: #198754;
+}
+
+
+
+/* ================= PRIORITY ================= */
+
+.priority {
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+.priority.high {
+
+    background: #ffe1e1;
+
+    color: #dc3545;
+}
+
+
+.priority.medium {
+
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+
+.priority.low {
+
+    background: #dff5e5;
+
+    color: #198754;
+}
+
+
+
+/* ================= VIEW BUTTON ================= */
+
+.view-btn {
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 7px 11px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+}
+
+
+.view-btn:hover {
+
+    background: #1d4ed8;
+}
+
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1100px) {
+
+    .summary-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media(max-width: 700px) {
+
+    .sidebar {
+
+        width: 70px;
+    }
+
+
+    .sidebar span,
+    .logo span {
+
+        display: none;
+    }
+
+
+    .main-content {
+
+        margin-left: 70px;
+
+        padding: 15px;
+    }
+
+
+    .summary-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .topbar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .admin-profile {
+
+        width: 100%;
+
+        justify-content: flex-end;
+    }
+
+}

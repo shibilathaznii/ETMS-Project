@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Settings</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="adminsetting.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+     <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <span>TaskStream Pro</span>
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="admindash.html">
+                    <i class="fa-solid fa-gauge"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="addemp.html">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Employees</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="department.html">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageproject.html">
+                    <i class="fa-solid fa-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewtask.html">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="adminsubmission.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                    <span>Submissions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="viewleaverequest.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Leave Management</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="adminworkload.html">
+                    <i class="fa-solid fa-people-arrows"></i>
+                    <span>Workload Requests</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="report.html">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="adminsetting.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a href="task.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>Settings</h1>
+
+                <p>
+                    Manage system settings and preferences
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="notification">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>3</span>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-image">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>Admin</strong>
+
+                        <small>Administrator</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SYSTEM SETTINGS -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-building"></i>
+
+                <div>
+
+                    <h2>System Settings</h2>
+
+                    <p>
+                        Manage basic system information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>System Name</label>
+
+                    <input
+                        type="text"
+                        id="systemName"
+                        value="Employee Task Management System">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Company Name</label>
+
+                    <input
+                        type="text"
+                        id="companyName"
+                        placeholder="Enter company name">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Admin Email</label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        value="admin@example.com">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TASK SETTINGS -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-list-check"></i>
+
+                <div>
+
+                    <h2>Task Settings</h2>
+
+                    <p>
+                        Configure task management options
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Default Task Priority</label>
+
+                    <select id="taskPriority">
+
+                        <option value="Low">Low</option>
+
+                        <option value="Medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="High">High</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Deadline Reminder</label>
+
+                    <select id="deadlineReminder">
+
+                        <option value="1">1 Day Before</option>
+
+                        <option value="2" selected>
+                            2 Days Before
+                        </option>
+
+                        <option value="3">
+                            3 Days Before
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Task Notifications</strong>
+
+                    <p>
+                        Send notifications when a task is assigned
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="taskNotification"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEAVE SETTINGS -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <div>
+
+                    <h2>Leave Settings</h2>
+
+                    <p>
+                        Configure employee leave management
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Default Leave Quota</label>
+
+                    <input
+                        type="number"
+                        id="leaveQuota"
+                        value="20"
+                        min="1">
+
+                    <small>
+                        Days per employee
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Leave Approval</label>
+
+                    <select id="leaveApproval">
+
+                        <option value="Manager">
+                            Manager First
+                        </option>
+
+                        <option value="Admin">
+                            Admin Direct
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Leave Notifications</strong>
+
+                    <p>
+                        Notify manager and admin about leave requests
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="leaveNotification"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- WORKLOAD SETTINGS -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-people-arrows"></i>
+
+                <div>
+
+                    <h2>Workload Settings</h2>
+
+                    <p>
+                        Manage employee workload notifications
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>High Workload Alert</strong>
+
+                    <p>
+                        Alert manager when employee reports high workload
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="highWorkloadAlert"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Workload Request Notification</strong>
+
+                    <p>
+                        Notify manager when support request is submitted
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="workloadNotification"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Admin Workload Monitoring</strong>
+
+                    <p>
+                        Show workload requests on admin dashboard
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="adminWorkload"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATION SETTINGS -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-bell"></i>
+
+                <div>
+
+                    <h2>Notification Settings</h2>
+
+                    <p>
+                        Manage system notifications
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Email Notifications</strong>
+
+                    <p>
+                        Send system notifications through email
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="emailNotification"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="toggle-row">
+
+                <div>
+
+                    <strong>Dashboard Notifications</strong>
+
+                    <p>
+                        Show notifications on dashboard
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="dashboardNotification"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY -->
+
+        <section class="settings-card">
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+
+                    <h2>Security</h2>
+
+                    <p>
+                        Manage administrator security settings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="security-buttons">
+
+                <button
+                    class="password-btn"
+                    onclick="changePassword()">
+
+                    <i class="fa-solid fa-key"></i>
+
+                    Change Password
+
+                </button>
+
+
+                <button
+                    class="session-btn"
+                    onclick="sessionSettings()">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    Session Settings
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SAVE -->
+
+        <div class="save-area">
+
+            <button
+                class="reset-btn"
+                onclick="resetSettings()">
+
+                Reset
+
+            </button>
+
+
+            <button
+                class="save-btn"
+                onclick="saveSettings()">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Changes
+
+            </button>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script>
+    // ================================
+// ADMIN SETTINGS JAVASCRIPT
+// ================================
+
+
+// SAVE SETTINGS
+
+function saveSettings() {
+
+    const settings = {
+
+        systemName:
+            document.getElementById("systemName").value,
+
+        companyName:
+            document.getElementById("companyName").value,
+
+        adminEmail:
+            document.getElementById("adminEmail").value,
+
+        taskPriority:
+            document.getElementById("taskPriority").value,
+
+        deadlineReminder:
+            document.getElementById("deadlineReminder").value,
+
+        taskNotification:
+            document.getElementById("taskNotification").checked,
+
+        leaveQuota:
+            document.getElementById("leaveQuota").value,
+
+        leaveApproval:
+            document.getElementById("leaveApproval").value,
+
+        leaveNotification:
+            document.getElementById("leaveNotification").checked,
+
+        highWorkloadAlert:
+            document.getElementById("highWorkloadAlert").checked,
+
+        workloadNotification:
+            document.getElementById("workloadNotification").checked,
+
+        adminWorkload:
+            document.getElementById("adminWorkload").checked,
+
+        emailNotification:
+            document.getElementById("emailNotification").checked,
+
+        dashboardNotification:
+            document.getElementById("dashboardNotification").checked
+
+    };
+
+
+    // Save temporarily in browser
+
+    localStorage.setItem(
+        "adminSettings",
+        JSON.stringify(settings)
+    );
+
+
+    alert(
+        "Settings saved successfully!"
+    );
+
+}
+
+
+
+// LOAD SETTINGS
+
+function loadSettings() {
+
+    const savedSettings =
+        localStorage.getItem("adminSettings");
+
+
+    if (!savedSettings) {
+
+        return;
+
+    }
+
+
+    const settings =
+        JSON.parse(savedSettings);
+
+
+    document.getElementById("systemName").value =
+        settings.systemName || "";
+
+
+    document.getElementById("companyName").value =
+        settings.companyName || "";
+
+
+    document.getElementById("adminEmail").value =
+        settings.adminEmail || "";
+
+
+    document.getElementById("taskPriority").value =
+        settings.taskPriority || "Medium";
+
+
+    document.getElementById("deadlineReminder").value =
+        settings.deadlineReminder || "2";
+
+
+    document.getElementById("taskNotification").checked =
+        settings.taskNotification;
+
+
+    document.getElementById("leaveQuota").value =
+        settings.leaveQuota || "20";
+
+
+    document.getElementById("leaveApproval").value =
+        settings.leaveApproval || "Manager";
+
+
+    document.getElementById("leaveNotification").checked =
+        settings.leaveNotification;
+
+
+    document.getElementById("highWorkloadAlert").checked =
+        settings.highWorkloadAlert;
+
+
+    document.getElementById("workloadNotification").checked =
+        settings.workloadNotification;
+
+
+    document.getElementById("adminWorkload").checked =
+        settings.adminWorkload;
+
+
+    document.getElementById("emailNotification").checked =
+        settings.emailNotification;
+
+
+    document.getElementById("dashboardNotification").checked =
+        settings.dashboardNotification;
+
+}
+
+
+
+// RESET SETTINGS
+
+function resetSettings() {
+
+    const confirmReset =
+        confirm(
+            "Are you sure you want to reset all settings?"
+        );
+
+
+    if (!confirmReset) {
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "adminSettings"
+    );
+
+
+    location.reload();
+
+}
+
+
+
+// CHANGE PASSWORD
+
+function changePassword() {
+
+    const newPassword =
+        prompt(
+            "Enter your new password:"
+        );
+
+
+    if (!newPassword) {
+
+        return;
+
+    }
+
+
+    if (newPassword.length < 6) {
+
+        alert(
+            "Password must contain at least 6 characters."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Password changed successfully!"
+    );
+
+}
+
+
+
+// SESSION SETTINGS
+
+function sessionSettings() {
+
+    const time =
+        prompt(
+            "Enter session timeout in minutes:",
+            "30"
+        );
+
+
+    if (!time) {
+
+        return;
+
+    }
+
+
+    if (isNaN(time) || time <= 0) {
+
+        alert(
+            "Please enter a valid number."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "Session timeout set to " +
+        time +
+        " minutes."
+    );
+
+}
+
+
+
+// LOGOUT
+
+function logout() {
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if (confirmLogout) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+
+
+
+// NOTIFICATION
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadSettings();
+
+
+        const notification =
+            document.querySelector(".notification");
+
+
+        if (notification) {
+
+            notification.addEventListener(
+                "click",
+                function () {
+
+                    alert(
+                        "You have 3 new notifications."
+                    );
+
+                }
+            );
+
+        }
+
+    }
+);
+</script>
+
+</body>
+</html>

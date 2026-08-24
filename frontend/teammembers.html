@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Team Members - Manager</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="teammembers.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Team Members</h1>
+
+            <p>
+                View and manage your existing team members
+            </p>
+        </div>
+
+
+        <div class="manager-profile">
+
+            <div class="profile-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div>
+                <strong>Manager</strong>
+                <small>Project Manager</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= ADMIN NOTICE ================= -->
+
+    <div class="admin-notice">
+
+        <div class="notice-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div class="notice-content">
+
+            <h3>
+                Admin Approval Required
+            </h3>
+
+            <p>
+                Only Admin can add new employees or team members
+                to the system. If you need an additional employee
+                because of workload or project requirements,
+                please send a request to Admin.
+            </p>
+
+        </div>
+
+        <button
+            class="request-btn"
+            onclick="openRequestModal()">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Request Additional Member
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+
+            <div class="summary-icon blue">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div>
+
+                <span>Total Members</span>
+
+                <strong id="totalMembers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon green">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <div>
+
+                <span>Active Members</span>
+
+                <strong id="activeMembers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon orange">
+                <i class="fa-solid fa-user-clock"></i>
+            </div>
+
+            <div>
+
+                <span>On Leave</span>
+
+                <strong id="leaveMembers">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon purple">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div>
+
+                <span>High Workload</span>
+
+                <strong id="highWorkload">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TEAM SECTION ================= -->
+
+    <section class="team-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    My Team
+                </h2>
+
+                <p>
+                    Existing employees assigned to your team
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FILTERS ================= -->
+
+        <div class="filters">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-search"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search employee..."
+                    onkeyup="filterMembers()">
+
+            </div>
+
+
+            <select
+                id="departmentFilter"
+                onchange="filterMembers()">
+
+                <option value="All">
+                    All Departments
+                </option>
+
+                <option value="Technical">
+                    Technical
+                </option>
+
+                <option value="Human Resources">
+                    Human Resources
+                </option>
+
+                <option value="Finance">
+                    Finance
+                </option>
+
+                <option value="Marketing">
+                    Marketing
+                </option>
+
+            </select>
+
+
+            <select
+                id="statusFilter"
+                onchange="filterMembers()">
+
+                <option value="All">
+                    All Status
+                </option>
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="On Leave">
+                    On Leave
+                </option>
+
+                <option value="Inactive">
+                    Inactive
+                </option>
+
+            </select>
+
+
+            <select
+                id="workloadFilter"
+                onchange="filterMembers()">
+
+                <option value="All">
+                    All Workload
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+                <option value="Low">
+                    Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>S.No</th>
+
+                        <th>Employee</th>
+
+                        <th>Employee ID</th>
+
+                        <th>Department</th>
+
+                        <th>Email</th>
+
+                        <th>Tasks</th>
+
+                        <th>Workload</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="memberTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= VIEW PROFILE MODAL ================= -->
+
+<div class="modal" id="viewModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Employee Details
+                </h2>
+
+                <p>
+                    View team member information
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeViewModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="profile-details"
+            id="profileDetails">
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="close-modal-btn"
+                onclick="closeViewModal()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= REQUEST MEMBER MODAL ================= -->
+
+<div class="modal" id="requestModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Request Additional Member
+                </h2>
+
+                <p>
+                    Send a request to Admin
+                </p>
+
+            </div>
+
+            <button
+                class="close-btn"
+                onclick="closeRequestModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN WARNING -->
+
+        <div class="warning-box">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <div>
+
+                <strong>
+                    Admin Only
+                </strong>
+
+                <p>
+                    Manager cannot directly add new employees.
+                    Only Admin has permission to add employees
+                    to the system.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            id="memberRequestForm"
+            onsubmit="submitMemberRequest(event)">
+
+
+            <div class="form-group">
+
+                <label>
+                    Manager Name
+                </label>
+
+                <input
+                    type="text"
+                    id="managerName"
+                    value="Manager"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Current Team Members
+                </label>
+
+                <input
+                    type="text"
+                    id="currentTeamCount"
+                    readonly>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Reason for Additional Member
+                    <span>*</span>
+                </label>
+
+                <select
+                    id="requestReason"
+                    required>
+
+                    <option value="">
+                        Select reason
+                    </option>
+
+                    <option value="High Team Workload">
+                        High Team Workload
+                    </option>
+
+                    <option value="Project Requirement">
+                        Project Requirement
+                    </option>
+
+                    <option value="Additional Tasks">
+                        Additional Tasks
+                    </option>
+
+                    <option value="Staff Shortage">
+                        Staff Shortage
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Required Department
+                    <span>*</span>
+                </label>
+
+                <select
+                    id="requiredDepartment"
+                    required>
+
+                    <option value="">
+                        Select department
+                    </option>
+
+                    <option value="Technical">
+                        Technical
+                    </option>
+
+                    <option value="Human Resources">
+                        Human Resources
+                    </option>
+
+                    <option value="Finance">
+                        Finance
+                    </option>
+
+                    <option value="Marketing">
+                        Marketing
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Number of Members Required
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="memberCount"
+                    min="1"
+                    max="10"
+                    value="1"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Message to Admin
+                    <span>*</span>
+                </label>
+
+                <textarea
+                    id="requestMessage"
+                    rows="4"
+                    placeholder="Explain why an additional team member is required..."
+                    required></textarea>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="close-modal-btn"
+                    onclick="closeRequestModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="submit-request-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send Request to Admin
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div class="modal" id="successModal">
+
+    <div class="modal-box success-box">
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+        <h2>
+            Request Sent Successfully
+        </h2>
+
+        <p>
+            Your request has been sent to Admin.
+            Admin will review the request and add a new
+            employee if required.
+        </p>
+
+        <button
+            class="submit-request-btn"
+            onclick="closeSuccessModal()">
+
+            OK
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+    /* ==========================================
+   MANAGER - TEAM MEMBERS
+   Admin controls adding new employees
+========================================== */
+
+
+/* ==========================================
+   TEAM MEMBERS DATA
+========================================== */
+
+let teamMembers =
+    JSON.parse(
+        localStorage.getItem("teamMembers")
+    ) || [
+
+        {
+            id: 1,
+            employeeId: "EMP001",
+            name: "Abir Singh",
+            department: "Technical",
+            role: "Software Developer",
+            email: "abir@example.com",
+            phone: "9876543210",
+            tasks: 5,
+            completedTasks: 2,
+            pendingTasks: 3,
+            workload: "High",
+            status: "Active",
+            joinedDate: "2026-01-10"
+        },
+
+        {
+            id: 2,
+            employeeId: "EMP002",
+            name: "Rahul Kumar",
+            department: "Technical",
+            role: "Web Developer",
+            email: "rahul@example.com",
+            phone: "9876543211",
+            tasks: 4,
+            completedTasks: 3,
+            pendingTasks: 1,
+            workload: "Medium",
+            status: "Active",
+            joinedDate: "2026-02-15"
+        },
+
+        {
+            id: 3,
+            employeeId: "EMP003",
+            name: "Anu Thomas",
+            department: "Human Resources",
+            role: "HR Assistant",
+            email: "anu@example.com",
+            phone: "9876543212",
+            tasks: 3,
+            completedTasks: 3,
+            pendingTasks: 0,
+            workload: "Low",
+            status: "Active",
+            joinedDate: "2026-03-20"
+        },
+
+        {
+            id: 4,
+            employeeId: "EMP004",
+            name: "Meera",
+            department: "Marketing",
+            role: "Marketing Executive",
+            email: "meera@example.com",
+            phone: "9876543213",
+            tasks: 6,
+            completedTasks: 2,
+            pendingTasks: 4,
+            workload: "High",
+            status: "On Leave",
+            joinedDate: "2026-04-05"
+        }
+
+    ];
+
+
+/* ==========================================
+   SAVE TEAM MEMBERS
+========================================== */
+
+function saveMembers() {
+
+    localStorage.setItem(
+        "teamMembers",
+        JSON.stringify(teamMembers)
+    );
+
+}
+
+
+/* ==========================================
+   PAGE LOAD
+========================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        displayMembers();
+
+        updateSummary();
+
+    }
+);
+
+
+/* ==========================================
+   DISPLAY MEMBERS
+========================================== */
+
+function displayMembers(data = teamMembers) {
+
+    const table =
+        document.getElementById(
+            "memberTable"
+        );
+
+    table.innerHTML = "";
+
+
+    if (data.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="9">
+
+                    <div class="empty-message">
+
+                        <i class="fa-solid fa-users-slash"></i>
+
+                        No team members found.
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+
+    data.forEach(
+        function(member, index) {
+
+            const initials =
+                getInitials(
+                    member.name
+                );
+
+
+            const workloadClass =
+                member.workload
+                    .toLowerCase();
+
+
+            const statusClass =
+                member.status
+                    .toLowerCase()
+                    .replace(" ", "-");
+
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+
+                    <td>
+
+                        <div class="employee-info">
+
+                            <div class="employee-avatar">
+                                ${initials}
+                            </div>
+
+                            <div>
+
+                                <span class="employee-name">
+                                    ${member.name}
+                                </span>
+
+                                <span class="employee-role">
+                                    ${member.role}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${member.employeeId}
+                    </td>
+
+
+                    <td>
+                        ${member.department}
+                    </td>
+
+
+                    <td>
+                        ${member.email}
+                    </td>
+
+
+                    <td>
+
+                        <span class="task-count">
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                            ${member.tasks}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="workload ${workloadClass}">
+
+                            ${member.workload}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="status ${statusClass}">
+
+                            ${member.status}
+
+                        </span>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="action-btn view-btn"
+                            title="View Employee"
+                            onclick="viewMember(${member.id})">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+
+                        <button
+                            class="action-btn message-btn"
+                            title="Send Message"
+                            onclick="sendMessage(${member.id})">
+
+                            <i class="fa-solid fa-message"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   GET INITIALS
+========================================== */
+
+function getInitials(name) {
+
+    const words =
+        name.trim().split(" ");
+
+
+    if (words.length === 1) {
+
+        return words[0]
+            .substring(0, 2)
+            .toUpperCase();
+
+    }
+
+
+    return (
+        words[0][0] +
+        words[words.length - 1][0]
+    ).toUpperCase();
+
+}
+
+
+/* ==========================================
+   UPDATE SUMMARY
+========================================== */
+
+function updateSummary() {
+
+    const total =
+        teamMembers.length;
+
+
+    const active =
+        teamMembers.filter(
+            member =>
+                member.status === "Active"
+        ).length;
+
+
+    const leave =
+        teamMembers.filter(
+            member =>
+                member.status === "On Leave"
+        ).length;
+
+
+    const high =
+        teamMembers.filter(
+            member =>
+                member.workload === "High"
+        ).length;
+
+
+    document.getElementById(
+        "totalMembers"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "activeMembers"
+    ).textContent = active;
+
+
+    document.getElementById(
+        "leaveMembers"
+    ).textContent = leave;
+
+
+    document.getElementById(
+        "highWorkload"
+    ).textContent = high;
+
+}
+
+
+/* ==========================================
+   SEARCH + FILTER
+========================================== */
+
+function filterMembers() {
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const department =
+        document.getElementById(
+            "departmentFilter"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const workload =
+        document.getElementById(
+            "workloadFilter"
+        ).value;
+
+
+    const filtered =
+        teamMembers.filter(
+            function(member) {
+
+                const searchMatch =
+
+                    member.name
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    member.employeeId
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    member.email
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    member.department
+                        .toLowerCase()
+                        .includes(search);
+
+
+                const departmentMatch =
+                    department === "All"
+                    ||
+                    member.department === department;
+
+
+                const statusMatch =
+                    status === "All"
+                    ||
+                    member.status === status;
+
+
+                const workloadMatch =
+                    workload === "All"
+                    ||
+                    member.workload === workload;
+
+
+                return (
+
+                    searchMatch &&
+                    departmentMatch &&
+                    statusMatch &&
+                    workloadMatch
+
+                );
+
+            }
+        );
+
+
+    displayMembers(filtered);
+
+}
+
+
+/* ==========================================
+   VIEW MEMBER
+========================================== */
+
+function viewMember(id) {
+
+    const member =
+        teamMembers.find(
+            member =>
+                member.id === id
+        );
+
+
+    if (!member) {
+
+        return;
+
+    }
+
+
+    const initials =
+        getInitials(
+            member.name
+        );
+
+
+    document.getElementById(
+        "profileDetails"
+    ).innerHTML = `
+
+        <div class="profile-top">
+
+            <div class="large-avatar">
+                ${initials}
+            </div>
+
+            <h3>
+                ${member.name}
+            </h3>
+
+            <p>
+                ${member.role}
+            </p>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Employee ID
+            </span>
+
+            <strong>
+                ${member.employeeId}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Department
+            </span>
+
+            <strong>
+                ${member.department}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Email
+            </span>
+
+            <strong>
+                ${member.email}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Phone
+            </span>
+
+            <strong>
+                ${member.phone}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Total Tasks
+            </span>
+
+            <strong>
+                ${member.tasks}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Completed Tasks
+            </span>
+
+            <strong>
+                ${member.completedTasks}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Pending Tasks
+            </span>
+
+            <strong>
+                ${member.pendingTasks}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Workload
+            </span>
+
+            <strong>
+                ${member.workload}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Status
+            </span>
+
+            <strong>
+                ${member.status}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <span>
+                Joined Date
+            </span>
+
+            <strong>
+                ${member.joinedDate}
+            </strong>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "viewModal"
+    ).style.display = "flex";
+
+}
+
+
+/* ==========================================
+   CLOSE VIEW MODAL
+========================================== */
+
+function closeViewModal() {
+
+    document.getElementById(
+        "viewModal"
+    ).style.display = "none";
+
+}
+
+
+/* ==========================================
+   SEND MESSAGE
+========================================== */
+
+function sendMessage(id) {
+
+    const member =
+        teamMembers.find(
+            member =>
+                member.id === id
+        );
+
+
+    if (!member) {
+
+        return;
+
+    }
+
+
+    const message =
+        prompt(
+            "Message to " + member.name
+        );
+
+
+    if (
+        message &&
+        message.trim() !== ""
+    ) {
+
+        alert(
+            "Message sent successfully to "
+            + member.name
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   OPEN REQUEST MODAL
+========================================== */
+
+function openRequestModal() {
+
+    document.getElementById(
+        "currentTeamCount"
+    ).value =
+        teamMembers.length
+        + " existing member(s)";
+
+
+    document.getElementById(
+        "requestModal"
+    ).style.display = "flex";
+
+}
+
+
+/* ==========================================
+   CLOSE REQUEST MODAL
+========================================== */
+
+function closeRequestModal() {
+
+    document.getElementById(
+        "requestModal"
+    ).style.display = "none";
+
+}
+
+
+/* ==========================================
+   SUBMIT ADMIN REQUEST
+========================================== */
+
+function submitMemberRequest(event) {
+
+    event.preventDefault();
+
+
+    const reason =
+        document.getElementById(
+            "requestReason"
+        ).value;
+
+
+    const department =
+        document.getElementById(
+            "requiredDepartment"
+        ).value;
+
+
+    const count =
+        document.getElementById(
+            "memberCount"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "requestMessage"
+        ).value.trim();
+
+
+    if (
+        !reason ||
+        !department ||
+        !count ||
+        !message
+    ) {
+
+        alert(
+            "Please complete all required fields."
+        );
+
+        return;
+
+    }
+
+
+    /* Create request object */
+
+    const request = {
+
+        id:
+            Date.now(),
+
+        manager:
+            document.getElementById(
+                "managerName"
+            ).value,
+
+        currentTeamMembers:
+            teamMembers.length,
+
+        reason:
+            reason,
+
+        department:
+            department,
+
+        membersRequired:
+            Number(count),
+
+        message:
+            message,
+
+        status:
+            "Pending",
+
+        requestDate:
+            new Date()
+                .toISOString()
+                .split("T")[0]
+
+    };
+
+
+    /* Get existing requests */
+
+    let requests =
+        JSON.parse(
+            localStorage.getItem(
+                "memberRequests"
+            )
+        ) || [];
+
+
+    /* Add new request */
+
+    requests.push(request);
+
+
+    /* Save request */
+
+    localStorage.setItem(
+        "memberRequests",
+        JSON.stringify(requests)
+    );
+
+
+    /* Close request form */
+
+    closeRequestModal();
+
+
+    /* Reset form */
+
+    document.getElementById(
+        "memberRequestForm"
+    ).reset();
+
+
+    /* Show success message */
+
+    document.getElementById(
+        "successModal"
+    ).style.display = "flex";
+
+}
+
+
+/* ==========================================
+   CLOSE SUCCESS
+========================================== */
+
+function closeSuccessModal() {
+
+    document.getElementById(
+        "successModal"
+    ).style.display = "none";
+
+}
+
+
+/* ==========================================
+   CLOSE MODALS WHEN CLICK OUTSIDE
+========================================== */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const viewModal =
+            document.getElementById(
+                "viewModal"
+            );
+
+
+        const requestModal =
+            document.getElementById(
+                "requestModal"
+            );
+
+
+        const successModal =
+            document.getElementById(
+                "successModal"
+            );
+
+
+        if (
+            event.target === viewModal
+        ) {
+
+            closeViewModal();
+
+        }
+
+
+        if (
+            event.target === requestModal
+        ) {
+
+            closeRequestModal();
+
+        }
+
+
+        if (
+            event.target === successModal
+        ) {
+
+            closeSuccessModal();
+
+        }
+
+    }
+);
+</script>
+
+</body>
+</html>

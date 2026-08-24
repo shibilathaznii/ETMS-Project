@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Workload Requests - Admin</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="managerworkload.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li class="active">
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    
+    
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Workload Requests</h1>
+
+                <p>
+                    Review and manage employee workload requests
+                </p>
+            </div>
+
+            <div class="manager-profile">
+
+                <div class="notification"
+                     onclick="showNotifications()">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>2</span>
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-image">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+
+                    <div>
+                        <strong>Manager</strong>
+                        <small>Project Manager</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+
+                <div>
+                    <p>Total Requests</p>
+                    <h2 id="totalRequests"></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-icon red">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+
+                <div>
+                    <p>High Workload</p>
+                    <h2 id="highRequests"></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <p>Pending</p>
+                    <h2 id="pendingRequests"></h2>
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="card-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <p>Resolved</p>
+                    <h2 id="resolvedRequests"></h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FILTER ================= -->
+
+        <section class="filter-card">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search employee..."
+                    onkeyup="filterRequests()">
+
+            </div>
+
+
+            <select id="levelFilter"
+                    onchange="filterRequests()">
+
+                <option value="all">
+                    All Workload
+                </option>
+
+                <option value="high">
+                    High
+                </option>
+
+                <option value="medium">
+                    Medium
+                </option>
+
+                <option value="low">
+                    Low
+                </option>
+
+            </select>
+
+
+            <select id="statusFilter"
+                    onchange="filterRequests()">
+
+                <option value="all">
+                    All Status
+                </option>
+
+                <option value="pending">
+                    Pending
+                </option>
+
+                <option value="resolved">
+                    Resolved
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <section class="table-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        <i class="fa-solid fa-people-arrows"></i>
+                        Employee Workload Requests
+                    </h2>
+
+                    <p>
+                        Requests received from your team
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table id="workloadTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+                            <th>Employee</th>
+                            <th>Pending Tasks</th>
+                            <th>Workload</th>
+                            <th>Reason</th>
+                            <th>Expected Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= DETAILS MODAL ================= -->
+
+<div id="detailsModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                Workload Request Details
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+
+                <label>Employee Name</label>
+
+                <strong id="employeeName">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <label>Pending Tasks</label>
+
+                <strong id="pendingTasks">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <label>Workload Level</label>
+
+                <strong id="workloadLevel">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <label>Expected Completion Date</label>
+
+                <strong id="expectedDate">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="detail-box full">
+
+                <label>Reason</label>
+
+                <p id="reason">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="detail-box full">
+
+                <label>Message to Manager</label>
+
+                <p id="message">
+                    -
+                </p>
+
+            </div>
+
+
+            <div class="detail-box full">
+
+                <label>Attachment</label>
+
+                <button
+                    class="attachment-btn"
+                    onclick="viewAttachment()">
+
+                    <i class="fa-solid fa-paperclip"></i>
+
+                    View Attachment
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MANAGER ACTIONS ================= -->
+
+        <div class="manager-actions">
+
+            <h3>
+                Manager Action
+            </h3>
+
+
+            <button
+                class="action-btn approve"
+                onclick="approveSupport()">
+
+                <i class="fa-solid fa-check"></i>
+
+                Approve Support
+
+            </button>
+
+
+            <button
+                class="action-btn reassign"
+                onclick="reassignTask()">
+
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+                Reassign Task
+
+            </button>
+
+
+            <button
+                class="action-btn deadline"
+                onclick="changeDeadline()">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Change Deadline
+
+            </button>
+
+
+            <button
+                class="action-btn priority"
+                onclick="reducePriority()">
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+                Reduce Task Priority
+
+            </button>
+
+
+            <button
+                class="action-btn employee"
+                onclick="addEmployee()">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add Another Employee
+
+            </button>
+
+
+            <button
+                class="action-btn message"
+                onclick="sendMessage()">
+
+                <i class="fa-solid fa-message"></i>
+
+                Send Message
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="close-modal"
+                onclick="closeModal()">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    // =====================================
+// WORKLOAD REQUEST DATA
+// =====================================
+
+const workloadData = {
+
+    
+
+};
+
+
+// =====================================
+// CURRENT REQUEST
+// =====================================
+
+let currentRequest = null;
+
+
+// =====================================
+// VIEW REQUEST
+// =====================================
+
+function viewRequest(id) {
+
+    const request = workloadData[id];
+
+    if (!request) {
+        return;
+    }
+
+    currentRequest = id;
+
+    document.getElementById("employeeName")
+        .innerText = request.employee;
+
+    document.getElementById("pendingTasks")
+        .innerText = request.tasks;
+
+    document.getElementById("workloadLevel")
+        .innerText = request.level;
+
+    document.getElementById("reason")
+        .innerText = request.reason;
+
+    document.getElementById("expectedDate")
+        .innerText = request.date;
+
+    document.getElementById("message")
+        .innerText = request.message;
+
+    document.getElementById("detailsModal")
+        .style.display = "flex";
+}
+
+
+// =====================================
+// CLOSE MODAL
+// =====================================
+
+function closeModal() {
+
+    document.getElementById("detailsModal")
+        .style.display = "none";
+
+    currentRequest = null;
+}
+
+
+// =====================================
+// APPROVE SUPPORT
+// =====================================
+
+function approveSupport() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    workloadData[currentRequest].status =
+        "Resolved";
+
+    updateTableStatus(
+        currentRequest,
+        "Approved Support",
+        "Resolved"
+    );
+
+    alert(
+        "Workload support approved for " +
+        workloadData[currentRequest].employee
+    );
+
+    closeModal();
+}
+
+
+// =====================================
+// REASSIGN TASK
+// =====================================
+
+function reassignTask() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    const employee =
+        workloadData[currentRequest].employee;
+
+    const newEmployee =
+        prompt(
+            "Enter employee name to reassign the task:",
+            "Meera"
+        );
+
+    if (!newEmployee) {
+        return;
+    }
+
+    workloadData[currentRequest].status =
+        "Resolved";
+
+    updateTableStatus(
+        currentRequest,
+        "Task Reassigned",
+        "Resolved"
+    );
+
+    alert(
+        "Task reassigned from " +
+        employee +
+        " to " +
+        newEmployee
+    );
+
+    closeModal();
+}
+
+
+// =====================================
+// CHANGE DEADLINE
+// =====================================
+
+function changeDeadline() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    const newDate =
+        prompt(
+            "Enter new deadline:",
+            "30-08-2026"
+        );
+
+    if (!newDate) {
+        return;
+    }
+
+    workloadData[currentRequest].date =
+        newDate;
+
+    workloadData[currentRequest].status =
+        "Resolved";
+
+    updateTableStatus(
+        currentRequest,
+        "Deadline Changed",
+        "Resolved"
+    );
+
+    alert(
+        "Deadline changed to " +
+        newDate
+    );
+
+    closeModal();
+}
+
+
+// =====================================
+// REDUCE PRIORITY
+// =====================================
+
+function reducePriority() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    const priority =
+        prompt(
+            "Enter new priority:",
+            "Medium"
+        );
+
+    if (!priority) {
+        return;
+    }
+
+    workloadData[currentRequest].status =
+        "Resolved";
+
+    updateTableStatus(
+        currentRequest,
+        "Priority Reduced",
+        "Resolved"
+    );
+
+    alert(
+        "Task priority changed to " +
+        priority
+    );
+
+    closeModal();
+}
+
+
+// =====================================
+// ADD ANOTHER EMPLOYEE
+// =====================================
+
+function addEmployee() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    const employee =
+        prompt(
+            "Enter employee name to add:",
+            "Meera"
+        );
+
+    if (!employee) {
+        return;
+    }
+
+    workloadData[currentRequest].status =
+        "Resolved";
+
+    updateTableStatus(
+        currentRequest,
+        "Employee Added",
+        "Resolved"
+    );
+
+    alert(
+        employee +
+        " has been added to the task."
+    );
+
+    closeModal();
+}
+
+
+// =====================================
+// SEND MESSAGE
+// =====================================
+
+function sendMessage() {
+
+    if (!currentRequest) {
+        return;
+    }
+
+    const message =
+        prompt(
+            "Enter message to employee:"
+        );
+
+    if (!message) {
+        return;
+    }
+
+    alert(
+        "Message sent successfully."
+    );
+
+}
+
+
+// =====================================
+// UPDATE TABLE STATUS
+// =====================================
+
+function updateTableStatus(
+    id,
+    action,
+    status
+) {
+
+    const rows =
+        document.querySelectorAll(
+            "#workloadTable tbody tr"
+        );
+
+    const rowIndex = id - 1;
+
+    if (!rows[rowIndex]) {
+        return;
+    }
+
+    const cells =
+        rows[rowIndex].children;
+
+    // Status column
+    cells[6].innerHTML =
+        `<span class="status resolved">
+            ${status}
+        </span>`;
+
+    rows[rowIndex]
+        .dataset.status = "resolved";
+
+}
+
+
+// =====================================
+// SEARCH + FILTER
+// =====================================
+
+function filterRequests() {
+
+    const search =
+        document.getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+    const level =
+        document.getElementById("levelFilter")
+            .value
+            .toLowerCase();
+
+    const status =
+        document.getElementById("statusFilter")
+            .value
+            .toLowerCase();
+
+    const rows =
+        document.querySelectorAll(
+            "#workloadTable tbody tr"
+        );
+
+
+    rows.forEach(function(row) {
+
+        const text =
+            row.innerText.toLowerCase();
+
+        const rowLevel =
+            row.dataset.level;
+
+        const rowStatus =
+            row.dataset.status;
+
+
+        const searchMatch =
+            text.includes(search);
+
+        const levelMatch =
+            level === "all" ||
+            rowLevel === level;
+
+        const statusMatch =
+            status === "all" ||
+            rowStatus === status;
+
+
+        if (
+            searchMatch &&
+            levelMatch &&
+            statusMatch
+        ) {
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+// =====================================
+// ATTACHMENT
+// =====================================
+
+function viewAttachment() {
+
+    alert(
+        "Employee attachment will open here."
+    );
+
+}
+
+
+// =====================================
+// NOTIFICATION
+// =====================================
+
+function showNotifications() {
+
+    alert(
+        "2 New Notifications\n\n" +
+        "1. Abir Singh reported High Workload\n" +
+        "2. Rahul Kumar requested deadline support"
+    );
+
+}
+
+
+// =====================================
+// LOGOUT
+// =====================================
+
+function logout() {
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+    if (confirmLogout) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+}
+
+
+// =====================================
+// CLOSE MODAL OUTSIDE CLICK
+// =====================================
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("detailsModal");
+
+    if (event.target === modal) {
+
+        closeModal();
+
+    }
+
+};
+</script>
+
+</body>
+</html>

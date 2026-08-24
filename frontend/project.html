@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manager Dashboard</title>
+
+<link rel="stylesheet" href="project.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+
+    <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="managerdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="project.html">
+                <i class="fa-solid fa-folder"></i>
+                <span>My Projects</span>
+            </a>
+        </li>
+
+        
+
+        
+
+        <li>
+            <a href="managerworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Workload Requests</span>
+                <b class="badge"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="magerleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Leave Requests</span>
+                <b class="badge yellow"></b>
+            </a>
+        </li>
+
+        <li>
+            <a href="projectsubmission.html">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Submission</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerreport.html">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Reports</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="managerprofile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+    <!-- Main Content -->
+
+    <div class="main">
+
+        <!-- Navbar -->
+         
+        <!-- Dashboard Cards -->
+
+        <div class="cards">
+
+            <div class="card blue">
+
+                <i class="fa-solid fa-folder"></i>
+
+                <h3>My Projects</h3>
+
+                <h1></h1>
+
+                <p>Total Projects</p>
+
+            </div>
+
+            <div class="card green">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h3>Total Tasks</h3>
+
+                <h1></h1>
+
+                <p>All Tasks</p>
+
+            </div>
+
+            <div class="card orange">
+
+                <i class="fa-solid fa-hourglass-half"></i>
+
+                <h3>In Progress</h3>
+
+                <h1></h1>
+
+                <p>Tasks</p>
+
+            </div>
+
+            <div class="card purple">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <h3>Completed</h3>
+
+                <h1></h1>
+
+                <p>Tasks</p>
+
+            </div>
+
+            <div class="card red">
+
+                <i class="fa-regular fa-clock"></i>
+
+                <h3>Pending</h3>
+
+                <h1></h1>
+
+                <p>Tasks</p>
+
+            </div>
+
+        </div>
+        <!-- My Projects -->
+
+<div class="project-section">
+
+    <h2>My Projects</h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>#</th>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            
+
+            
+            
+
+            
+
+        </tbody>
+
+    </table>
+
+</div>
+<!-- Project Details -->
+
+<div class="project-details">
+
+    <div class="project-header">
+
+        <h2>
+            <i class="fa-solid fa-folder-open"></i>
+            Project : 
+        </h2>
+
+        
+
+    </div>
+
+    <!-- Navigation Tabs -->
+
+    <div class="project-tabs">
+        <a href="viewpro.html">
+          <button class="tab">
+            <i class="fas fa-folder-open"></i>
+            View Projects
+          </button>
+        </a>
+
+        <a href="viewtask.html">
+          <button class="tab">
+             <i class="fas fa-plus-circle"></i>
+             Create Task
+          </button>
+          
+        </a>        
+         
+
+        
+       <a href="teammembers.html">
+          <button class="tab">
+             <i class=" fas fa-users"></i>
+              Team Members 
+            </button>
+        </a>  
+        
+        <a href="projectsubmission.html">
+          <button class="tab">
+             <i class=" fas fa-file-arrow-up"></i>
+             Project Submission
+            </button>
+        </a>     
+
+        
+
+        
+    </div>
+
+    <!-- Task List Header -->
+
+    <div class="task-header">
+
+        <h3>Task List</h3>
+
+        <button class="new-task-btn">
+            <i class="fa-solid fa-plus"></i>
+            Create New Task
+        </button>
+
+    </div>
+
+</div>
+<!-- Task Table -->
+
+<table class="task-table">
+
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Task Title</th>
+            <th>Description</th>
+            <th>Assigned To</th>
+            <th>Priority</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Progress</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+    </table>
+    </div>
+    
+
+        
+    </div>
+
+<script src="project.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Report Workload - Employee</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="empworkload.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <span>TaskStream Pro</span>
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="empdash.html">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="emptasks.html">
+                <i class="fa-solid fa-list-check"></i>
+                <span>My Tasks</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="completed.html">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Completed Tasks</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="empworkload.html">
+                <i class="fa-solid fa-people-arrows"></i>
+                <span>Report Workload</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="empworkloadstatus.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Workload Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="applyleave.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Apply Leave</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="leavestatus.html">
+                <i class="fa-solid fa-clock"></i>
+                <span>Leave Status</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+        <a href="task.html" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main class="main-content">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+        <div>
+            <h1>Report Workload</h1>
+            <p>Inform your manager when your current workload is high</p>
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div>
+                <strong></strong>
+                <small>Employee</small>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE GRID -->
+
+    <section class="page-grid">
+
+        <!-- FORM -->
+
+        <div class="form-card">
+
+            <div class="form-title">
+
+                <div class="title-icon">
+                    <i class="fa-solid fa-people-arrows"></i>
+                </div>
+
+                <div>
+                    <h2>Workload Request</h2>
+                    <p>
+                        Send a support request to your manager.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="workloadForm"
+                  onsubmit="submitRequest(event)">
+
+
+                <!-- EMPLOYEE NAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Employee Name
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="employeeName"
+                            value=""
+                            readonly>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PENDING TASKS -->
+
+                <div class="form-group">
+
+                    <label>
+                        Current Pending Tasks
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-list-check"></i>
+
+                        <input
+                            type="number"
+                            id="pendingTasks"
+                            value=""
+                            readonly>
+
+                    </div>
+
+                    <small class="help-text">
+                        Number of pending tasks assigned to you.
+                    </small>
+
+                </div>
+
+
+                <!-- WORKLOAD LEVEL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Workload Level
+                        <span>*</span>
+                    </label>
+
+                    <div class="workload-options">
+
+                        <label class="workload-option high">
+
+                            <input
+                                type="radio"
+                                name="workload"
+                                value="High"
+                                required>
+
+                            <div>
+                                <i class="fa-solid fa-arrow-up"></i>
+                                <strong>High</strong>
+                                <small>Need support</small>
+                            </div>
+
+                        </label>
+
+
+                        <label class="workload-option medium">
+
+                            <input
+                                type="radio"
+                                name="workload"
+                                value="Medium">
+
+                            <div>
+                                <i class="fa-solid fa-minus"></i>
+                                <strong>Medium</strong>
+                                <small>Manageable</small>
+                            </div>
+
+                        </label>
+
+
+                        <label class="workload-option low">
+
+                            <input
+                                type="radio"
+                                name="workload"
+                                value="Low">
+
+                            <div>
+                                <i class="fa-solid fa-arrow-down"></i>
+                                <strong>Low</strong>
+                                <small>Under control</small>
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REASON -->
+
+                <div class="form-group">
+
+                    <label>
+                        Reason for Workload
+                        <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="reason"
+                        placeholder="Explain why you are experiencing high workload..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- EXPECTED DATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Expected Completion Date
+                        <span>*</span>
+                    </label>
+
+                    <div class="input-icon">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <input
+                            type="date"
+                            id="completionDate"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Message to Manager
+                        <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="managerMessage"
+                        placeholder="Write a message to your manager..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- ATTACHMENT -->
+
+                <div class="form-group">
+
+                    <label>
+                        Optional Attachment
+                    </label>
+
+                    <div class="upload-box">
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        <input
+                            type="file"
+                            id="attachment">
+
+                        <p>
+                            Upload supporting document if required
+                        </p>
+
+                        <small>
+                            PDF, JPG, PNG, DOC
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="reset"
+                        class="cancel-btn">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Clear
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="submit-btn">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Submit Request
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="side-section">
+
+            <!-- CURRENT WORKLOAD -->
+
+            <div class="status-card">
+
+                <div class="card-header">
+
+                    <h3>Current Workload</h3>
+
+                    <span class="">
+                        
+                    </span>
+
+                </div>
+
+
+                <div class="task-number">
+
+                    <strong id="taskCount">
+                        
+                    </strong>
+
+                    <span>
+                        
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div class=""></div>
+
+                </div>
+
+                <p class="status-message">
+
+                    Your current workload is   .
+                    You can request support from your manager.
+
+                </p>
+
+            </div>
+
+
+            <!-- WHAT MANAGER CAN DO -->
+
+            <div class="info-card">
+
+                <h3>
+                    <i class="fa-solid fa-circle-info"></i>
+                    Manager Support
+                </h3>
+
+                <p>
+                    After submitting this request,
+                    your manager can take the following actions:
+                </p>
+
+                <ul>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Approve Support
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-user-group"></i>
+                        Reassign Task
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-calendar"></i>
+                        Change Deadline
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-arrow-down"></i>
+                        Reduce Task Priority
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add Another Employee
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-message"></i>
+                        Send Message
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="request-card">
+
+                <div class="request-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+
+                    <h3>Request Status</h3>
+
+                    <p id="requestStatus">
+                        No new request submitted
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+    // ===============================
+// SUBMIT WORKLOAD REQUEST
+// ===============================
+
+function submitRequest(event) {
+
+    event.preventDefault();
+
+    const employeeName =
+        document.getElementById("employeeName").value;
+
+    const pendingTasks =
+        document.getElementById("pendingTasks").value;
+
+    const workload =
+        document.querySelector(
+            'input[name="workload"]:checked'
+        );
+
+    const reason =
+        document.getElementById("reason").value;
+
+    const completionDate =
+        document.getElementById("completionDate").value;
+
+    const managerMessage =
+        document.getElementById("managerMessage").value;
+
+    if (!workload) {
+
+        alert("Please select workload level.");
+
+        return;
+    }
+
+    if (reason.trim() === "") {
+
+        alert("Please enter the reason.");
+
+        return;
+    }
+
+    if (completionDate === "") {
+
+        alert("Please select expected completion date.");
+
+        return;
+    }
+
+    if (managerMessage.trim() === "") {
+
+        alert("Please enter a message to manager.");
+
+        return;
+    }
+
+
+    // Show success message
+
+    document.getElementById("requestStatus").innerText =
+        "Submitted - Waiting for Manager";
+
+    alert(
+        "Workload Request Submitted Successfully!\n\n" +
+        "Employee: " + employeeName + "\n" +
+        "Pending Tasks: " + pendingTasks + "\n" +
+        "Workload: " + workload.value
+    );
+
+}
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+function logout() {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        window.location.href = "login.html";
+
+    }
+
+}
+</script>
+
+</body>
+</html>
